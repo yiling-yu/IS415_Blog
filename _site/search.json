@@ -3,17 +3,17 @@
     {
       "path": "about.html",
       "title": "About this blog",
-      "description": "Some additional details about the blog",
+      "description": "For IS415 use.",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-23T11:32:38+08:00"
+      "last_modified": "2021-09-06T09:30:17+08:00"
     },
     {
       "path": "index.html",
       "title": "IS415 Web Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-08-23T11:32:44+08:00"
+      "last_modified": "2021-09-05T18:23:01+08:00"
     }
   ],
   "collections": ["posts/posts.json"]

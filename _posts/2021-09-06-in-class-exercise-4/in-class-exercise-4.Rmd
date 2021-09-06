@@ -1,0 +1,103 @@
+---
+title: "In-class Exercise 4"
+description:
+author:
+  - name: Yu Yiling
+    url: https://www.linkedin.com/in/yiling-yu/
+date: 09-06-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Summary
+  * install packages
+  * import data and transform aspatial data to geospatial data: st_read(), read_rds(), st_as_sf()
+  * data Wrangling: sf -> Spatial class -> sp -> spatstat ppp format
+  * plot map
+
+# 1. Install Packages
+
+```{r}
+packages = c('maptools', 'sf', 'raster','spatstat', 'tmap','tidyverse')
+for (p in packages){
+if(!require(p, character.only = T)){
+install.packages(p)
+}
+library(p,character.only = T)
+}
+```
+
+# 2. Import data and transform aspatial data
+
+```{r}
+sg_sf <- st_read("data/shapefile", layer="CostalOutline")
+mpsz_sf <- st_read(dsn = "data/shapefile", 
+                layer = "MP14_SUBZONE_WEB_PL")
+
+childcare <- read_rds("data/rds/childcare.rds")
+CHAS <- read_rds("data/rds/CHAS.rds")
+```
+```{r}
+CHAS_sf <- st_as_sf(CHAS,
+                    coords = c("X_COORDINATE",
+                               "Y_COORDINATE"),
+                    crs=3414)
+```
+```{r}
+childcare$Lat <- as.numeric(childcare$Lat)
+childcare$Lng <- as.numeric(childcare$Lng)
+childcare_sf <- st_as_sf(childcare,
+                         coords = c("Lng",
+                                    "Lat"),
+                         crs=4326) %>%
+  st_transform(crs =3414)
+```
+
+# 3. Data Wrangling
+
+## a. Converting from sf to Spatial class
+
+```{r}
+childcare <- as_Spatial(childcare_sf)
+CHAS <- as_Spatial(CHAS_sf)
+mpsz <- as_Spatial(mpsz_sf)
+sg <- as_Spatial(sg_sf)
+```
+
+## b. Converting from Spatial class to sp format
+
+```{r}
+childcare_sp <- as(childcare, "SpatialPoints")
+CHAS_sp <- as(CHAS, "SpatialPoints")
+sg_sp <- as(sg, "SpatialPolygons")
+```
+
+## c. Converting from sp to spatstat ppp format
+
+```{r}
+childcare_ppp <- as(childcare_sp, "ppp")
+CHAS_ppp <- as(CHAS_sp, "ppp")
+```
+
+# 4. Plot map
+
+```{r}
+tmap_mode('view')
+tm_shape(childcare_sf) +
+  tm_dots(alpha=0.4,
+          col="blue",
+          size=0.05) +
+tm_shape(CHAS_sf) +
+  tm_dots(alpha=0.4,
+          col="red",
+          size=0.05)
+```
+
+
+

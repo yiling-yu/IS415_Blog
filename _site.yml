@@ -8,8 +8,8 @@ navbar:
     - text: "Take-home Exercise"
       menu:
       - text: "Take-home Exercise 1"
-        href:
-    - text: "In-class Exercise"
+        href: Take-home-Exercise-1.html
+    - text: "In-class/Hands-on Exercise"
       href: index.html
     - text: "About"
       href: about.html

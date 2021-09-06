@@ -1,7 +1,7 @@
 ---
 title: "In-class Exercise 2"
 description: |
-  In this hands-on exercise, I will learn how to handle geospatial data in R.
+  Just get started with R studio.
 author:
   - name: Yu Yiling
     url: https://www.linkedin.com/in/yiling-yu/
@@ -11,16 +11,11 @@ output:
     self_contained: false
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-Getting Started
-
-This code chunk performs three tasks:
-
-- create a list of R packages needed.
+# Test: Install Packages
 
 ```{r echo=TRUE, eval=TRUE}
 packages <- c('sf','tidyverse')
