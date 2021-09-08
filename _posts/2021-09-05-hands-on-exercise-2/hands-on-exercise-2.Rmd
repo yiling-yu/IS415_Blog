@@ -139,6 +139,15 @@ ggplot(data=mpsz3414,
 
 #### Solution: 
 ```{r}
-#???
+ggplot(data=mpsz3414,
+       aes(y = `PreSch Count`,
+           x = as.numeric(`PreSch Density`)))+
+  geom_point(color="black",
+             fill="light blue")+
+  xlim(0,40) +
+  ylim(0,40) +
+  labs(title = "",
+       x = "Pre-school density (per km sq)",
+       y = "Pre-school count")
 ```
 
