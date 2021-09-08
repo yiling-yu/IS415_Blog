@@ -1,0 +1,299 @@
+---
+title: "Take-home Exercise 1"
+description:
+author:
+  - name: Yu Yiling 
+    url: https://www.linkedin.com/in/yiling-yu/
+    affiliation: School of Computing and Information System
+    affiliation_url: https://www.smu.edu.sg 
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Take-home Exercise 1 requirements:
+* The question was where were the sub-districts with relatively higher number of confirmed cases and how they changed over time.
+* The specific objective of the exercise is to reveal the spatio-temporal patterns of monthly cumulative confirmed COVID-19 rate and death rate at sub-district or kelurahan.
+* The temporal interval must be at month (last day of the month) and the geographic should be at sub-district or kelurahan in Indonesia language. 
+
+# Things to clarify:
+* data missing:
+  + Since the data only starts on 25 March 2020, then there is nothing wrong the first month data is on 31st March 2020. Likewise if 31st January 2021 is not available, there is nothing wrong 30th January 2021 data set is used.
+  
+# 1. Install packages
+
+```{r}
+packages = c('sf', 'tidyverse','readxl','maptools', 'raster','spatstat', 'tmap')
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p,character.only = T)
+}
+```
+
+# 2. Aspatial data preparation
+
+## Import data, clean data and create dataframes
+```{r, eval = FALSE}
+data_name_list <- list(
+  "Standar Kelurahan Data Corona (31 Maret 2020 Pukul 08.00)", 
+  "Standar Kelurahan Data Corona (30 April 2020 Pukul 09.00)", 
+  "Standar Kelurahan Data Corona (31 MEI 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (30 Juni 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (31 Juli 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (31 Agustus 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 September 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Oktober 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 November 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Desember 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 Januari 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (28 Februari 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Maret 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 April 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Mei 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 Juni 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Juli 2021 Pukul 10.00)")
+
+data_refer_list <- list("03_2020", "04_2020", "05_2020", "06_2020", "07_2020", "08_2020", "09_2020", "10_2020", "11_2020", "12_2020", "01_2021", "02_2021", "03_2021", "04_2021", "05_2021", "06_2021", "07_2021")
+
+for (x in 1:length(data_name_list)) {
+  path = paste("data/",data_name_list[x],".xlsx", sep = "")
+  df= read_excel(path, sheet = "data")
+  # from March 2020 to June 2020 raw data excels have double "ID_KEL"
+  if (x < 5) {
+    df$ID_KEL...2 <- NULL
+    names(df)[names(df) == 'ID_KEL...1'] <- 'ID_KEL'
+  } 
+  # from July 2020 onward raw data excels have double "Meninggal"
+  else if (x == 5) {
+    df$Meninggal...21 <- NULL
+    names(df)[names(df) == 'Meninggal...26'] <- 'Meninggal'
+  }
+  else if (x == 6) {
+    df$Meninggal...23 <- NULL
+    names(df)[names(df) == 'Meninggal...28'] <- 'Meninggal'
+  }
+  else if (x == 7) {
+    df$Meninggal...24 <- NULL
+    names(df)[names(df) == 'Meninggal...29'] <- 'Meninggal'
+  }
+  else if (x == 8 | x == 9 | x == 10) {
+    df$Meninggal...25 <- NULL
+    names(df)[names(df) == 'Meninggal...30'] <- 'Meninggal'
+  }
+  else if (x > 10) {
+    df$Meninggal...26 <- NULL
+    names(df)[names(df) == 'Meninggal...31'] <- 'Meninggal'
+  }
+  
+  df <- df[,c("ID_KEL", "Nama_provinsi", "nama_kota", "nama_kecamatan", "nama_kelurahan", "POSITIF", "Meninggal")]
+  df$'month' <- data_refer_list[x]
+  df <- df[-c(1), ]
+  df <- df[(df$Nama_provinsi=="DKI JAKARTA"),]
+  df_name = paste("df_", data_refer_list[x], sep = "")
+  assign(df_name, df)
+}
+```
+
+## Merge dataframes into a big dataframe
+```{r, eval = FALSE}
+temp_bind_df <- rbind(df_03_2020,df_04_2020)
+temp_bind_df <- rbind(temp_bind_df,df_05_2020)
+temp_bind_df <- rbind(temp_bind_df,df_06_2020)
+temp_bind_df <- rbind(temp_bind_df,df_07_2020)
+temp_bind_df <- rbind(temp_bind_df,df_08_2020)
+temp_bind_df <- rbind(temp_bind_df,df_09_2020)
+temp_bind_df <- rbind(temp_bind_df,df_10_2020)
+temp_bind_df <- rbind(temp_bind_df,df_11_2020)
+temp_bind_df <- rbind(temp_bind_df,df_12_2020)
+temp_bind_df <- rbind(temp_bind_df,df_01_2021)
+temp_bind_df <- rbind(temp_bind_df,df_02_2021)
+temp_bind_df <- rbind(temp_bind_df,df_03_2021)
+temp_bind_df <- rbind(temp_bind_df,df_04_2021)
+temp_bind_df <- rbind(temp_bind_df,df_05_2021)
+temp_bind_df <- rbind(temp_bind_df,df_06_2021)
+binded_df <- rbind(temp_bind_df,df_07_2021)
+```
+
+# 3. Geospatial data preperation
+
+## Import data, transform projection and create dataframe
+```{r, eval = FALSE}
+DJ = st_read(dsn = "data", 
+                  layer = "BATAS_DESA_DESEMBER_2019_DUKCAPIL_DKI_JAKARTA")
+
+#EPSG for DGN95 / Indonesia TM-3 zone 54.1: 23845
+DJ_sf <- st_transform(DJ, crs = 23845)
+st_geometry(DJ_sf)
+```
+
+## Exclude all the outer islands from the DKI Jakarta sf data frame
+#### have a look at the map to identify outer islands 
+```{r, eval = FALSE}
+tmap_mode('view')
+tm_shape(DJ_sf) +
+  tm_polygons()
+```
+
+* Result: all the outer islands have column "KAB_KOTA" equal to value "KEPULAUAN SERIBU"
+
+#### remove the rows that have "KAB_KOTA" == "KEPULAUAN SERIBU"
+```{r, eval = FALSE}
+DJ_sf <- DJ_sf[!(DJ_sf$KAB_KOTA == "KEPULAUAN SERIBU"),]
+DJ_sf <- DJ_sf %>%
+  drop_na()
+```
+
+#### have a look at the map again to confirm islands are excluded
+```{r, eval = FALSE}
+tmap_mode('plot')
+tm_shape(DJ_sf) +
+  tm_polygons()
+```
+
+## Retain the first nine fields in the DKI Jakarta sf data frame.
+```{r, eval = FALSE}
+  DJ_sf = DJ_sf[,c(1:9)]
+  #DJ_sf$geometry <- NULL
+```
+
+# 4. GEOSPATIAL DATA INTEGRATION
+
+## make sure value can match before performing georelational join
+```{r, eval = FALSE}
+nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
+
+DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
+  st_set_geometry(NULL)
+
+no_match <- list()
+for (x in nama_kelurahan_values$nama_kelurahan) {
+  if (x %in% DESA_KELUR_values$DESA_KELUR == FALSE){
+    no_match <- append(no_match,x)
+  }
+}
+
+no_match
+```
+*found many sub-district names not matched
+
+## change not-matched sub-district names
+```{r, eval = FALSE}
+for (x in no_match) {
+  if (x == "KERENDANG" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "KRENDANG"
+  }
+  else if (x == "KAMPUNG TENGAH" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "TENGAH"
+  }
+  else if (x == "HALIM PERDANA KUSUMAH" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "HALIM PERDANA KUSUMA"
+  }
+  else if (x == "P. HARAPAN" | x == "P. KELAPA" | x == "P. PANGGANG" | x == "P. PARI" | x == "P. TIDUNG" | x == "UNTUNG JAWA" | x == "PULAU HARAPAN" | x == "PULAU KELAPA" | x == "PULAU PANGGANG" | x == "PULAU PARI"| x == "PULAU TIDUNG" | x == "PULAU UNTUNG JAWA"){
+    binded_df<-binded_df[!(binded_df$nama_kelurahan == x),]
+  }
+  else {
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- str_replace_all(string=x, pattern=" ", repl="")
+  }
+}
+```
+
+## check value match
+```{r, eval = FALSE}
+nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
+
+DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
+  st_set_geometry(NULL)
+
+no_match <- list()
+for (x in nama_kelurahan_values$nama_kelurahan) {
+  if (x %in% DESA_KELUR_values$DESA_KELUR == FALSE){
+    no_match <- append(no_match,x)
+  }
+}
+
+no_match
+```
+*all sub-district names matched
+
+## georelational join
+```{r, eval = FALSE}
+DJ_covid <- left_join(DJ_sf, binded_df,
+                      by = c("DESA_KELUR" = "nama_kelurahan"))
+
+colSums(is.na(DJ_covid))
+```
+
+## Calculate the cumulative confirmed cases rate (i.e. cases per 10000 population) and the cumulative death rate by month.
+```{r, eval = FALSE}
+#column names
+#POSITIF (cumulative confirmed cases)
+#Meninggal (cumulative death cases)
+#JUMLAH_PEN (Total Population)
+
+DJ_covid <- DJ_covid %>%
+  mutate(`POSITIF%` = (`POSITIF`
+/`JUMLAH_PEN`)*10000) %>%
+  mutate(`Meninggal%` = (`Meninggal`
+/`JUMLAH_PEN`)*10000)
+
+```
+
+## Save data to rds format and push to github
+```{r, eval = FALSE}
+cleaned_df <- write_rds(DJ_covid, "data/DJ_covid.rds")
+```
+
+# 5. Import rds data
+
+```{r}
+DJ_covid <- read_rds("data/DJ_covid.rds")
+
+head(DJ_covid, n=5) 
+```
+
+# stopped here
+```{r}
+#simple plot
+test <- DJ_covid %>%
+  filter(month=="07_2021")
+
+tmap_mode("plot")
+qtm(test, 
+    fill = "POSITIF")
+
+#EDA? any histogram? ggplot?
+#image for eval=false + title label
+
+#hands-on and in-class exercise 3
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+
+
+
+
+
