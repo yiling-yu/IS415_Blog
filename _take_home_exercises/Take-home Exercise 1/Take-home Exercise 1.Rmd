@@ -38,7 +38,7 @@ for (p in packages){
 # 2. Aspatial data preparation
 
 ## Import data, clean data and create dataframes
-```{r, eval = FALSE}
+```{r}
 data_name_list <- list(
   "Standar Kelurahan Data Corona (31 Maret 2020 Pukul 08.00)", 
   "Standar Kelurahan Data Corona (30 April 2020 Pukul 09.00)", 
@@ -100,7 +100,7 @@ for (x in 1:length(data_name_list)) {
 ```
 
 ## Merge dataframes into a big dataframe
-```{r, eval = FALSE}
+```{r}
 temp_bind_df <- rbind(df_03_2020,df_04_2020)
 temp_bind_df <- rbind(temp_bind_df,df_05_2020)
 temp_bind_df <- rbind(temp_bind_df,df_06_2020)
@@ -122,7 +122,7 @@ binded_df <- rbind(temp_bind_df,df_07_2021)
 # 3. Geospatial data preperation
 
 ## Import data, transform projection and create dataframe
-```{r, eval = FALSE}
+```{r}
 DJ = st_read(dsn = "data", 
                   layer = "BATAS_DESA_DESEMBER_2019_DUKCAPIL_DKI_JAKARTA")
 
@@ -133,7 +133,7 @@ st_geometry(DJ_sf)
 
 ## Exclude all the outer islands from the DKI Jakarta sf data frame
 #### have a look at the map to identify outer islands 
-```{r, eval = FALSE}
+```{r}
 tmap_mode('view')
 tm_shape(DJ_sf) +
   tm_polygons()
@@ -142,21 +142,21 @@ tm_shape(DJ_sf) +
 * Result: all the outer islands have column "KAB_KOTA" equal to value "KEPULAUAN SERIBU"
 
 #### remove the rows that have "KAB_KOTA" == "KEPULAUAN SERIBU"
-```{r, eval = FALSE}
+```{r}
 DJ_sf <- DJ_sf[!(DJ_sf$KAB_KOTA == "KEPULAUAN SERIBU"),]
 DJ_sf <- DJ_sf %>%
   drop_na()
 ```
 
 #### have a look at the map again to confirm islands are excluded
-```{r, eval = FALSE}
+```{r}
 tmap_mode('plot')
 tm_shape(DJ_sf) +
   tm_polygons()
 ```
 
 ## Retain the first nine fields in the DKI Jakarta sf data frame.
-```{r, eval = FALSE}
+```{r}
   DJ_sf = DJ_sf[,c(1:9)]
   #DJ_sf$geometry <- NULL
 ```
@@ -164,7 +164,7 @@ tm_shape(DJ_sf) +
 # 4. GEOSPATIAL DATA INTEGRATION
 
 ## make sure value can match before performing georelational join
-```{r, eval = FALSE}
+```{r}
 nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
 
 DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
@@ -182,7 +182,7 @@ no_match
 *found many sub-district names not matched
 
 ## change not-matched sub-district names
-```{r, eval = FALSE}
+```{r}
 for (x in no_match) {
   if (x == "KERENDANG" ){
     binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "KRENDANG"
@@ -203,7 +203,7 @@ for (x in no_match) {
 ```
 
 ## check value match
-```{r, eval = FALSE}
+```{r}
 nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
 
 DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
@@ -221,7 +221,7 @@ no_match
 *all sub-district names matched
 
 ## georelational join
-```{r, eval = FALSE}
+```{r}
 DJ_covid <- left_join(DJ_sf, binded_df,
                       by = c("DESA_KELUR" = "nama_kelurahan"))
 
@@ -229,7 +229,7 @@ colSums(is.na(DJ_covid))
 ```
 
 ## Calculate the cumulative confirmed cases rate (i.e. cases per 10000 population) and the cumulative death rate by month.
-```{r, eval = FALSE}
+```{r}
 #column names
 #POSITIF (cumulative confirmed cases)
 #Meninggal (cumulative death cases)
@@ -244,27 +244,36 @@ DJ_covid <- DJ_covid %>%
 ```
 
 ## Save data to rds format and push to github
-```{r, eval = FALSE}
+```{r}
 cleaned_df <- write_rds(DJ_covid, "data/DJ_covid.rds")
 ```
 
 # 5. Import rds data
 
-```{r}
+```{r, eval=FALSE}
 DJ_covid <- read_rds("data/DJ_covid.rds")
 
 head(DJ_covid, n=5) 
 ```
 
 # stopped here
-```{r}
+```{r, eval=FALSE}
 #simple plot
 test <- DJ_covid %>%
-  filter(month=="07_2021")
+  filter(month=="03_2020")
 
-tmap_mode("plot")
-qtm(test, 
-    fill = "POSITIF")
+#tmap_mode("view")
+#qtm(test, 
+#    fill = "POSITIF%")
+
+
+
+tmap_mode("view")+
+tm_shape(test)+
+tm_fill("POSITIF%", breaks = c(0, 4, 13, 53, 119, 270, 395, 3808), 
+legend.is.portrait = TRUE) +
+tm_borders(alpha = 0.5)
+
 
 #EDA? any histogram? ggplot?
 #image for eval=false + title label
