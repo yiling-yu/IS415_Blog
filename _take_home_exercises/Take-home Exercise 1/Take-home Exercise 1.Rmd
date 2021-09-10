@@ -408,7 +408,7 @@ boxmap <- function(vnam, df,
             main.title.size = 4,
             main.title.position = "center",
             legend.title.size = 2,
-            legend.text.size = 2,)
+            legend.text.size = 1.5,)
 }
 ```
 
@@ -522,6 +522,7 @@ tmap_arrange(tmap_m_03_2020,tmap_m_04_2020,tmap_m_05_2020,tmap_m_06_2020,tmap_m_
 
 ## a. Concept
 ![](data/relative risk map.JPG)
+![](relative risk map.JPG)
 
 ## b. Excess risk map of getting covid
 ```{r}
@@ -556,7 +557,7 @@ erm_death <- tm_shape(cleaned_df_07_2021) +
 ## d. Side comparison
 ```{r}
 tmap_mode("view")
-tmap_arrange(erm_covid,erm_death,ncol = 2)
+tmap_arrange(erm_covid,erm_death)
 ```
 
 * In the excess risk maps, blue districts will indicate a risk lower than the province average, or SMR<1. Red districts indicate a risk higher than the province average, or SMR>1.
