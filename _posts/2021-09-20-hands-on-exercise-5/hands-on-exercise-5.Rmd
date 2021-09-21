@@ -1,0 +1,187 @@
+---
+title: "Hands-on Exercise 5"
+description: |
+  Network Constrained Spatial Point Patterns Analysis (NetSPPA).
+author:
+  - name: Yu Yiling
+    url: https://www.linkedin.com/in/yiling-yu/
+date: 09-20-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Network constrained Spatial Point Patterns Analysis (NetSPAA) is a collection of spatial point patterns analysis methods special developed for analysing spatial point event occurs on or alongside network. The spatial point event can be locations of traffic accident or childcare centre for example. The network, on the other hand can be a road network or river network.
+
+# 1. Install packages
+
+```{r}
+packages = c('sp', 'rgdal', 'spNetwork', 'tmap')
+for (p in packages){
+if(!require(p, character.only = T)){
+install.packages(p)
+}
+library(p,character.only = T)
+}
+```
+
+# 2. Import data
+
+```{r}
+# readOGR() of rgdal package to important Punggol_St and Punggol_CC geospatial data sets into RStudio as SpatialLinesDataFrame and SpatialPointsDataFrame respectively.
+network <- readOGR(dsn="data/geospatial", 
+                   layer="Punggol_St",
+                   verbose = FALSE)
+childcare <- readOGR(dsn="data/geospatial",
+                     layer="Punggol_CC",
+                     verbose = FALSE)
+
+# print content of the output
+# str(network)
+str(childcare)
+```
+
+* Since spNetwork expects the geospatial data contains complete CRS information, let's assign EPSG code to the SpatialDataFrames. The epsg:3414 is the code for svy21.
+
+```{r}
+childcare <-spTransform(childcare, CRS("+init=epsg:3414"))
+network <- spTransform(network,CRS("+init=epsg:3414"))
+```
+
+```{r}
+#plot graphs to have a glance
+plot(network)
+plot(childcare,add=T,col='red',pch = 19)
+
+tmap_mode('view')
+tm_shape(childcare)+
+  tm_dots() +
+tm_shape(network)+
+  tm_lines()
+
+tmap_mode('plot')
+```
+
+# 3. Network Constrained KDE (NetKDE) Analysis
+
+## a. Preparing the lixels objects
+```{r}
+# Before computing NetKDE, the SpatialLines object need to be cut into lixels with a specified minimal distance. 
+lixels <- lixelize_lines(network,700,mindist = 350)
+```
+
+* Note: The length of a lixel, lx_length is set to 700m, and
+The minimum length of a lixel, mindist is set to 350m.
+* After cut, if the length of the final lixel is shorter than the minimum distance, then it is added to the previous lixel. If NULL, then mindist = maxdist/10. Also note that the segments that are already shorter than the minimum distance are not modified
+
+## b. Generating a SpatialPointsDataFrame with line centre points
+```{r}
+samples <- lines_center(lixels)
+```
+
+* The points are located at center of the line based on the length of the line.
+
+## c. Performing NetKDE
+```{r}
+densities <- nkde(network, 
+                  events = childcare,
+                  w = rep(1,nrow(childcare)),
+                  samples = samples,
+                  kernel_name = "quartic",
+                  bw = 300, 
+                  div= "bw", 
+                  method = "simple", 
+                  digits = 1, 
+                  tol = 1,
+                  grid_shape = c(1,1), 
+                  max_depth = 8,
+                  agg = 5, #we aggregate events within a 5m radius (faster calculation)
+                  sparse = TRUE,
+                  verbose = FALSE)
+```
+
+* Note:
+* kernel_name argument indicates that quartic kernel is used. Possible kernel methods supported by spNetwork are: triangle, gaussian, scaled gaussian, tricube, cosine ,triweight, epanechnikov or uniform.
+* method argument indicates that simple method is used to calculate the NKDE. Currently, spNetwork support three popular methods, they are:
+  + method=“simple”. This first method proposes an intuitive solution. The distances between events and sampling points are replaced by network distances, and the formula of the kernel is adapted to calculate the density over a linear unit instead of an areal unit.
+  + method=“discontinuous”. The method equally “divides” the mass density of an event at intersections of lixels.
+  + method=“continuous”. If the discontinuous method is unbiased, it leads to a discontinuous kernel function which is a bit counter-intuitive. This method divide the mass of the density at intersection but adjusts the density before the intersection to make the function continuous.
+  
+## d. Visualising NetKDE
+
+#### Insert the computed density values (i.e. densities) into samples and lixels objects as density field.
+```{r}
+samples$density <- densities
+lixels$density <- densities
+```
+
+* Since svy21 projection system is in meter, the computed density values are very small i.e. 0.0000005. 
+
+#### resale the density values from number of events per meter to number of events per kilometer
+```{r}
+samples$density <- samples$density*1000
+lixels$density <- lixels$density*1000
+```
+
+#### plot interactive and high cartographic quality map visualisation.
+```{r}
+tmap_mode('view')
+tm_shape(lixels)+
+  tm_lines(col="density")+
+tm_shape(childcare)+
+  tm_dots()
+
+tmap_mode('plot')
+```
+
+* The interactive map above effectively reveals road segments (darker color) with relatively higher density of childcare centres than road segments with relatively lower density of childcare centres (lighter color)
+
+# 4. Network Constrained G- and K-Function Analysis
+
+* perform complete spatial randomness (CSR) test
+* Ho: The observed spatial point events (i.e distribution of childcare centres) are uniformly distributed over a street network in Punggol Planning Area.
+* The CSR test is based on the assumption of the binomial point process which implies the hypothesis that the childcare centres are randomly and independently distributed over the street network.
+* If this hypothesis is rejected, we may infer that the distribution of childcare centres are spatially interacting and dependent on each other; as a result, they may form nonrandom patterns.
+
+```{r}
+kfun_childcare <- kfunctions(network, 
+                             childcare,
+                             start = 0, 
+                             end = 1000, 
+                             step = 50, 
+                             width = 50, 
+                             nsim = 50, 
+                             resolution = 50,
+                             verbose = FALSE, 
+                             conf_int = 0.05)
+```
+
+* lines: A SpatialLinesDataFrame with the sampling points. The geometries must be a SpatialLinesDataFrame (may crash if some geometries are invalid).
+* points: A SpatialPointsDataFrame representing the points on the network. These points will be snapped on the network.
+* start: A double, the start value for evaluating the k and g functions.
+* end: A double, the last value for evaluating the k and g functions.
+* step: A double, the jump between two evaluations of the k and g function.
+* width: The width of each donut for the g-function.
+* nsim: An integer indicating the number of Monte Carlo simulations required. In the above example, 50 simulation was performed. Note: most of the time, more simulations are required for inference
+* resolution: When simulating random points on the network, selecting a resolution will reduce greatly the calculation time. When resolution is null the random points can occur everywhere on the graph. If a value is specified, the edges are split according to this value and the random points are selected vertices on the new network.
+* conf_int: A double indicating the width confidence interval (default = 0.05).
+
+* The output of kfunctions() is a list with the following values:
+  + plotkA, a ggplot2 object representing the values of the k-function
+  + plotgA, a ggplot2 object representing the values of the g-function
+  + valuesA, a DataFrame with the values used to build the plots
+
+## visualise the ggplot2 object of k-function
+```{r}
+kfun_childcare$plotk
+```
+
+*The blue line is the empirical network K-function of the childcare centres in Punggol planning area. The gray envelop represents the results of the 50 simulations in the interval 2.5% - 97.5%. Because the blue line between the distance of 250m-400m are below the gray area, we can infer that the childcare centres in Punggol planning area resemble regular pattern at the distance of 250m-400m.
+
