@@ -1,0 +1,299 @@
+---
+title: "In-class Exercise 5"
+description:
+author:
+  - name: Yu Yiling
+    url: https://www.linkedin.com/in/yiling-yu/
+date: 09-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval=TRUE, echo=TRUE, message=FALSE, error=FALSE, fig.retina=3)
+```
+
+# 1. Install packages
+
+```{r}
+packages <- c('maptools', 'sf', 'raster', 'spatstat', 'tmap', 'tidyverse','plotly', 'ggthemes')
+for(p in packages){
+  if(!require(p, character.only=T)){
+    install.packages(p)
+  }
+library(p,character.only = T)
+}
+```
+
+* Note:
+  + Maptool is for creating spatical objects
+  + sf is for importing geospatial data
+  + raster is for creating raster object
+  + spatstat is for performing SPPA
+  + tmap is for plotting thematic maps
+  + tidyverse is for data handling 
+
+# 2. Import data
+
+```{r}
+CHAS <- read_rds("data/rds/CHAS.rds")
+childcare <- read_rds("data/rds/childcare.rds")
+
+mpsz_sf <- st_read(dsn = "data/shapefile", layer = "MP14_SUBZONE_WEB_PL")
+```
+```{r}
+glimpse(CHAS)
+glimpse(childcare)
+
+mpsz_sf <- st_set_crs(mpsz_sf, 3414)
+st_crs(mpsz_sf)
+```
+
+* WGS84 for childcare dataset is assumed. why?
+
+# 3. Coverting the aspatial data frame into sf objects
+
+```{r}
+CHAS_sf <- st_as_sf(CHAS,
+                    coords = c("X_COORDINATE",
+                               "Y_COORDINATE"),
+                    crs=3414)
+```
+
+* Note: *st_as_sf()* accept coordinate in character data type
+
+```{r}
+childcare_sf <- st_as_sf(childcare,
+                    coords = c("Lng",
+                               "Lat"),
+                    crs=4326) %>%
+  st_transform(crs = 3414)
+```
+
+```{r}
+#plot the graph to have a look
+tmap_mode("view")
+tm_shape(childcare_sf) +
+  tm_dots(alpha=0.4,
+          col= "blue",
+          size = 0.05) +
+tm_shape(CHAS_sf) +
+  tm_dots(alpha=0.4,
+          col= "red",
+          size = 0.05)
+```
+
+# 4. Convert sf to ppp objects
+
+## a. Convert sf data frame to Spatial class
+```{r}
+childcare <- as_Spatial(childcare_sf)
+CHAS <- as_Spatial(CHAS_sf)
+mpsz <- as_Spatial(mpsz_sf)
+```
+
+## b. Convert Spatial class into generic sp object
+```{r}
+childcare_sp <- as(childcare, "SpatialPoints")
+CHAS_sp <- as(CHAS, "SpatialPoints")
+mpsz_sp <- as(mpsz, "SpatialPolygons")
+```
+
+* as.SpatialPoint() of as.SpatialPolygon() of maptools package 
+
+## c. Covert generic sp object into ppp object
+```{r}
+childcare_ppp <- as(childcare_sp,"ppp")
+CHAS_ppp <- as(CHAS_sp,"ppp")
+```
+
+* using as.ppp() of maptools package.
+
+## d. Remove duplicate points using jitter
+```{r}
+childcare_ppp_jit <- rjitter(childcare_ppp,
+                             retry = TRUE,
+                             nsim = 1,
+                             drop = TRUE)
+any(duplicated(childcare_ppp_jit))
+
+CHAS_ppp_jit <- rjitter(CHAS_ppp,
+                             retry = TRUE,
+                             nsim = 1,
+                             drop = TRUE)
+any(duplicated(CHAS_ppp_jit))
+```
+
+# 5. Extracting Punggol Planning Area
+
+```{r}
+pg <- mpsz[mpsz@data$PLN_AREA_N=="PUNGGOL",]
+```
+
+# 6. Creating owin object
+
+## a. Convert SpatialPolygonsDataFrame into SpatialPolygons object
+```{r}
+pg_sp <- as(pg, "SpatialPolygons")
+```
+
+## b. Convert SpatialPolygons into owin object
+```{r}
+pg_owin <- as(pg_sp, "owin")
+```
+
+## c. Extract spatial points window owin
+```{r}
+childcare_pg <- childcare_ppp_jit[pg_owin]
+CHAS_pg <- CHAS_ppp_jit[pg_owin]
+
+plot(childcare_ppp_jit)
+plot(childcare_pg)
+```
+
+# 7. Analysing Spatial Point Process Using L-Function
+
+## Monte Carlo test with L-fucntion
+```{r}
+L_childcare <- envelope(childcare_pg,
+                        Lest,
+                        nsim = 99,
+                        rank = 1,
+                        gloval = TRUE)
+
+L_CHAS <- envelope(CHAS_pg,
+                   Lest,
+                   nsim = 99,
+                   rank = 1,
+                   gloval = TRUE)
+```
+
+## plotting interactive L-function
+
+#### L_childcare
+```{r eval=FALSE}
+title <- "Pairwise Distance: L function"
+
+Lcsr_df <- as.data.frame(L_childcare)
+
+colour=c("#0D657D","#ee770d","#D3D3D3")
+csr_plot <- ggplot(Lcsr_df, aes(r, obs-r))+
+  # plot observed value
+  geom_line(colour=c("#4d4d4d"))+
+  geom_line(aes(r,theo-r), colour="red", linetype = "dashed")+
+  # plot simulation envelopes
+  geom_ribbon(aes(ymin=lo-r,ymax=hi-r),alpha=0.1, colour=c("#91bfdb")) +
+  xlab("Distance r (m)") +
+  ylab("L(r)-r") +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs > Lcsr_df$hi,], sides="b", colour=colour[1])  +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,], sides="b", colour=colour[2]) +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,], sides="b", color=colour[3]) +
+  theme_tufte()+
+  ggtitle(title)
+
+text1<-"Significant clustering"
+text2<-"Significant segregation"
+text3<-"Not significant clustering/segregation"
+
+# the below conditional statement is required to ensure that the labels (text1/2/3) are assigned to the correct traces
+if (nrow(Lcsr_df[Lcsr_df$obs > Lcsr_df$hi,])==0){ 
+  if (nrow(Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,])==0){ 
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text3, traces = 4) %>%
+      rangeslider() 
+  }else if (nrow(Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,])==0){ 
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text2, traces = 4) %>%
+      rangeslider() 
+  }else {
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text2, traces = 4) %>%
+      style(text = text3, traces = 5) %>%
+      rangeslider() 
+  }
+} else if (nrow(Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,])==0){
+  if (nrow(Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,])==0){
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text1, traces = 4) %>%
+      rangeslider() 
+  } else{
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text1, traces = 4) %>%
+      style(text = text3, traces = 5) %>%
+      rangeslider()
+  }
+} else{
+  ggplotly(csr_plot, dynamicTicks=T) %>%
+    style(text = text1, traces = 4) %>%
+    style(text = text2, traces = 5) %>%
+    style(text = text3, traces = 6) %>%
+    rangeslider()
+  }
+```
+
+#### L_CHAS
+```{r eval=FALSE}
+title <- "Pairwise Distance: L function"
+
+Lcsr_df <- as.data.frame(L_CHAS)
+
+colour=c("#0D657D","#ee770d","#D3D3D3")
+csr_plot <- ggplot(Lcsr_df, aes(r, obs-r))+
+  # plot observed value
+  geom_line(colour=c("#4d4d4d"))+
+  geom_line(aes(r,theo-r), colour="red", linetype = "dashed")+
+  # plot simulation envelopes
+  geom_ribbon(aes(ymin=lo-r,ymax=hi-r),alpha=0.1, colour=c("#91bfdb")) +
+  xlab("Distance r (m)") +
+  ylab("L(r)-r") +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs > Lcsr_df$hi,], sides="b", colour=colour[1])  +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,], sides="b", colour=colour[2]) +
+  geom_rug(data=Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,], sides="b", color=colour[3]) +
+  theme_tufte()+
+  ggtitle(title)
+
+text1<-"Significant clustering"
+text2<-"Significant segregation"
+text3<-"Not significant clustering/segregation"
+
+# the below conditional statement is required to ensure that the labels (text1/2/3) are assigned to the correct traces
+if (nrow(Lcsr_df[Lcsr_df$obs > Lcsr_df$hi,])==0){ 
+  if (nrow(Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,])==0){ 
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text3, traces = 4) %>%
+      rangeslider() 
+  }else if (nrow(Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,])==0){ 
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text2, traces = 4) %>%
+      rangeslider() 
+  }else {
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text2, traces = 4) %>%
+      style(text = text3, traces = 5) %>%
+      rangeslider() 
+  }
+} else if (nrow(Lcsr_df[Lcsr_df$obs < Lcsr_df$lo,])==0){
+  if (nrow(Lcsr_df[Lcsr_df$obs >= Lcsr_df$lo & Lcsr_df$obs <= Lcsr_df$hi,])==0){
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text1, traces = 4) %>%
+      rangeslider() 
+  } else{
+    ggplotly(csr_plot, dynamicTicks=T) %>%
+      style(text = text1, traces = 4) %>%
+      style(text = text3, traces = 5) %>%
+      rangeslider()
+  }
+} else{
+  ggplotly(csr_plot, dynamicTicks=T) %>%
+    style(text = text1, traces = 4) %>%
+    style(text = text2, traces = 5) %>%
+    style(text = text3, traces = 6) %>%
+    rangeslider()
+}
+```
+
+
