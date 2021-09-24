@@ -1,0 +1,565 @@
+---
+title: "Take-home Exercise 1"
+description: |
+  Analysing and Visualising Spatio-temporal Patterns of COVID-19 in DKI Jakarta, Indonesia.
+author:
+  - name: Yu Yiling
+    url: https://www.linkedin.com/in/yiling-yu/
+date: 09-25-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Take-home Exercise 1 requirements
+* The question was where were the sub-districts with relatively higher number of confirmed cases and how they changed over time.
+* The specific objective of the exercise is to reveal the spatio-temporal patterns of monthly cumulative confirmed COVID-19 rate and death rate at sub-district or kelurahan.
+* The temporal interval must be at month (last day of the month) and the geographic should be at sub-district or kelurahan in Indonesia language. 
+
+# Data used
+* Aspatial data: [Open Data Covid-19 Provinsi DKI Jakarta](https://riwayat-file-covid-19-dki-jakarta-jakartagis.hub.arcgis.com/). Monthly accumulative COVID-19 statistics is downloaded. Since the data only starts on 25 March 2020, the first month data collected is on 31st March 2020. The last month data collected is on 31st July 2021.
+* Geospatial data: [Indonesia Geospatial](https://www.indonesia-geospasial.com/). The Shapefile (SHP) Batas Desa Provinsi DKI Jakarta provided at PODES 2019 geospatial layer is been downloaded.
+
+# 1. Install packages
+
+```{r}
+packages = c('sf', 'tidyverse','readxl','maptools','dplyr', 'raster','spatstat', 'tmap')
+for (p in packages){
+  if(!require(p, character.only = T)){
+    install.packages(p)
+  }
+  library(p,character.only = T)
+}
+```
+
+# 2. Aspatial data preparation
+
+## a. Import data, clean data and create dataframes
+
+* Note: 31st January 2021 data is not available, 30th January 2021 data is collected instead.
+
+```{r}
+data_name_list <- list(
+  "Standar Kelurahan Data Corona (31 Maret 2020 Pukul 08.00)", 
+  "Standar Kelurahan Data Corona (30 April 2020 Pukul 09.00)", 
+  "Standar Kelurahan Data Corona (31 MEI 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (30 Juni 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (31 Juli 2020 Pukul 09.00)",
+  "Standar Kelurahan Data Corona (31 Agustus 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 September 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Oktober 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 November 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Desember 2020 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 Januari 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (28 Februari 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Maret 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 April 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Mei 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (30 Juni 2021 Pukul 10.00)",
+  "Standar Kelurahan Data Corona (31 Juli 2021 Pukul 10.00)")
+
+data_refer_list <- list("03_2020", "04_2020", "05_2020", "06_2020", "07_2020", "08_2020", "09_2020", "10_2020", "11_2020", "12_2020", "01_2021", "02_2021", "03_2021", "04_2021", "05_2021", "06_2021", "07_2021")
+
+for (x in 1:length(data_name_list)) {
+  path = paste("data/",data_name_list[x],".xlsx", sep = "")
+  df= read_excel(path, sheet = "data")
+  # from March 2020 to June 2020 raw data excels have double "ID_KEL"
+  if (x < 5) {
+    df$ID_KEL...2 <- NULL
+    names(df)[names(df) == 'ID_KEL...1'] <- 'ID_KEL'
+  } 
+  # from July 2020 onward raw data excels have double "Meninggal"
+  else if (x == 5) {
+    df$Meninggal...21 <- NULL
+    names(df)[names(df) == 'Meninggal...26'] <- 'Meninggal'
+  }
+  else if (x == 6) {
+    df$Meninggal...23 <- NULL
+    names(df)[names(df) == 'Meninggal...28'] <- 'Meninggal'
+  }
+  else if (x == 7) {
+    df$Meninggal...24 <- NULL
+    names(df)[names(df) == 'Meninggal...29'] <- 'Meninggal'
+  }
+  else if (x == 8 | x == 9 | x == 10) {
+    df$Meninggal...25 <- NULL
+    names(df)[names(df) == 'Meninggal...30'] <- 'Meninggal'
+  }
+  else if (x > 10) {
+    df$Meninggal...26 <- NULL
+    names(df)[names(df) == 'Meninggal...31'] <- 'Meninggal'
+  }
+  
+  df <- df[,c("ID_KEL", "Nama_provinsi", "nama_kota", "nama_kecamatan", "nama_kelurahan", "POSITIF", "Meninggal")]
+  df$'month' <- data_refer_list[x]
+  df <- df[-c(1), ]
+  df <- df[(df$Nama_provinsi=="DKI JAKARTA"),]
+  df_name = paste("df_", data_refer_list[x], sep = "")
+  assign(df_name, df)
+}
+```
+
+## b. Merge dataframes into a big dataframe
+```{r}
+temp_bind_df <- rbind(df_03_2020,df_04_2020)
+temp_bind_df <- rbind(temp_bind_df,df_05_2020)
+temp_bind_df <- rbind(temp_bind_df,df_06_2020)
+temp_bind_df <- rbind(temp_bind_df,df_07_2020)
+temp_bind_df <- rbind(temp_bind_df,df_08_2020)
+temp_bind_df <- rbind(temp_bind_df,df_09_2020)
+temp_bind_df <- rbind(temp_bind_df,df_10_2020)
+temp_bind_df <- rbind(temp_bind_df,df_11_2020)
+temp_bind_df <- rbind(temp_bind_df,df_12_2020)
+temp_bind_df <- rbind(temp_bind_df,df_01_2021)
+temp_bind_df <- rbind(temp_bind_df,df_02_2021)
+temp_bind_df <- rbind(temp_bind_df,df_03_2021)
+temp_bind_df <- rbind(temp_bind_df,df_04_2021)
+temp_bind_df <- rbind(temp_bind_df,df_05_2021)
+temp_bind_df <- rbind(temp_bind_df,df_06_2021)
+binded_df <- rbind(temp_bind_df,df_07_2021)
+```
+
+# 3. Geospatial data preperation
+
+## a. Import data, transform projection and create dataframe
+```{r}
+DJ = st_read(dsn = "data", 
+                  layer = "BATAS_DESA_DESEMBER_2019_DUKCAPIL_DKI_JAKARTA")
+
+#EPSG for DGN95 / Indonesia TM-3 zone 54.1: 23845
+DJ_sf <- st_transform(DJ, crs = 23845)
+st_geometry(DJ_sf)
+```
+
+## b. Exclude all the outer islands from the DKI Jakarta sf data frame
+
+have a look at the map to identify outer islands 
+
+```{r}
+tmap_mode('view')
+tm_shape(DJ_sf) +
+  tm_polygons()
+```
+
+* Result: all the outer islands have column "KAB_KOTA" equal to value "KEPULAUAN SERIBU"
+
+remove the rows that have column "KAB_KOTA" == "KEPULAUAN SERIBU"
+
+```{r}
+DJ_sf <- DJ_sf[!(DJ_sf$KAB_KOTA == "KEPULAUAN SERIBU"),]
+DJ_sf <- DJ_sf %>%
+  drop_na()
+```
+
+* Note: for rows that have column "DESA" (village) == "DANAU SUNTER" and "DANAU SUNTER DLL", it has missing (i.e. NA) values for the rest of the columns, so just drop them
+
+have a look at the map again to confirm islands are excluded
+
+```{r}
+tmap_mode('plot')
+tm_shape(DJ_sf) +
+  tm_polygons()
+```
+
+## c. Retain the first nine fields in the DKI Jakarta sf data frame.
+```{r}
+  DJ_sf = DJ_sf[,c(1:9)]
+```
+
+# 4. Geospatial data integration
+
+## a. Make sure value can match before performing georelational join
+```{r}
+nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
+
+DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
+  st_set_geometry(NULL)
+
+no_match <- list()
+for (x in nama_kelurahan_values$nama_kelurahan) {
+  if (x %in% DESA_KELUR_values$DESA_KELUR == FALSE){
+    no_match <- append(no_match,x)
+  }
+}
+
+no_match
+```
+
+* found many sub-district names not matched
+
+## b. Change not-matched sub-district names
+```{r}
+for (x in no_match) {
+  if (x == "KERENDANG" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "KRENDANG"
+  }
+  else if (x == "KAMPUNG TENGAH" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "TENGAH"
+  }
+  else if (x == "HALIM PERDANA KUSUMAH" ){
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- "HALIM PERDANA KUSUMA"
+  }
+  else if (x == "P. HARAPAN" | x == "P. KELAPA" | x == "P. PANGGANG" | x == "P. PARI" | x == "P. TIDUNG" | x == "UNTUNG JAWA" | x == "PULAU HARAPAN" | x == "PULAU KELAPA" | x == "PULAU PANGGANG" | x == "PULAU PARI"| x == "PULAU TIDUNG" | x == "PULAU UNTUNG JAWA"){
+    binded_df<-binded_df[!(binded_df$nama_kelurahan == x),]
+  }
+  else {
+    binded_df$nama_kelurahan[binded_df$nama_kelurahan == x] <- str_replace_all(string=x, pattern=" ", repl="")
+  }
+}
+```
+
+## c. Check value match
+```{r}
+nama_kelurahan_values <-  unique(binded_df[c("nama_kelurahan")])
+
+DESA_KELUR_values <- unique(DJ_sf[c("DESA_KELUR")]) %>%
+  st_set_geometry(NULL)
+
+no_match <- list()
+for (x in nama_kelurahan_values$nama_kelurahan) {
+  if (x %in% DESA_KELUR_values$DESA_KELUR == FALSE){
+    no_match <- append(no_match,x)
+  }
+}
+
+no_match
+```
+
+* all sub-district names matched
+
+## d. Georelational join
+```{r}
+DJ_covid <- left_join(DJ_sf, binded_df,
+                      by = c("DESA_KELUR" = "nama_kelurahan"))
+
+colSums(is.na(DJ_covid))
+```
+
+## e. Calculate the cumulative confirmed cases rate (i.e. cases per 10000 population) and the cumulative death rate by month.
+```{r}
+#column names
+#POSITIF (cumulative confirmed cases)
+#Meninggal (cumulative death cases)
+#JUMLAH_PEN (Total Population)
+
+DJ_covid <- DJ_covid %>%
+  mutate(`POSITIF%` = (`POSITIF`
+/`JUMLAH_PEN`)*10000) %>%
+  mutate(`Meninggal%` = (`Meninggal`
+/`JUMLAH_PEN`)*10000)
+
+```
+
+## f. Save data to rds format for future use
+```{r}
+cleaned_df <- write_rds(DJ_covid, "data/DJ_covid.rds")
+```
+
+# 5. Exploratory Data Analysis (EDA)
+
+## a. Prepare grouped_df by month
+```{r}
+#column names
+#POSITIF (cumulative confirmed cases)
+#Meninggal (cumulative death cases)
+#JUMLAH_PEN (Total Population)
+#POSITIF% (cumulative confirmed cases rate)
+#Meninggal% (cumulative death cases rate)
+#month
+
+grouped_df <- cleaned_df %>%
+  group_by(month) %>%
+  summarise(`S_POSITIF` = sum(`POSITIF`), `S_Meninggal` = sum(`Meninggal`)) %>%
+  st_set_geometry(NULL)
+
+grouped_df <- as.data.frame(lapply(grouped_df, unlist))
+
+```
+
+## b. Histogram of cumulative confirmed cases for each month in DKI JAKARTA
+```{r}
+#arrange the order of month
+grouped_df$month <- factor(grouped_df$month, levels = rev(grouped_df$month))
+
+ggplot(data = grouped_df, 
+       aes(x = month,
+           y = S_POSITIF))+
+  geom_bar(stat = "identity", color="black", fill="light blue" )+
+  labs(title = "Histogram of monthly cumulative confirmed cases in DKI JAKARTA",
+      x = "month-year",
+      y = "confirmed cases") +
+  coord_flip()
+
+```
+
+## c. Histogram of cumulative death cases for each month in DKI JAKARTA
+```{r}
+#arrange the order of month
+grouped_df$month <- factor(grouped_df$month, levels = rev(grouped_df$month))
+
+ggplot(data = grouped_df, 
+       aes(x = month,
+           y = S_Meninggal))+
+  geom_bar(stat = "identity", color="black", fill="light blue" )+
+  labs(title = "Histogram of monthly cumulative death cases in DKI JAKARTA",
+      x = "month-year",
+      y = "death cases") +
+  coord_flip()
+
+```
+
+## d. DKI JAKARTA population map
+```{r}
+#classification: quantile
+quantile_pop <- tm_shape(cleaned_df)+
+                  tm_polygons("JUMLAH_PEN",
+                              n = 6,
+                              style = "quantile",
+                              palette = "Blues")+
+              tm_layout(main.title = "Quantile")
+
+#classification: natural breaks
+jenks_pop <- tm_shape(cleaned_df)+
+              tm_polygons("JUMLAH_PEN",
+                          n = 6,
+                          style = "jenks",
+                          palette = "Blues")+
+              tm_layout(main.title = "Natural breaks")
+
+#classification: equal interval
+equal_pop <- tm_shape(cleaned_df)+
+              tm_polygons("JUMLAH_PEN",
+                          n = 6,
+                          style = "equal",
+                          palette = "Blues")+
+              tm_layout(main.title = "Equal interval")
+
+tmap_arrange(quantile_pop, jenks_pop, equal_pop, ncol=3, nrow=1)
+```
+
+* [Data classification methods](https://pro.arcgis.com/en/pro-app/latest/help/mapping/layer-properties/data-classification-methods.htm).
+
+# 6. Thematic Mapping: Box maps
+
+## a. Create functions
+```{r}
+#get.var function
+get.var <- function(vname,df) {
+  v <- df[vname] %>% st_set_geometry(NULL)
+  v <- unname(v[,1])
+  return(v)
+}
+
+#boxbreaks function
+boxbreaks <- function(v,mult=1.5) {
+  qv <- unname(quantile(v))
+  iqr <- qv[4] - qv[2]
+  upfence <- qv[4] + mult * iqr
+  lofence <- qv[2] - mult * iqr
+  # initialize break points vector
+  bb <- vector(mode="numeric",length=7)
+  # logic for lower and upper fences
+  if (lofence < qv[1]) {  # no lower outliers
+    bb[1] <- lofence
+    bb[2] <- floor(qv[1])
+  } else {
+    bb[2] <- lofence
+    bb[1] <- qv[1]
+  }
+  if (upfence > qv[5]) { # no upper outliers
+    bb[7] <- upfence
+    bb[6] <- ceiling(qv[5])
+  } else {
+    bb[6] <- upfence
+    bb[7] <- qv[5]
+  }
+  bb[3:5] <- qv[2:4]
+  return(bb)
+}
+
+#boxmap function
+boxmap <- function(vnam, df, 
+                   legtitle=NA,
+                   bb,
+                   mtitle,
+                   mult=1.5){
+  tm_shape(df) +
+     tm_fill(vnam,
+             title=legtitle,
+             breaks=bb,
+             palette="Reds",
+          labels = c("lower outlier", 
+                     "< 25%", 
+                     "25% - 50%", 
+                     "50% - 75%",
+                     "> 75%", 
+                     "upper outlier"))  +
+  tm_borders() +
+  tm_layout(main.title = mtitle, 
+            main.title.size = 4,
+            main.title.position = "center",
+            legend.title.size = 2,
+            legend.text.size = 1.5,)
+}
+```
+
+## b. Create filtered dataframes by month
+```{r}
+
+cleaned_df_03_2020<- cleaned_df %>% filter(month=="03_2020")
+cleaned_df_04_2020<- cleaned_df %>% filter(month=="04_2020")
+cleaned_df_05_2020<- cleaned_df %>% filter(month=="05_2020")
+cleaned_df_06_2020<- cleaned_df %>% filter(month=="06_2020")
+cleaned_df_07_2020<- cleaned_df %>% filter(month=="07_2020")
+cleaned_df_08_2020<- cleaned_df %>% filter(month=="08_2020")
+cleaned_df_09_2020<- cleaned_df %>% filter(month=="09_2020")
+cleaned_df_10_2020<- cleaned_df %>% filter(month=="10_2020")
+cleaned_df_11_2020<- cleaned_df %>% filter(month=="11_2020")
+cleaned_df_12_2020<- cleaned_df %>% filter(month=="12_2020")
+cleaned_df_01_2021<- cleaned_df %>% filter(month=="01_2021")
+cleaned_df_02_2021<- cleaned_df %>% filter(month=="02_2021")
+cleaned_df_03_2021<- cleaned_df %>% filter(month=="03_2021")
+cleaned_df_04_2021<- cleaned_df %>% filter(month=="04_2021")
+cleaned_df_05_2021<- cleaned_df %>% filter(month=="05_2021")
+cleaned_df_06_2021<- cleaned_df %>% filter(month=="06_2021")
+cleaned_df_07_2021<- cleaned_df %>% filter(month=="07_2021")
+
+```
+
+## c. Box map: Cumulative monthly raw positive (confirmed cases) rate
+```{r fig.width=20, fig.height=35}
+#column names
+#POSITIF% (cumulative confirmed cases rate)
+#Meninggal% (cumulative death cases rate)
+#month
+
+#get boxbreaks for POSITIF%, use accumulated final value in month July 2021
+end <- cleaned_df %>%
+  filter(month=="07_2021")
+var_p <- get.var("POSITIF%",end)
+bb_p <- boxbreaks(var_p,mult=1.5)
+
+#create raw rate boxmaps for each month
+tmap_p_03_2020 <- boxmap("POSITIF%", cleaned_df_03_2020, bb=bb_p, mtitle = "03_2020")
+tmap_p_04_2020 <- boxmap("POSITIF%", cleaned_df_04_2020, bb=bb_p, mtitle = "04_2020")
+tmap_p_05_2020 <- boxmap("POSITIF%", cleaned_df_05_2020, bb=bb_p, mtitle = "05_2020")
+tmap_p_06_2020 <- boxmap("POSITIF%", cleaned_df_06_2020, bb=bb_p, mtitle = "06_2020")
+tmap_p_07_2020 <- boxmap("POSITIF%", cleaned_df_07_2020, bb=bb_p, mtitle = "07_2020")
+tmap_p_08_2020 <- boxmap("POSITIF%", cleaned_df_08_2020, bb=bb_p, mtitle = "08_2020")
+tmap_p_09_2020 <- boxmap("POSITIF%", cleaned_df_09_2020, bb=bb_p, mtitle = "09_2020")
+tmap_p_10_2020 <- boxmap("POSITIF%", cleaned_df_10_2020, bb=bb_p, mtitle = "10_2020")
+tmap_p_11_2020 <- boxmap("POSITIF%", cleaned_df_11_2020, bb=bb_p, mtitle = "11_2020")
+tmap_p_12_2020 <- boxmap("POSITIF%", cleaned_df_12_2020, bb=bb_p, mtitle = "12_2020")
+tmap_p_01_2021 <- boxmap("POSITIF%", cleaned_df_01_2021, bb=bb_p, mtitle = "01_2021")
+tmap_p_02_2021 <- boxmap("POSITIF%", cleaned_df_02_2021, bb=bb_p, mtitle = "02_2021")
+tmap_p_03_2021 <- boxmap("POSITIF%", cleaned_df_03_2021, bb=bb_p, mtitle = "03_2021")
+tmap_p_04_2021 <- boxmap("POSITIF%", cleaned_df_04_2021, bb=bb_p, mtitle = "04_2021")
+tmap_p_05_2021 <- boxmap("POSITIF%", cleaned_df_05_2021, bb=bb_p, mtitle = "05_2021")
+tmap_p_06_2021 <- boxmap("POSITIF%", cleaned_df_06_2021, bb=bb_p, mtitle = "06_2021")
+tmap_p_07_2021 <- boxmap("POSITIF%", cleaned_df_07_2021, bb=bb_p, mtitle = "07_2021")
+
+tmap_mode("plot")
+
+tmap_arrange(tmap_p_03_2020,tmap_p_04_2020,tmap_p_05_2020,tmap_p_06_2020,tmap_p_07_2020,tmap_p_08_2020,tmap_p_09_2020,tmap_p_10_2020,tmap_p_11_2020,tmap_p_12_2020,tmap_p_01_2021,tmap_p_02_2021,tmap_p_03_2021,tmap_p_04_2021,tmap_p_05_2021,tmap_p_06_2021,tmap_p_07_2021, ncol=3)
+
+```
+
+* From the maps above, we can see that COVID-19 cases seemed to originate from sub-districts "GAMBIR" and "SENAYAN", spreading radially outward directions to the neighboring sub-districts with time.
+* By July 2021, covid-19 cases were at most concentrated around the sub-districts "GAMBIR", "SENAYAN" and "HALIM PERDANA KUSUMA". Surprisingly, those are not the sub-districts with higher population. Sub-districts with fewer cases were mainly located at the North-east and North-west areas of DKI Jakarta.
+* Across time we can also see that the spreading of cases became faster and faster, as from March 2020 to November 2020 the spreading seemed to be slow while from December 2021 to July 2021 the spreading went rival, suggesting an exponential spreading rate.
+
+## d. Box map: Cumulative monthly raw death rate
+```{r fig.width=20, fig.height=35}
+#column names
+#POSITIF% (cumulative confirmed cases rate)
+#Meninggal% (cumulative death cases rate)
+#month
+
+#get boxbreaks for Meninggal%, use accumulated final value in month July 2021
+end <- cleaned_df %>%
+  filter(month=="07_2021")
+var_m <- get.var("Meninggal%",end)
+bb_m <- boxbreaks(var_m,mult=1.5)
+
+#create raw rate boxmaps for each month
+tmap_m_03_2020 <- boxmap("Meninggal%", cleaned_df_03_2020, bb=bb_m, mtitle = "03_2020")
+tmap_m_04_2020 <- boxmap("Meninggal%", cleaned_df_04_2020, bb=bb_m, mtitle = "04_2020")
+tmap_m_05_2020 <- boxmap("Meninggal%", cleaned_df_05_2020, bb=bb_m, mtitle = "05_2020")
+tmap_m_06_2020 <- boxmap("Meninggal%", cleaned_df_06_2020, bb=bb_m, mtitle = "06_2020")
+tmap_m_07_2020 <- boxmap("Meninggal%", cleaned_df_07_2020, bb=bb_m, mtitle = "07_2020")
+tmap_m_08_2020 <- boxmap("Meninggal%", cleaned_df_08_2020, bb=bb_m, mtitle = "08_2020")
+tmap_m_09_2020 <- boxmap("Meninggal%", cleaned_df_09_2020, bb=bb_m, mtitle = "09_2020")
+tmap_m_10_2020 <- boxmap("Meninggal%", cleaned_df_10_2020, bb=bb_m, mtitle = "10_2020")
+tmap_m_11_2020 <- boxmap("Meninggal%", cleaned_df_11_2020, bb=bb_m, mtitle = "11_2020")
+tmap_m_12_2020 <- boxmap("Meninggal%", cleaned_df_12_2020, bb=bb_m, mtitle = "12_2020")
+tmap_m_01_2021 <- boxmap("Meninggal%", cleaned_df_01_2021, bb=bb_m, mtitle = "01_2021")
+tmap_m_02_2021 <- boxmap("Meninggal%", cleaned_df_02_2021, bb=bb_m, mtitle = "02_2021")
+tmap_m_03_2021 <- boxmap("Meninggal%", cleaned_df_03_2021, bb=bb_m, mtitle = "03_2021")
+tmap_m_04_2021 <- boxmap("Meninggal%", cleaned_df_04_2021, bb=bb_m, mtitle = "04_2021")
+tmap_m_05_2021 <- boxmap("Meninggal%", cleaned_df_05_2021, bb=bb_m, mtitle = "05_2021")
+tmap_m_06_2021 <- boxmap("Meninggal%", cleaned_df_06_2021, bb=bb_m, mtitle = "06_2021")
+tmap_m_07_2021 <- boxmap("Meninggal%", cleaned_df_07_2021, bb=bb_m, mtitle = "07_2021")
+
+
+tmap_arrange(tmap_m_03_2020,tmap_m_04_2020,tmap_m_05_2020,tmap_m_06_2020,tmap_m_07_2020,tmap_m_08_2020,tmap_m_09_2020,tmap_m_10_2020,tmap_m_11_2020,tmap_m_12_2020,tmap_m_01_2021,tmap_m_02_2021,tmap_m_03_2021,tmap_m_04_2021,tmap_m_05_2021,tmap_m_06_2021,tmap_m_07_2021, ncol=3)
+
+```
+
+* Corresponding to the cumulative monthly raw positive rate maps, the cumulative monthly raw death rate maps also indicate that COVID-19 death cases happened first around sub-districts "GAMBIR" and "SENAYAN", "spreading" radially outward directions to the neighboring sub-districts with time.
+* By July 2021, there were three upper-outlier sub-districts for covid-19 death cases: "GAMBIR", "GROGOL" and "KARET KUNINGAN". Sub-districts with fewer death cases were mainly located at the North-east, North-west and South-east areas of DKI Jakarta, corresponding to the positive rate maps.
+* Across time we can also see that the number of people dead was increasing at an exponential rate. From March 2020 to May 2021, most of the sub-districts remained under 25 percentile for death cases. However, just one month from June to July 2021, the death cases in nearly half of the sub-districts in DKI Jakarta increased from less than 25 percentile to 75 percentile.
+
+# 7. Analytical Mapping: Excess risk maps
+
+## a. Concept
+![](data/relative risk map.JPG)
+
+## b. Excess risk map of getting covid
+```{r}
+sum_observed <- sum(cleaned_df_07_2021$POSITIF)
+sum_population <- sum(cleaned_df_07_2021$JUMLAH_PEN)
+p_i <- sum_observed / sum_population
+
+E_i <- p_i * cleaned_df_07_2021$JUMLAH_PEN
+
+cleaned_df_07_2021$smr_p <- cleaned_df_07_2021$POSITIF / E_i
+
+erm_covid <- tm_shape(cleaned_df_07_2021) +
+  tm_fill("smr_p",title="Excess risk of getting covid",breaks=c(-100,.25,.5,1,2,4,1000),labels = c("<.25", ".25 - .50", ".50 - 1.00","1.00 - 2.00", "2.00 - 4.00", "> 4.00" ), palette = "-RdBu")  +
+  tm_borders()
+```
+
+## c. Excess risk map of death
+```{r}
+sum_observed <- sum(cleaned_df_07_2021$Meninggal)
+sum_population <- sum(cleaned_df_07_2021$JUMLAH_PEN)
+p_i <- sum_observed / sum_population
+
+E_i <- p_i * cleaned_df_07_2021$JUMLAH_PEN
+
+cleaned_df_07_2021$smr_d <- cleaned_df_07_2021$Meninggal / E_i
+
+erm_death <- tm_shape(cleaned_df_07_2021) +
+  tm_fill("smr_d",title="Excess risk of death",breaks=c(-100,.25,.5,1,2,4,1000),labels = c("<.25", ".25 - .50", ".50 - 1.00","1.00 - 2.00", "2.00 - 4.00", "> 4.00" ), palette = "-RdBu")  +
+  tm_borders()
+```
+
+## d. Side comparison
+```{r}
+tmap_mode("view")
+tmap_arrange(erm_covid,erm_death)
+```
+
+* In the excess risk maps, blue districts will indicate a risk lower than the province average, or SMR<1. Red districts indicate a risk higher than the province average, or SMR>1.
+* From the maps above, we can see there are more sub-districts having higher risk than province average for getting covid than death. For both getting covid and death, sub-district "GAMBIR" has extremely high risk than province average. Sub-districts around "KARET KUNINGAN" also shared similar traits. It's not very surprising to see these two sub-districts having "excess risks" as they were the origins of covid in DKI Jakarta.
+
+
+

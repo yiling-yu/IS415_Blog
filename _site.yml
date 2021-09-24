@@ -1,14 +1,14 @@
 name: "IS415_Blog"
-title: "IS415 Web Blog"
+title: "IS415 Blog"
 description: |
-  IS415 Web Blog
+  Yiling's IS415 Blog
 output_dir: "_site"
 navbar:
   right:
     - text: "Take-home Exercise"
       menu:
       - text: "Take-home Exercise 1"
-        href: Take-home-Exercise-1.html
+        href: "/posts/2021-09-25-take-home-exercise-1/index.html"
     - text: "In-class/Hands-on Exercise"
       href: index.html
     - text: "About"
