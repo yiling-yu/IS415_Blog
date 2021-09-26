@@ -1,0 +1,190 @@
+---
+title: "Hands-on Exercise 5 supplementary"
+description: |
+  Analysing Marked Point Patterns
+author:
+  - name: Yu Yiling
+    url: https://www.linkedin.com/in/yiling-yu/
+date: 09-27-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_depth: 2
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* The research questions
+  + Are the locations of childcare centre by different business groups (i.e. NT, PT, RC, ST) spatial independent?
+  + If the answer is NO, are there any phenomena of attraction or repulsion?
+
+# 1. Install packages
+
+```{r}
+packages = c('rgdal', 'maptools', 'raster','spatstat', 'tmap')
+for (p in packages){
+if(!require(p, character.only = T)){
+install.packages(p)
+}
+library(p,character.only = T)
+}
+```
+
+# 2. Import data
+
+```{r}
+childcare <- readOGR(dsn = "data/geospatial", layer="CHILDCARE")
+mpsz = readOGR(dsn = "data/geospatial", layer="MP14_SUBZONE_WEB_PL")
+```
+
+* Since, readOGR() of rgdal package is used, the output R objectswill be in SpatialPointsDataframe and SpatialPolygonsDataframe classes respectively.
+
+## check the data type of childcare SpatialPointsDataFrame 
+```{r}
+str(childcare)
+```
+
+* This is necessary because the marked field must be in factor data type if its values are categorical.
+* The output above shows that Type field is in character data type and not in factor data type as required by spatstat package. Hence, the code chunk below will be used to convert Type field to factor data type.
+
+```{r}
+childcare@data$Type <- as.factor(childcare@data$Type)
+str(childcare)
+```
+
+# 3. Mapping the geospatial layers
+
+```{r}
+tmap_mode("view")
+tm_shape(mpsz) +
+  tm_borders(alpha = 0.5) +
+  tmap_options(check.and.fix = TRUE) +
+tm_shape(childcare) +
+  tm_dots(col = 'Type', size = 0.02)
+
+tmap_mode("plot")
+```
+```{r}
+tm_shape(mpsz) +
+  tm_borders(alpha = 0.5) +
+tm_shape(childcare) +
+  tm_dots(col = 'Type', 
+          size = 0.5) +
+tm_facets(by="Type")
+```
+
+# 4. Spatial Data Wrangling
+
+## a. Converting the SpatialPointsDataFrame into ppp (point pattern in spatstat) format
+```{r}
+childcare_ppp <- as(childcare, "ppp")
+plot(childcare_ppp)
+```
+
+* Figure above reveals that there are four sub-types in the marks list. They are: NT, PT, RC and ST.
+
+```{r}
+summary(childcare_ppp)
+```
+
+* The report above reveals that PT is the largest childcare operator in Singapore with a market share of 63%. This is followed by ST, RC and NT.
+* It is also important to node that the spatial point object contains duplicated points.
+
+## b. Avoiding duplicated spatial point event by using jittering method
+```{r}
+childcare_ppp_jit <- rjitter(childcare_ppp, retry=TRUE, nsim=1, drop=TRUE)
+any(duplicated(childcare_ppp_jit))
+```
+
+## c. Creating owin
+#### Extracting study area
+```{r}
+# For the purpose of this study, we will focus of Jurong West planning area
+jw = mpsz[mpsz@data$PLN_AREA_N == "JURONG WEST",]
+plot(jw, main = "Jurong West")
+```
+
+#### Converting the SpatialPolygonsDataFrame into generic sp(spatialpolygons) format
+```{r}
+jw_sp = as(jw, "SpatialPolygons")
+str(jw_sp)
+```
+
+#### Creating owin object
+```{r}
+jw_owin = as(jw_sp, "owin")
+str(jw_owin)
+```
+
+#### Combining childcare points and the study area
+```{r}
+childcare_jw_ppp = childcare_ppp_jit[jw_owin]
+summary(childcare_jw_ppp)
+```
+
+#### Plotting childcare points and the study area
+```{r}
+plot(childcare_jw_ppp)
+```
+
+# 5. Analysing Marked Point Patterns
+## a. First-order Spatial Point Patterns Analysis: KDE
+```{r}
+plot(density(split(rescale(childcare_jw_ppp, 1000))))
+```
+```{r}
+intensity(rescale(childcare_jw_ppp, 1000))
+```
+
+* The output reveals that childcare centres operate by PT has the highest density of 3.95 units per km square. This is followed by 1.91 units per km square, 1.09 unit per km square and 0.82 unit per km square for ST, NT and RC respectively.
+
+## b. Second-order Multi-tpye Point Patterns Analysis: Cross K-Function
+```{r}
+childcare_Kcross <- Kcross(childcare_jw_ppp, 
+                           i="PT", j="ST",
+                           correction='border')
+plot(childcare_Kcross)
+```
+
+* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.
+
+#### Performing CSR testing on the Cross K-Function
+
+* The hypothesis and test are as follows:
+  + Ho = The distribution of ST childcare centres and NT chilcare centres are spatially independent.
+  + H1= The distribution of ST childcare centres and NT chilcare centres are NOT at spatially independent.
+  + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.001 (i.e. at 99.9% confident interval).
+  
+```{r}
+childcare_Kcross.csr <- envelope(childcare_jw_ppp, Kcross, i="PT", j="ST", correction='border', nsim=999)
+plot(childcare_Kcross.csr, xlab="distance(m)", xlim=c(0,500))
+```
+
+* nsim=999 is used because of 99.9% confident interval
+* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval.
+
+## c. Second-order Multi-tpye Point Patterns Analysis: Cross L-Function
+
+```{r}
+childcare_Lcross <- Lcross(childcare_jw_ppp, i="PT", j="ST", correction='border')
+plot(childcare_Lcross, . -r ~ r, 
+     xlab = "distance(m)", 
+     xlim=c(0, 500))
+```
+
+#### Performing CSR testing on the Cross L-Function
+
+* The hypothesis and test are as follows:
+  + Ho = The distribution of ST childcare centres and NT chilcare centres are spatially independent.
+  + H1= The distribution of ST childcare centres and NT chilcare centres are NOT at spatially independent.
+  + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.001 (i.e. at 99.9% confident interval).
+  
+```{r}
+childcare_Lcross.csr <- envelope(childcare_jw_ppp, Lcross, i="PT", j="ST", correction='border', nsim=999)
+plot(childcare_Lcross.csr, . -r ~ r, xlab="distance(m)", xlim=c(0,500))
+```
+

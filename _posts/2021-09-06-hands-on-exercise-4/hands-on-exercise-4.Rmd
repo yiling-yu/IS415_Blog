@@ -144,6 +144,8 @@ plot(childcareSG_ppp)
 
 # 4. First-order Spatial Point Patterns Analysis: A. deriving kernel density estimation (KDE) layer for visualising and exploring the intensity of point processes
 
+* to do KDE must ensure the data are in projected coordinate system(in km or m), not geographic coordinate system(decimal degree)
+
 ## a. Computing kernel density estimation using automatic bandwidth selection method
 ```{r}
 kde_childcareSG_bw <- density(childcareSG_ppp,
@@ -429,9 +431,15 @@ clarkevans.test(childcare_tm_ppp,
                 nsim=999)
 ```
 
+## if reject null-hypothesis, infer from R value
+![](data/capture.JPG)
+
 # 6. Second-order Spatial Point Patterns Analysis: A. Analysing Spatial Point Process Using G-Function
 
 * The G function measures the distribution of the distances from an arbitrary event to its nearest event.
+
+![](data/capture2.JPG)
+![](data/capture3.JPG)
 
 ## Choa Chu Kang planning area G-Function estimation
 ```{r}
@@ -475,6 +483,8 @@ plot(G_tm.csr)
 
 * The F function estimates the empty space function F(r) or its hazard rate h(r) from a point pattern in a window of arbitrary shape.
 
+![](data/capture4.JPG)
+
 ## Choa Chu Kang planning area F-Function estimation
 ```{r}
 F_CK = Fest(childcare_ck_ppp)
@@ -516,6 +526,8 @@ plot(F_tm.csr)
 # 8. Second-order Spatial Point Patterns Analysis: C. Analysing Spatial Point Process Using K-Function
 
 * K-function measures the number of events found up to a given distance of any particular event.
+
+![](data/capture5.JPG)
 
 ## Choa Chu Kang planning area K-Function estimation
 ```{r}
@@ -559,6 +571,8 @@ plot(K_tm.csr, . - r ~ r,
 ```
 
 # 9. Second-order Spatial Point Patterns Analysis: D. Analysing Spatial Point Process Using L-Function
+
+![](data/capture6.JPG)
 
 ## Choa Chu Kang planning area L-Function estimation
 ```{r}
