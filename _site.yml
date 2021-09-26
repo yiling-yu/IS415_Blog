@@ -1,5 +1,5 @@
 name: "IS415_Blog"
-title: "IS415 Blog"
+title: "Yiling's IS415 Blog"
 description: |
   Yiling's IS415 Blog
 output_dir: "_site"
@@ -11,6 +11,4 @@ navbar:
         href: "/posts/2021-09-25-take-home-exercise-1/index.html"
     - text: "In-class/Hands-on Exercise"
       href: index.html
-    - text: "About"
-      href: about.html
 output: distill::distill_article

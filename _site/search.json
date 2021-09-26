@@ -1,19 +1,11 @@
 {
   "articles": [
     {
-      "path": "about.html",
-      "title": "About this blog",
-      "description": "For IS415 use.",
-      "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-09-25T02:44:49+08:00"
-    },
-    {
       "path": "index.html",
-      "title": "IS415 Web Blog",
+      "title": "Yiling's IS415 Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-09-25T02:44:52+08:00"
+      "last_modified": "2021-09-27T01:07:26+08:00"
     }
   ],
   "collections": ["posts/posts.json"]
