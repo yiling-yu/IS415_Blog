@@ -147,6 +147,10 @@ have a look at the map to identify outer islands
 tmap_mode('view')
 tm_shape(DJ_sf) +
   tm_polygons()
+
+#unique(bd_jakarta$"KAB_KOTA")
+#tm_shape(bd_jakarta) + 
+#  tm_polygons("KAB_KOTA")
 ```
 
 * Result: all the outer islands have column "KAB_KOTA" equal to value "KEPULAUAN SERIBU"
@@ -157,6 +161,8 @@ remove the rows that have column "KAB_KOTA" == "KEPULAUAN SERIBU"
 DJ_sf <- DJ_sf[!(DJ_sf$KAB_KOTA == "KEPULAUAN SERIBU"),]
 DJ_sf <- DJ_sf %>%
   drop_na()
+
+# bd_jakarta <- filter(bd_jakarta, KAB_KOTA != "KEPULAUAN SERIBU")
 ```
 
 * Note: for rows that have column "DESA" (village) == "DANAU SUNTER" and "DANAU SUNTER DLL", it has missing (i.e. NA) values for the rest of the columns, so just drop them
@@ -264,6 +270,12 @@ cleaned_df <- write_rds(DJ_covid, "data/DJ_covid.rds")
 ```
 
 # 5. Exploratory Data Analysis (EDA)
+
+```{r, eval=FALSE}
+length(unique(bd_jakarta$"Sub_District"))
+length(unique(bd_jakarta$"District"))
+colnames(bd_jakarta)
+```
 
 ## a. Prepare grouped_df by month
 ```{r}
