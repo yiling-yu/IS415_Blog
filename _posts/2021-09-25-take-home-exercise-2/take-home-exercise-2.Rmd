@@ -31,7 +31,7 @@ options(width=200)
 * Explain packages used
 
 # Note!
-* For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage.
+* For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage. I'm also very sorry that I have disabled all the maps with "view" mode because my Netlify refused to load them.
 
 # Data used
 * SG Airbnb listings for June 2019 and June 2021 from [Inside Airbnb](http://insideairbnb.com/get-the-data.html)
@@ -104,7 +104,7 @@ bus_sf <- st_set_crs(bus_sf, 3414)
 
 ## Have a glance at the point maps
 ```{r}
-tmap_mode("view")
+# tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 tm_shape(sg_sf) +
@@ -488,7 +488,7 @@ projection(kde_hawkerSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=k
 projection(kde_busSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
 
 # visualise the raster kernel density maps on openstreetmap of Singapore
-tmap_mode("view")
+#tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 listings19SG_osmap <- tm_shape(sg_sf) +
@@ -945,7 +945,7 @@ projection(kde_listings21SG_SR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +uni
 
 ```{r, warning = FALSE,  fig.width=20, fig.height=30}
 # visualise the raster kernel density maps on openstreetmap of Singapore
-tmap_mode("view")
+#tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 listings19SG_EH_osmap <- tm_shape(sg_sf) +
