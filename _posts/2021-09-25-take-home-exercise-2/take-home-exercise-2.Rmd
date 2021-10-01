@@ -14,15 +14,6 @@ output:
     toc_float: true
 ---
 
-```{css, include=FALSE}
-pre code, pre, code {
-  white-space: pre !important;
-  overflow-x: scroll !important;
-  word-break: keep-all !important;
-  word-wrap: initial !important;
-}
-```
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(width=200)
@@ -40,7 +31,7 @@ options(width=200)
 * Explain packages used
 
 # Note!
-* For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage. Also, I'm sorry that I have to disable tmap_mode("view") for many of my plots in order for Netlify to load normally.
+* For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage.
 
 # Data used
 * SG Airbnb listings for June 2019 and June 2021 from [Inside Airbnb](http://insideairbnb.com/get-the-data.html)
@@ -51,7 +42,7 @@ options(width=200)
 
 # 1. Install packages
 
-```{r, message = FALSE, echo = FALSE}
+```{r}
 packages = c('maptools', 'sf', 'raster','spatstat', 'tmap','tidyverse')
 for (p in packages){
 if(!require(p, character.only = T)){
@@ -113,7 +104,7 @@ bus_sf <- st_set_crs(bus_sf, 3414)
 
 ## Have a glance at the point maps
 ```{r}
-#tmap_mode("view")
+tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 tm_shape(sg_sf) +
@@ -241,7 +232,7 @@ hawkerSG_ppp = hawker_ppp[sg_owin]
 busSG_ppp = bus_ppp[sg_owin]
 ```
 
-```{r}
+```{r fig.width=20, fig.height=30}
 par(mar=c(1,1,1,1))
 par(mfrow=c(4,2))
 plot(listings21SG_ppp)
@@ -380,7 +371,7 @@ kde_busSG_ppl <- density(busSG_ppp.km,
 ```
 
 #### plot and compare bw.diggle and bw.ppl
-```{r, warning = FALSE}
+```{r, warning = FALSE,  fig.width=20, fig.height=30}
 par(mar=c(1,1,1,1))
 par(mfrow=c(6,2))
 plot(kde_listings19SG_bw, main = "listings19 diggle")
@@ -451,7 +442,7 @@ kde_busSG_adaptive <- adaptive.density(busSG_ppp.km, method="kernel")
 ```
 
 #### plot and compare fixed and adaptive bandwidth
-```{r, warning = FALSE}
+```{r, warning = FALSE,  fig.width=20, fig.height=30}
 par(mar=c(1,1,1,1))
 par(mfrow=c(6,2))
 plot(kde_listings19SG_bw_1, main = "listings19 fixed")
@@ -497,7 +488,7 @@ projection(kde_hawkerSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=k
 projection(kde_busSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
 
 # visualise the raster kernel density maps on openstreetmap of Singapore
-#tmap_mode("view")
+tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 listings19SG_osmap <- tm_shape(sg_sf) +
@@ -599,9 +590,9 @@ listings19_vs_bus<- superimpose('listings19'=listings19SG_ppp.km, 'bus'=busSG_pp
 For each comparison between the 2019 Airbnb listings and one of the factors, I'm going to plot the Kcross and perform a Complete Spatial Randomness(CSR) testing on the Cross K-Function.
 
 The hypothesis are as follows:
-H0 = The distribution of 2019 Airbnb listings and the factor are spatially independent.
-H1 = The distribution of 2019 Airbnb listings and the factor are NOT at spatially independent.
-The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).
+  + H0 = The distribution of 2019 Airbnb listings and the factor are spatially independent.
+  + H1 = The distribution of 2019 Airbnb listings and the factor are NOT spatially independent.
+  + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).
 
 #### i. listings19 vs hotels
 ```{r}
@@ -611,7 +602,7 @@ listings19_vs_hotels_Kcross <- Kcross(listings19_vs_hotels,
 plot(listings19_vs_hotels_Kcross)
 ```
 
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
+* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.
 
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_hotels_Kcross.csr <- envelope(listings19_vs_hotels, Kcross, i="listings19", j="hotels", correction='border', nsim=99)
@@ -620,7 +611,8 @@ plot(listings19_vs_hotels_Kcross.csr, xlab="distance(km)", xlim=c(0,10))
 ```
 
 ![](data/listings19_vs_hotels_Kcross.png)
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
+
+* From the graph above we can see the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of 2019 Airbnb listings and hotel locations are not independent spatially with each other at 99.9% confidence interval.
 
 #### ii. listings19 vs tourism
 ```{r}
@@ -630,8 +622,6 @@ listings19_vs_tourism_Kcross <- Kcross(listings19_vs_tourism,
 plot(listings19_vs_tourism_Kcross)
 ```
 
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_tourism_Kcross.csr <- envelope(listings19_vs_tourism, Kcross, i="listings19", j="tourism", correction='border', nsim=99)
 
@@ -640,7 +630,7 @@ plot(listings19_vs_tourism_Kcross.csr, xlab="distance(km)", xlim=c(0,10))
 
 ![](data/listings19_vs_tourism_Kcross.png)
 
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
+* From the graph above we can see the observed(black) line is within the envelop. Therefore, we failed to reject the null hypothesis. The distribution of 2019 Airbnb listings and tourism locations are independent spatially with each other at 99.9% confidence interval.
 
 #### iii. listings19 vs MRT
 ```{r}
@@ -650,7 +640,7 @@ listings19_vs_MRT_Kcross <- Kcross(listings19_vs_MRT,
 plot(listings19_vs_MRT_Kcross)
 ```
 
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
+* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.
 
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_MRT_Kcross.csr <- envelope(listings19_vs_MRT, Kcross, i="listings19", j="MRT", correction='border', nsim=99)
@@ -660,7 +650,7 @@ plot(listings19_vs_MRT_Kcross.csr, xlab="distance(m)", xlim=c(0,10))
 
 ![](data/listings19_vs_MRT_Kcross.png)
 
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
+* From the graph above we can see the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of 2019 Airbnb listings and MRT locations are not independent spatially with each other at 99.9% confidence interval.
 
 #### iv. listings19 vs hawker
 ```{r}
@@ -670,7 +660,7 @@ listings19_vs_hawker_Kcross <- Kcross(listings19_vs_hawker,
 plot(listings19_vs_hawker_Kcross)
 ```
 
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
+* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.
 
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_hawker_Kcross.csr <- envelope(listings19_vs_hawker, Kcross, i="listings19", j="hawker", correction='border', nsim=99)
@@ -680,7 +670,7 @@ plot(listings19_vs_hawker_Kcross.csr, xlab="distance(m)", xlim=c(0,10))
 
 ![](data/listings19_vs_hawker_Kcross.png)
 
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
+* From the graph above we can see the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of 2019 Airbnb listings and hawker center locations are not independent spatially with each other at 99.9% confidence interval.
 
 #### v. listings19 vs bus
 ```{r}
@@ -690,7 +680,7 @@ listings19_vs_bus_Kcross <- Kcross(listings19_vs_bus,
 plot(listings19_vs_bus_Kcross)
 ```
 
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
+* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.
 
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_bus_Kcross.csr <- envelope(listings19_vs_bus, Kcross, i="listings19", j="bus", correction='border', nsim=99)
@@ -700,12 +690,12 @@ plot(listings19_vs_bus_Kcross.csr, xlab="distance(m)", xlim=c(0,10))
 
 ![](data/listings19_vs_bus_Kcross.png)
 
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
+* From the graph above we can see the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of 2019 Airbnb listings and bus stop locations are not independent spatially with each other at 99.9% confidence interval.
 
 ## c. Second-order Multi-tpye Point Patterns Analysis: Cross L-Function
 
 #### Note:
-Cross L-Function and Cross K-Function are the actually the same but just Cross L-Function is the standardized version of Cross K-Function. Their CSR testing hypothesis are also the same.
+Cross L-Function and Cross K-Function are the actually the same but just Cross L-Function is the standardized version of Cross K-Function. Their CSR testing hypothesis, analysis and conclusions are all the same. I would just like to draw here the L-Functions for better visualization purpose.
 
 #### i. listings19 vs hotels
 ```{r}
@@ -716,9 +706,6 @@ plot(listings19_vs_hotels_Lcross, . -r ~ r,
      xlab = "distance(km)", 
      xlim=c(0, 10))
 ```
-
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_hotels_Lcross.csr <- envelope(listings19_vs_hotels, Lcross, i="listings19", j="hotels", correction='border', nsim=99)
 
@@ -726,8 +713,6 @@ plot(listings19_vs_hotels_Lcross.csr, . -r ~ r, xlab="distance(km)", xlim=c(0,10
 ```
 
 ![](data/listings19_vs_hotels_Lcross.png)
-
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
 
 #### ii. listings19 vs tourism
 ```{r}
@@ -738,9 +723,6 @@ plot(listings19_vs_tourism_Lcross, . -r ~ r,
      xlab = "distance(km)", 
      xlim=c(0, 10))
 ```
-
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_tourism_Lcross.csr <- envelope(listings19_vs_tourism, Lcross, i="listings19", j="tourism", correction='border', nsim=99)
 
@@ -748,8 +730,6 @@ plot(listings19_vs_tourism_Lcross.csr, . -r ~ r, xlab="distance(km)", xlim=c(0,1
 ```
 
 ![](data/listings19_vs_tourism_Lcross.png)
-
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
 
 #### iii. listings19 vs MRT
 ```{r}
@@ -760,9 +740,6 @@ plot(listings19_vs_MRT_Lcross, . -r ~ r,
      xlab = "distance(km)", 
      xlim=c(0, 10))
 ```
-
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_MRT_Lcross.csr <- envelope(listings19_vs_MRT, Lcross, i="listings19", j="MRT", correction='border', nsim=99)
 
@@ -770,8 +747,6 @@ plot(listings19_vs_MRT_Lcross.csr, . -r ~ r, xlab="distance(km)", xlim=c(0,10))
 ```
 
 ![](data/listings19_vs_MRT_Lcross.png)
-
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
 
 #### iv. listings19 vs hawker
 ```{r}
@@ -782,9 +757,6 @@ plot(listings19_vs_hawker_Lcross, . -r ~ r,
      xlab = "distance(km)", 
      xlim=c(0, 10))
 ```
-
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_hawker_Lcross.csr <- envelope(listings19_vs_hawker, Lcross, i="listings19", j="hawker", correction='border', nsim=99)
 
@@ -792,8 +764,6 @@ plot(listings19_vs_hawker_Lcross.csr, . -r ~ r, xlab="distance(km)", xlim=c(0,10
 ```
 
 ![](data/listings19_vs_hawker_Lcross.png)
-
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
 
 #### v. listings19 vs bus
 ```{r}
@@ -804,9 +774,6 @@ plot(listings19_vs_bus_Lcross, . -r ~ r,
      xlab = "distance(km)", 
      xlim=c(0, 10))
 ```
-
-* The plot above reveals that there is a sign that the marked spatial point events are not independent spatially. However, a hypothesis test is required to confirm the observation statistically.........................................
-
 ```{r, warning=FALSE, eval=FALSE}
 listings19_vs_bus_Lcross.csr <- envelope(listings19_vs_bus, Lcross, i="listings19", j="bus", correction='border', nsim=99)
 
@@ -815,12 +782,9 @@ plot(listings19_vs_bus_Lcross.csr, . -r ~ r, xlab="distance(km)", xlim=c(0,10))
 
 ![](data/listings19_vs_bus_Lcross.png)
 
-* The plot above reveals that the are signs that the distribution of childcare centres operate by NT and ST are not independent spatially. Unfortunately, we failed to reject the null hypothesis because the empirical k-cross line is within the envelop of the 99.9% confident interval..............................................
-
 ## d. Summary: Cross K-Function and Cross L-Function
 
-* are there any phenomena of attraction or repulsion
-.........................................................
+From the above Cross K-Function and Cross L-Function analysis, we can see among the 5 location factors, 2019 Airbnb listings are not independent with hotels, MRT stations, hawker centres and bus stops. These are be the factors that may bring Airbnb customers and profit so these Airbnb are located there. However, 2019 Airbnb listings are independent with tourist attractions, this may because the tourist attractions are too few to compare or Airbnb customers do not need to live near those attractions due to convenient MRT. All these observations are in accord with the patterns we see in our KDE maps of First-order analysis.
 
 # 5. Section B: Impact of COVID-19
 # 5.1 First-order Spatial Point Patterns Analysis: A. Derive kernel density maps of all Airbnb listings and Airbnb by room type as at June 2019 and June 2021
@@ -908,7 +872,9 @@ plot(listings21SG_ppp)
 
 * Since I am going to compare Airbnb listings across time, I would like to make the bandwidth a fixed value for standard comparison. The bandwidth chosen is 0.18 (180 meters) referring to part A bw.ppl.
 
-```{r, warning = FALSE}
+```{r, warning = FALSE, fig.width=20, fig.height=30}
+par(mar=c(1,1,1,1))
+par(mfrow=c(2,2))
 # Rescale KDE values: covert the unit of measurement from meter to kilometer.
 listings19SG_ppp.km <- rescale(listings19SG_ppp, 1000, "km")
 #plot
@@ -975,9 +941,11 @@ projection(kde_listings21SG_EH_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +uni
 projection(kde_listings21SG_HR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
 projection(kde_listings21SG_PR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
 projection(kde_listings21SG_SR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
+```
 
+```{r, warning = FALSE,  fig.width=20, fig.height=30}
 # visualise the raster kernel density maps on openstreetmap of Singapore
-#tmap_mode("view")
+tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
 
 listings19SG_EH_osmap <- tm_shape(sg_sf) +
@@ -1061,12 +1029,12 @@ tmap_mode('plot')
 * Types of Airbnbs for analysis: Entire Home type, Private Room type, Shared Room type. Since Hotel Room type only exists in 2021, it will not be my main focus for this study.
 
 ## Note
-For each function used, I will also perform a Complete Spatial Randomness(CSR) testing on it. The hypothesis are the same for all functions:
+For each function used, I will also perform a Complete Spatial Randomness(CSR) testing on it. The hypothesis are the same for both functions:
 
 The hypothesis are as follows:
-H0 = The distribution of that type of Airbnb are randomly distributed in Singapore.
-H1= The distribution of that type of Airbnb are not randomly distributed in Singapore.
-The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).
+  + H0 = The distribution of that type of Airbnb are randomly distributed in Singapore.
+  + H1= The distribution of that type of Airbnb are not randomly distributed in Singapore.
+  + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).
 
 ## a. Prepare split ppp objects
 ```{r}
@@ -1099,6 +1067,7 @@ plot(G_19_EH.csr, xlim=c(0,1))
 ```
 
 ![](data/G_19_EH.png)
+* From 0km to 0.5km, the observed(black) line is above the envelop, indicating there is enough evidence to reject the null hypothesis and say that Entire Home Airbnbs resemble clustered pattern. This can also be seen as G increases rapidly at short distance above the theoretical(red) line. However, from about 0.5km onward, we noticed that the observed(black) line goes along with (in) the envelope. This means that there is not enough evidence to reject the null hypothesis and suggesting Entire Home Airbnbs resemble randomness above 0.5m.
 
 ```{r, warning=FALSE}
 # 2021
@@ -1112,6 +1081,7 @@ plot(G_21_EH.csr, xlim=c(0,1))
 ```
 
 ![](data/G_21_EH.png)
+* Compared with 2019 Entire Home Airbnbs, similar patterns can be observed for 2021 Entire Home Airbnbs. However, for 2021 Entire Home Airbnbs, the part outside the envelop is longer, ranging from 0km to 0.8km.
 
 #### Private Room
 ```{r, warning=FALSE}
@@ -1127,6 +1097,8 @@ plot(G_19_PR.csr, xlim=c(0,1))
 
 ![](data/G_19_PR.png)
 
+* From 0km to 0.6km, the observed(black) line is above the envelop, indicating there is enough evidence to reject the null hypothesis and say that Private Room Airbnbs resemble clustered pattern. This can also be seen as G increases rapidly at short distance above the theoretical(red) line. However, from about 0.6km onward, we noticed that the observed(black) line goes along with (in) the envelope. This means that there is not enough evidence to reject the null hypothesis and suggesting Private Room Airbnbs resemble randomness above 0.5m.
+
 ```{r, warning=FALSE}
 # 2021
 G_21_PR = Gest(listings21SG_PR, correction = "border")
@@ -1139,6 +1111,8 @@ plot(G_21_PR.csr, xlim=c(0,1))
 ```
 
 ![](data/G_21_PR.png)
+
+* Compared with 2019 Private Room Airbnbs, similar patterns can be observed for 2021 Private Room Airbnbs. However, for 2021 Private Room Airbnbs, the part outside the envelop is longer, ranging from 0km to 0.8km.
 
 #### Shared Room
 ```{r, warning=FALSE}
@@ -1154,6 +1128,8 @@ plot(G_19_SR.csr, xlim=c(0,2))
 
 ![](data/G_19_SR.png)
 
+* From 0km to 1.2km, the observed(black) line is above the envelop, indicating there is enough evidence to reject the null hypothesis and say that Shared Room Airbnbs resemble clustered pattern. This can also be seen as G increases rapidly at short distance above the theoretical(red) line. However, from about 1.2km onward, we noticed that the observed(black) line goes into (along with) the envelope. This means that there is not enough evidence to reject the null hypothesis and suggesting Shared Room Airbnbs resemble randomness or regular pattern above 1.2m.
+
 ```{r, warning=FALSE}
 # 2021
 G_21_SR = Gest(listings21SG_SR, correction = "border")
@@ -1167,11 +1143,14 @@ plot(G_21_SR.csr, xlim=c(0,2))
 
 ![](data/G_21_SR.png)
 
+* Compared with 2019 Shared Room Airbnbs, similar patterns can be observed for 2021 Shared Room Airbnbs. However, for 2021 Shared Room Airbnbs, the part outside the envelop is shorter, ranging from 0km to 1.4km.
+
 ## c. Analysing Spatial Point Process Using F-Function
 
-* The F function estimates the empty space function F(r) or its hazard rate h(r) from a point pattern in a window of arbitrary shape.
+* The F function select a sample of point locations anywhere in the study region at random and determine minimum distance from each point to any event in the study area.
 
 ![](data/capture4.JPG)
+![](data/capture8.JPG)
 
 #### Entire Home
 ```{r, warning=FALSE}
@@ -1185,7 +1164,9 @@ F_19_EH.csr <- envelope(listings19SG_EH, Fest, nsim = 99)
 plot(F_19_EH.csr, xlim=c(0,1))
 ```
 
-![](F_19_EH.png)
+![](data/F_19_EH.png)
+
+* From the graph above we can see the observed(black) line is below the envelop, indicating there is enough evidence to reject the null hypothesis and say that Entire Home Airbnbs resemble clustered pattern at 99% confidence interval.
 
 ```{r, warning=FALSE}
 #2021
@@ -1198,7 +1179,9 @@ F_21_EH.csr <- envelope(listings21SG_EH, Fest, nsim = 99)
 plot(F_21_EH.csr, xlim=c(0,1))
 ```
 
-![](F_21_EH.png)
+![](data/F_21_EH.png)
+
+* 2021 Entire Home Airbnbs F-function has similar pattern compared to 2019 Entire Home Airbnbs's.
 
 #### Private Room
 ```{r, warning=FALSE}
@@ -1212,7 +1195,9 @@ F_19_PR.csr <- envelope(listings19SG_PR, Fest, nsim = 99)
 plot(F_19_PR.csr, xlim=c(0,1))
 ```
 
-![](F_19_PR.png)
+![](data/F_19_PR.png)
+
+* From the graph above we can see the observed(black) line is below the envelop, indicating there is enough evidence to reject the null hypothesis and say that Private Room Airbnbs resemble clustered pattern at 99% confidence interval.
 
 ```{r, warning=FALSE}
 #2021
@@ -1225,7 +1210,9 @@ F_21_PR.csr <- envelope(listings21SG_PR, Fest, nsim = 99)
 plot(F_21_PR.csr, xlim=c(0,1))
 ```
 
-![](F_21_PR.png)
+![](data/F_21_PR.png)
+
+* 2021 Private Room Airbnbs F-function has similar pattern compared to 2019 Private Room Airbnbs's.
 
 #### Shared Room
 ```{r, warning=FALSE}
@@ -1239,7 +1226,9 @@ F_19_SR.csr <- envelope(listings19SG_SR, Fest, nsim = 99)
 plot(F_19_SR.csr, xlim=c(0,1))
 ```
 
-![](F_19_SR.png)
+![](data/F_19_SR.png)
+
+* From the graph above we can see the observed(black) line is below the envelop, indicating there is enough evidence to reject the null hypothesis and say that Shared Room Airbnbs resemble clustered pattern at 99% confidence interval. 
 
 ```{r, warning=FALSE}
 #2021
@@ -1252,12 +1241,11 @@ F_21_SR.csr <- envelope(listings21SG_SR, Fest, nsim = 99)
 plot(F_21_SR.csr, xlim=c(0,1))
 ```
 
-![](F_21_SR.png)
+![](data/F_21_SR.png)
+
+* 2021 Shared Room Airbnbs F-function has similar pattern compared to 2019 Shared Room Airbnbs's.
 
 ## d. Summary: G-Function and K-Function
 
-* 
-.........................................................
-
-
+From the G-Function and K-Function analysis above, we can see for all types of Airbnbs in both 2019 and 2021 resemble cluster patterns within a distance and gradually resemble randomness or regular pattern when the distance increases. Usually, 2021 Airbnbs have a longer distance that resemble cluster patterns than 2019 Airbnbs. This may because the tightness of clusters in 2021 is lesser than that of clusters in 2019, as can be seen in our KDE maps of First-order analysis. In general, there are fewer Airbnbs in 2021 after covid but their locations and distributions are still similar to Airbnbs in 2019.
 
