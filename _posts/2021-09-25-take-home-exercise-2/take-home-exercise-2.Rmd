@@ -14,7 +14,7 @@ output:
     toc_float: true
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, cache = TRUE}
 knitr::opts_chunk$set(echo = TRUE)
 options(width=200)
 ```
@@ -116,7 +116,9 @@ tm_shape(listings19_sf) +
 tm_shape(listings21_sf) +
   tm_dots(alpha=0.4,
           col="red",
-          size=0.05)
+          size=0.05) +
+tm_layout(main.title = "2019 and 2021 Airbnb Listings",
+          main.title.position = "center")
 
 tmap_mode("plot")
 ```
@@ -232,9 +234,8 @@ hawkerSG_ppp = hawker_ppp[sg_owin]
 busSG_ppp = bus_ppp[sg_owin]
 ```
 
-```{r fig.width=20, fig.height=30}
+```{r}
 par(mar=c(1,1,1,1))
-par(mfrow=c(4,2))
 plot(listings21SG_ppp)
 plot(listings19SG_ppp)
 plot(hotelsSG_ppp)
@@ -299,7 +300,6 @@ kde_busSG_bw <- density(busSG_ppp.km,
                             kernel="gaussian")
 
 par(mar=c(1,1,1,1))
-par(mfrow=c(3,2))
 plot(kde_listings19SG_bw, main = "listings19")
 plot(kde_hotelsSG_bw, main = "hotels")
 plot(kde_tourismSG_bw, main = "tourism")
@@ -371,9 +371,8 @@ kde_busSG_ppl <- density(busSG_ppp.km,
 ```
 
 #### plot and compare bw.diggle and bw.ppl
-```{r, warning = FALSE,  fig.width=20, fig.height=30}
+```{r, warning = FALSE}
 par(mar=c(1,1,1,1))
-par(mfrow=c(6,2))
 plot(kde_listings19SG_bw, main = "listings19 diggle")
 plot(kde_listings19SG_ppl, main = "listings19 ppl")
 plot(kde_hotelsSG_bw, main = "hotels diggle")
@@ -442,9 +441,8 @@ kde_busSG_adaptive <- adaptive.density(busSG_ppp.km, method="kernel")
 ```
 
 #### plot and compare fixed and adaptive bandwidth
-```{r, warning = FALSE,  fig.width=20, fig.height=30}
+```{r, warning = FALSE}
 par(mar=c(1,1,1,1))
-par(mfrow=c(6,2))
 plot(kde_listings19SG_bw_1, main = "listings19 fixed")
 plot(kde_listings19SG_adaptive, main = "listings19 adaptive")
 plot(kde_hotelsSG_bw_1, main = "hotels fixed")
@@ -545,7 +543,12 @@ busSG_osmap <- tm_shape(sg_sf) +
   tm_layout(legend.outside = TRUE, frame = FALSE, title = "busSG") +
   tm_basemap('OpenStreetMap')
 
-tmap_arrange(listings19SG_osmap, hotelsSG_osmap, tourismSG_osmap, MRTSG_osmap, hawkerSG_osmap, busSG_osmap, asp=2, ncol=2)
+listings19SG_osmap
+hotelsSG_osmap
+tourismSG_osmap
+MRTSG_osmap
+hawkerSG_osmap
+busSG_osmap
 
 tmap_mode('plot')
 ```
@@ -872,26 +875,41 @@ plot(listings21SG_ppp)
 
 * Since I am going to compare Airbnb listings across time, I would like to make the bandwidth a fixed value for standard comparison. The bandwidth chosen is 0.18 (180 meters) referring to part A bw.ppl.
 
-```{r, warning = FALSE, fig.width=20, fig.height=30}
+```{r, warning = FALSE}
 par(mar=c(1,1,1,1))
-par(mfrow=c(2,2))
 # Rescale KDE values: covert the unit of measurement from meter to kilometer.
 listings19SG_ppp.km <- rescale(listings19SG_ppp, 1000, "km")
-#plot
+#split
 kde_listings19SG_km_split <-density(split(listings19SG_ppp.km),
                               sigma=0.18,
                               edge=TRUE,
                             kernel="gaussian")
-plot(kde_listings19SG_km_split)
+
+kde_listings19SG_EH<-kde_listings19SG_km_split[[1]]
+kde_listings19SG_PR<-kde_listings19SG_km_split[[2]]
+kde_listings19SG_SR<-kde_listings19SG_km_split[[3]]
+#plot
+plot(kde_listings19SG_EH)
+plot(kde_listings19SG_PR)
+plot(kde_listings19SG_SR)
 
 # Rescale KDE values: covert the unit of measurement from meter to kilometer.
 listings21SG_ppp.km <- rescale(listings21SG_ppp, 1000, "km")
-#plot
+#split
 kde_listings21SG_km_split <-density(split(listings21SG_ppp.km),
                               sigma=0.18,
                               edge=TRUE,
                             kernel="gaussian")
-plot(kde_listings21SG_km_split)
+
+kde_listings21SG_EH<-kde_listings21SG_km_split[[1]]
+kde_listings21SG_HR<-kde_listings21SG_km_split[[2]]
+kde_listings21SG_PR<-kde_listings21SG_km_split[[3]]
+kde_listings21SG_SR<-kde_listings21SG_km_split[[4]]
+#plot
+plot(kde_listings21SG_EH)
+plot(kde_listings21SG_HR)
+plot(kde_listings21SG_PR)
+plot(kde_listings21SG_SR)
 ```
 ```{r}
 intensity(listings19SG_ppp.km)
@@ -902,16 +920,6 @@ intensity(listings21SG_ppp.km)
 
 ## c. Convert KDE output into raster and display the kernel density maps on openstreetmap of Singapore
 ```{r, warning=FALSE}
-#split
-kde_listings19SG_EH<-kde_listings19SG_km_split[[1]]
-kde_listings19SG_PR<-kde_listings19SG_km_split[[2]]
-kde_listings19SG_SR<-kde_listings19SG_km_split[[3]]
-
-kde_listings21SG_EH<-kde_listings21SG_km_split[[1]]
-kde_listings21SG_HR<-kde_listings21SG_km_split[[2]]
-kde_listings21SG_PR<-kde_listings21SG_km_split[[3]]
-kde_listings21SG_SR<-kde_listings21SG_km_split[[4]]
-
 # convert KDE output into grid
 gridded_kde_listings19SG_EH <- as.SpatialGridDataFrame.im(kde_listings19SG_EH)
 gridded_kde_listings19SG_PR <- as.SpatialGridDataFrame.im(kde_listings19SG_PR)
@@ -943,7 +951,7 @@ projection(kde_listings21SG_PR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +uni
 projection(kde_listings21SG_SR_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
 ```
 
-```{r, warning = FALSE,  fig.width=20, fig.height=30}
+```{r, warning = FALSE}
 # visualise the raster kernel density maps on openstreetmap of Singapore
 #tmap_mode("view")
 tmap_options(check.and.fix = TRUE)
@@ -1011,7 +1019,13 @@ listings21SG_HR_osmap <- tm_shape(sg_sf) +
   tm_layout(legend.outside = TRUE, frame = FALSE, title = "2021 Hotel Room KDE") + 
   tm_basemap('OpenStreetMap')
 
-tmap_arrange(listings19SG_EH_osmap,listings21SG_EH_osmap, listings19SG_PR_osmap, listings21SG_PR_osmap, listings19SG_SR_osmap, listings21SG_SR_osmap, listings21SG_HR_osmap, asp=2, ncol=2)
+listings19SG_EH_osmap
+listings21SG_EH_osmap
+listings19SG_PR_osmap
+listings21SG_PR_osmap
+listings19SG_SR_osmap
+listings21SG_SR_osmap
+listings21SG_HR_osmap
 
 tmap_mode('plot')
 ```
