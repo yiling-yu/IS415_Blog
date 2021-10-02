@@ -484,6 +484,7 @@ plot(G_tm.csr)
 * The F function estimates the empty space function F(r) or its hazard rate h(r) from a point pattern in a window of arbitrary shape.
 
 ![](data/capture4.JPG)
+![](data/capture8.JPG)
 
 ## Choa Chu Kang planning area F-Function estimation
 ```{r}
