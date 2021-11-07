@@ -1,0 +1,3410 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+<title>Yiling's IS415 Blog: Take-home Exercise 3</title>
+
+<meta property="description" itemprop="description" content="build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method"/>
+
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2021-11-05"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-11-05"/>
+<meta name="article:author" content="Yu Yiling"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="Yiling&#39;s IS415 Blog: Take-home Exercise 3"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Yiling&#39;s IS415 Blog"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary"/>
+<meta property="twitter:title" content="Yiling&#39;s IS415 Blog: Take-home Exercise 3"/>
+<meta property="twitter:description" content="build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method"/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Take-home Exercise 3"]},{"type":"character","attributes":{},"value":["build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Yu Yiling"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/yiling-yu/"]}]}]},{"type":"character","attributes":{},"value":["11-05-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["api_results.csv","data/img/indexresults.JPG","data/img/jsonresults.png","data/img/list1.JPG","data/img/MoranI.JPG","data/img/nullresults.JPG","data/locations/MRT/master-plan-2019-rail-station-layer-geojson.geojson","data/locations/MRT/master-plan-2019-rail-station-layer-kml.kml","data/locations/MRT/metadata-master-plan-2019-rail-station-layer.txt","data/locations/parks/metadata-parks.txt","data/locations/parks/parks-geojson.geojson","data/locations/parks/parks-kml.kml","data/locations/supermarkets/metadata-supermarkets.txt","data/locations/supermarkets/supermarkets-geojson.geojson","data/locations/supermarkets/supermarkets-kml.kml","data/MP/MP14_SUBZONE_WEB_PL.dbf","data/MP/MP14_SUBZONE_WEB_PL.prj","data/MP/MP14_SUBZONE_WEB_PL.sbn","data/MP/MP14_SUBZONE_WEB_PL.sbx","data/MP/MP14_SUBZONE_WEB_PL.shp","data/MP/MP14_SUBZONE_WEB_PL.shp.xml","data/MP/MP14_SUBZONE_WEB_PL.shx","data/resale-flat-prices/metadata-resale-flat-prices.txt","data/resale-flat-prices/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv","take-home-exercise-3_files/figure-html5/unnamed-chunk-34-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-36-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-37-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-38-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-41-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-42-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-45-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-46-1.png","take-home-exercise-3_files/figure-html5/unnamed-chunk-50-1.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+<meta name="distill:offset" content="../.."/>
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      tolerance: 5,
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.distill-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.distill-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #0F2E3D;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.distill-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.distill-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .distill-site-nav {
+    display: none;
+  }
+}
+
+.distill-site-header {
+
+}
+
+.distill-site-footer {
+
+}
+
+
+/* Site Header */
+
+.distill-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.distill-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.distill-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.distill-site-header a,
+.distill-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.distill-site-header .title {
+  font-size: 18px;
+  min-width: 150px;
+}
+
+.distill-site-header .logo {
+  padding: 0;
+}
+
+.distill-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.distill-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .distill-site-header .logo img {
+    display: inline-block;
+  }
+  .distill-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .distill-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.distill-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+  .distill-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .distill-site-header .title {
+    margin-left: 0;
+  }
+  .distill-site-header .nav-right {
+    margin-right: 0;
+  }
+  .distill-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-header.responsive {position: relative; min-height: 500px; }
+  .distill-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .distill-site-header.responsive a,
+  .distill-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .distill-site-header.responsive .nav-left,
+  .distill-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .distill-site-header.responsive .nav-dropdown {float: none;}
+  .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+  .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.distill-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+/* adjust viewport for navbar height */
+/* helps vertically center bootstrap (non-distill) content */
+.min-vh-100 {
+  min-height: calc(100vh - 100px) !important;
+}
+
+</style>
+
+<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+<link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<script src="../../site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+<script src="../../site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+<script type="application/javascript">
+
+function getMeta(metaName) {
+  var metas = document.getElementsByTagName('meta');
+  for (let i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') === metaName) {
+      return metas[i].getAttribute('content');
+    }
+  }
+  return '';
+}
+
+function offsetURL(url) {
+  var offset = getMeta('distill:offset');
+  return offset ? offset + '/' + url : url;
+}
+
+function createFuseIndex() {
+
+  // create fuse index
+  var options = {
+    keys: [
+      { name: 'title', weight: 20 },
+      { name: 'categories', weight: 15 },
+      { name: 'description', weight: 10 },
+      { name: 'contents', weight: 5 },
+    ],
+    ignoreLocation: true,
+    threshold: 0
+  };
+  var fuse = new window.Fuse([], options);
+
+  // fetch the main search.json
+  return fetch(offsetURL('search.json'))
+    .then(function(response) {
+      if (response.status == 200) {
+        return response.json().then(function(json) {
+          // index main articles
+          json.articles.forEach(function(article) {
+            fuse.add(article);
+          });
+          // download collections and index their articles
+          return Promise.all(json.collections.map(function(collection) {
+            return fetch(offsetURL(collection)).then(function(response) {
+              if (response.status === 200) {
+                return response.json().then(function(articles) {
+                  articles.forEach(function(article) {
+                    fuse.add(article);
+                  });
+                })
+              } else {
+                return Promise.reject(
+                  new Error('Unexpected status from search index request: ' +
+                            response.status)
+                );
+              }
+            });
+          })).then(function() {
+            return fuse;
+          });
+        });
+
+      } else {
+        return Promise.reject(
+          new Error('Unexpected status from search index request: ' +
+                      response.status)
+        );
+      }
+    });
+}
+
+window.document.addEventListener("DOMContentLoaded", function (event) {
+
+  // get search element (bail if we don't have one)
+  var searchEl = window.document.getElementById('distill-search');
+  if (!searchEl)
+    return;
+
+  createFuseIndex()
+    .then(function(fuse) {
+
+      // make search box visible
+      searchEl.classList.remove('hidden');
+
+      // initialize autocomplete
+      var options = {
+        autoselect: true,
+        hint: false,
+        minLength: 2,
+      };
+      window.autocomplete(searchEl, options, [{
+        source: function(query, callback) {
+          const searchOptions = {
+            isCaseSensitive: false,
+            shouldSort: true,
+            minMatchCharLength: 2,
+            limit: 10,
+          };
+          var results = fuse.search(query, searchOptions);
+          callback(results
+            .map(function(result) { return result.item; })
+          );
+        },
+        templates: {
+          suggestion: function(suggestion) {
+            var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+              ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+              : '';
+            var html = `
+              <div class="search-item">
+                <h3>${suggestion.title}</h3>
+                <div class="search-item-description">
+                  ${suggestion.description || ''}
+                </div>
+                <div class="search-item-preview">
+                  ${img}
+                </div>
+              </div>
+            `;
+            return html;
+          }
+        }
+      }]).on('autocomplete:selected', function(event, suggestion) {
+        window.location.href = offsetURL(suggestion.path);
+      });
+      // remove inline display style on autocompleter (we want to
+      // manage responsive display via css)
+      $('.algolia-autocomplete').css("display", "");
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+});
+
+</script>
+
+<style type="text/css">
+
+.nav-search {
+  font-size: x-small;
+}
+
+/* Algolioa Autocomplete */
+
+.algolia-autocomplete {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: sub;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  padding-top: 8px;
+  padding-bottom: 0;
+  border-radius: 6px;
+  border: 1px #0F2E3D solid;
+  width: 180px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .distill-site-nav .algolia-autocomplete {
+    display: none;
+    visibility: hidden;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete {
+    display: inline-block;
+    visibility: visible;
+  }
+  .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+    margin-left: 0;
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 550px;
+  max-height: 70vh;
+  overflow-x: visible;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-top: 3px;
+  margin-left: -150px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #999;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+  overflow: hidden;
+  font-size: 0.8em;
+  line-height: 1.4em;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+  display: inline-block;
+  overflow: hidden;
+  height: 2.8em;
+  width: 80%;
+  margin-right: 4%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+  display: inline-block;
+  width: 15%;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+  height: 3em;
+  width: auto;
+  display: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+  display: initial;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #eee;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+}
+
+</style>
+
+
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+d-byline .byline {
+  grid-template-columns: 2fr 2fr;
+}
+
+d-byline .byline h3 {
+  margin-block-start: 1.5em;
+}
+
+d-byline .byline .authors-affiliations h3 {
+  margin-block-start: 0.5em;
+}
+
+.authors-affiliations .orcid-id {
+  width: 16px;
+  height:16px;
+  margin-left: 4px;
+  margin-right: 4px;
+  vertical-align: middle;
+  padding-bottom: 2px;
+}
+
+d-title .dt-tags {
+  margin-top: 1em;
+  grid-column: text;
+}
+
+.dt-tags .dt-tag {
+  text-decoration: none;
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0em 0.4em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
+  font-size: 70%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+d-article table.gt_table td,
+d-article table.gt_table th {
+  border-bottom: none;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-top: 2.5rem;
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article h2 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+d-article h3 {
+  margin-top: 1.5rem;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+/* Tweak code blocks */
+
+d-article div.sourceCode code,
+d-article pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: auto;
+}
+
+d-article div.sourceCode {
+  background-color: white;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+d-article pre {
+  font-size: 12px;
+  color: black;
+  background: none;
+  margin-top: 0;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+d-article pre a {
+  border-bottom: none;
+}
+
+d-article pre a:hover {
+  border-bottom: none;
+  text-decoration: underline;
+}
+
+d-article details {
+  grid-column: text;
+  margin-bottom: 0.8em;
+}
+
+@media(min-width: 768px) {
+
+d-article pre,
+d-article div.sourceCode,
+d-article div.sourceCode pre {
+  overflow: visible !important;
+}
+
+d-article div.sourceCode pre {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+d-article pre {
+  font-size: 14px;
+}
+
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for d-contents */
+
+.d-contents {
+  grid-column: text;
+  color: rgba(0,0,0,0.8);
+  font-size: 0.9em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  padding-left: 0.25em;
+  justify-self: start;
+}
+
+@media(min-width: 1000px) {
+  .d-contents.d-contents-float {
+    height: 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    justify-self: center;
+    padding-right: 3em;
+    padding-left: 2em;
+  }
+}
+
+.d-contents nav h3 {
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.d-contents li {
+  list-style-type: none
+}
+
+.d-contents nav > ul {
+  padding-left: 0;
+}
+
+.d-contents ul {
+  padding-left: 1em
+}
+
+.d-contents nav ul li {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+
+.d-contents nav a {
+  font-size: 13px;
+  border-bottom: none;
+  text-decoration: none
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.d-contents nav a:hover {
+  text-decoration: underline solid rgba(0, 0, 0, 0.6)
+}
+
+.d-contents nav > ul > li > a {
+  font-weight: 600;
+}
+
+.d-contents nav > ul > li > ul {
+  font-weight: inherit;
+}
+
+.d-contents nav > ul > li > ul > li {
+  margin-top: 0.2em;
+}
+
+
+.d-contents nav ul {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.d-article-with-toc h2:nth-child(2) {
+  margin-top: 0;
+}
+
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+/* Citations */
+
+d-article .citation {
+  color: inherit;
+  cursor: inherit;
+}
+
+div.hanging-indent{
+  margin-left: 1em; text-indent: -1em;
+}
+
+/* Citation hover box */
+
+.tippy-box[data-theme~=light-border] {
+  background-color: rgba(250, 250, 250, 0.95);
+}
+
+.tippy-content > p {
+  margin-bottom: 0;
+  padding: 2px;
+}
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Include appendix styles here so they can be overridden */
+
+d-appendix {
+  contain: layout style;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-top: 60px;
+  margin-bottom: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0,0,0,0.5);
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+d-appendix h3 {
+  grid-column: page-start / text-start;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 1em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.65);
+}
+
+d-appendix h3 + * {
+  margin-top: 1em;
+}
+
+d-appendix ol {
+  padding: 0 0 0 15px;
+}
+
+@media (min-width: 768px) {
+  d-appendix ol {
+    padding: 0 0 0 30px;
+    margin-left: -30px;
+  }
+}
+
+d-appendix li {
+  margin-bottom: 1em;
+}
+
+d-appendix a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+d-appendix > * {
+  grid-column: text;
+}
+
+d-appendix > d-footnote-list,
+d-appendix > d-citation-list,
+d-appendix > distill-appendix {
+  grid-column: screen;
+}
+
+/* Include footnote styles here so they can be overridden */
+
+d-footnote-list {
+  contain: layout style;
+}
+
+d-footnote-list > * {
+  grid-column: text;
+}
+
+d-footnote-list a.footnote-backlink {
+  color: rgba(0,0,0,0.3);
+  padding-left: 0.5em;
+}
+
+
+
+/* Anchor.js */
+
+.anchorjs-link {
+  /*transition: all .25s linear; */
+  text-decoration: none;
+  border-bottom: none;
+}
+*:hover > .anchorjs-link {
+  margin-left: -1.125em !important;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+.sidebar-section.custom {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.custom p {
+  margin-bottom: 0.5em;
+}
+
+/* Styles for listing layout (hide title) */
+.layout-listing d-title, .layout-listing .d-title {
+  display: none;
+}
+
+/* Styles for posts lists (not auto-injected) */
+
+
+.posts-with-sidebar {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.posts-list .description h2,
+.posts-list .description p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.posts-list .description h2 {
+  font-weight: 700;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.posts-list h2.post-tag {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 12px;
+}
+.posts-list {
+  margin-top: 60px;
+  margin-bottom: 24px;
+}
+
+.posts-list .post-preview {
+  text-decoration: none;
+  overflow: hidden;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 24px 0;
+}
+
+.post-preview-last {
+  border-bottom: none !important;
+}
+
+.posts-list .posts-list-caption {
+  grid-column: screen;
+  font-weight: 400;
+}
+
+.posts-list .post-preview h2 {
+  margin: 0 0 6px 0;
+  line-height: 1.2em;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.posts-list .post-preview p {
+  margin: 0 0 12px 0;
+  line-height: 1.4em;
+  font-size: 16px;
+}
+
+.posts-list .post-preview .thumbnail {
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+.posts-list .post-preview img {
+  width: 100%;
+  display: block;
+}
+
+.posts-list .metadata {
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-bottom: 18px;
+}
+
+.posts-list .metadata > * {
+  display: inline-block;
+}
+
+.posts-list .metadata .publishedDate {
+  margin-right: 2em;
+}
+
+.posts-list .metadata .dt-authors {
+  display: block;
+  margin-top: 0.3em;
+  margin-right: 2em;
+}
+
+.posts-list .dt-tags {
+  display: block;
+  line-height: 1em;
+}
+
+.posts-list .dt-tags .dt-tag {
+  display: inline-block;
+  color: rgba(0,0,0,0.6);
+  padding: 0.3em 0.4em;
+  margin-right: 0.2em;
+  margin-bottom: 0.4em;
+  font-size: 60%;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.posts-list img {
+  opacity: 1;
+}
+
+.posts-list img[data-src] {
+  opacity: 0;
+}
+
+.posts-more {
+  clear: both;
+}
+
+
+.posts-sidebar {
+  font-size: 16px;
+}
+
+.posts-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.categories ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.categories li {
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 0;
+}
+
+.categories li>a {
+  border-bottom: none;
+}
+
+.categories li>a:hover {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.categories .active {
+  font-weight: 600;
+}
+
+.categories .category-count {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+
+@media(min-width: 768px) {
+  .posts-list .post-preview h2 {
+    font-size: 26px;
+  }
+  .posts-list .post-preview .thumbnail {
+    float: right;
+    width: 30%;
+    margin-bottom: 0;
+  }
+  .posts-list .post-preview .description {
+    float: left;
+    width: 45%;
+  }
+  .posts-list .post-preview .metadata {
+    float: left;
+    width: 20%;
+    margin-top: 8px;
+  }
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.5em;
+    font-size: 16px;
+  }
+  .posts-with-sidebar .posts-list {
+    float: left;
+    width: 75%;
+  }
+  .posts-with-sidebar .posts-sidebar {
+    float: right;
+    width: 20%;
+    margin-top: 60px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.downlevel .posts-list .post-preview {
+  color: inherit;
+}
+
+
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // add anchors
+  if (window.anchors) {
+    window.anchors.options.placement = 'left';
+    window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+  }
+
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  // move refs into #references-listing
+  $('#references-listing').replaceWith($('#refs'));
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-contents a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('details, div.sourceCode, pre, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // remove code block used to force  highlighting css
+  $('.distill-force-highlighting-css').parent().remove();
+
+  // remove empty line numbers inserted by pandoc when using a
+  // custom syntax highlighting theme
+  $('code.sourceCode a:empty').remove();
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // article with toc class
+    $('.d-contents').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // add orcid ids
+    $('.authors-affiliations').find('.author').each(function(i, el) {
+      var orcid_id = front_matter.authors[i].orcidID;
+      if (orcid_id) {
+        var a = $('<a></a>');
+        a.attr('href', 'https://orcid.org/' + orcid_id);
+        var img = $('<img></img>');
+        img.addClass('orcid-id');
+        img.attr('alt', 'ORCID ID');
+        img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+        a.append(img);
+        $(this).append(a);
+      }
+    });
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // remove d-appendix and d-footnote-list local styles
+    $('d-appendix > style:first-child').remove();
+    $('d-footnote-list > style:first-child').remove();
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // hoverable references
+    $('span.citation[data-cites]').each(function() {
+      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      window.tippy(this, {
+        allowHTML: true,
+        content: refHtml,
+        maxWidth: 500,
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start'
+      });
+    });
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-contents').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.distill-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Take-home Exercise 3","description":"build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method","authors":[{"author":"Yu Yiling","authorURL":"https://www.linkedin.com/in/yiling-yu/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-05T00:00:00.000+08:00","citationText":"Yiling, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">Yiling's IS415 Blog</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Take-home Exercise
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="../..//posts/2021-09-25-take-home-exercise-1/index.html">Take-home Exercise 1</a>
+<a href="../..//posts/2021-09-25-take-home-exercise-2/index.html">Take-home Exercise 2</a>
+<a href="../..//posts/2021-11-05-take-home-exercise-3/index.html">Take-home Exercise 3</a>
+</div>
+</div>
+<a href="../../index.html">In-class/Hands-on Exercise</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Take-home Exercise 3</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>build hedonic pricing models to explain factors affecting the resale prices of public housing in Singapore using Geographical Weighted Regression(GWR) method</p></p>
+</div>
+
+<div class="d-byline">
+  Yu Yiling <a href="https://www.linkedin.com/in/yiling-yu/" class="uri">https://www.linkedin.com/in/yiling-yu/</a> 
+  
+<br/>11-05-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#note">Note!</a></li>
+<li><a href="#data-used">Data used</a></li>
+<li><a href="#install-packages">1. Install packages</a></li>
+<li><a href="#geospatial-data-wrangling">2. Geospatial Data Wrangling</a>
+<ul>
+<li><a href="#a.-import-and-transform-data-projection">a. import and transform data projection</a></li>
+</ul></li>
+<li><a href="#aspatial-data-wrangling-for-resale-flat-data">3. Aspatial Data Wrangling for resale flat data</a>
+<ul>
+<li><a href="#a.-import-data">a. import data</a></li>
+<li><a href="#b.-filter-data-by-date-and-by-room-type">b. filter data by date and by room type</a></li>
+<li><a href="#c.-get-longitude-and-latitude-for-flat-address-using-onemap-api">c. Get longitude and latitude for flat address using OneMap API</a></li>
+</ul></li>
+<li><a href="#aspatial-data-wrangling-for-locational-factors">4. Aspatial Data Wrangling for locational factors</a>
+<ul>
+<li><a href="#a.-proximity-to-mrt">a. Proximity to MRT</a></li>
+<li><a href="#b.-proximity-to-park">b. Proximity to park</a></li>
+<li><a href="#c.-proximity-to-supermarket">c. Proximity to supermarket</a></li>
+<li><a href="#d.-proximity-to-central-area-of-singapore">d. Proximity to Central Area of Singapore</a></li>
+</ul></li>
+<li><a href="#combining-all-aspatial-data-adding-location-factors-into-flat_df">5. Combining all aspatial Data, adding location factors into flat_df</a></li>
+<li><a href="#exploratory-data-analysis-eda">6. Exploratory Data Analysis (EDA)</a>
+<ul>
+<li><a href="#a.-eda-using-statistical-graphics">a. EDA using statistical graphics</a></li>
+<li><a href="#b.-multiple-histogram-plots-distribution-of-variables">b. Multiple Histogram Plots distribution of variables</a></li>
+<li><a href="#c.-drawing-statistical-point-map-reveal-the-geospatial-distribution-4-room-flat-prices-in-singapore">c. Drawing Statistical Point Map: reveal the geospatial distribution 4-room flat prices in Singapore</a></li>
+</ul></li>
+<li><a href="#build-hedonic-pricing-models-for-4-room-flat-resale-units">7. Build hedonic pricing models for 4-room flat resale units</a></li>
+<li><a href="#a.-simple-linear-regression-method">7a. Simple Linear Regression Method</a></li>
+<li><a href="#b.-multiple-linear-regression-method">7b. Multiple Linear Regression Method</a>
+<ul>
+<li><a href="#a.-visualising-the-relationships-of-the-independent-variableschecking-multicollinearity-of-the-model">a. Visualising the relationships of the independent variables/Checking multicollinearity of the model</a></li>
+<li><a href="#b.-building-a-hedonic-pricing-model-using-multiple-linear-regression-method">b. Building a hedonic pricing model using multiple linear regression method</a></li>
+<li><a href="#c.-checking-for-multicolinearity">c. Checking for multicolinearity</a></li>
+<li><a href="#d.-test-for-non-linearity">d. Test for Non-Linearity</a></li>
+<li><a href="#e.-test-for-normality-assumption">e. Test for Normality Assumption</a></li>
+<li><a href="#f.-testing-for-spatial-autocorrelation">f. Testing for Spatial Autocorrelation</a></li>
+</ul></li>
+<li><a href="#building-hedonic-pricing-models-using-gwmodel">8. Building Hedonic Pricing Models using GWmodel</a>
+<ul>
+<li><a href="#a.-building-fixed-bandwidth-gwr-model">a. Building Fixed Bandwidth GWR Model</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="note">Note!</h1>
+<ul>
+<li>For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage. I’m also very sorry that I have disabled all the maps with “view” mode because my Netlify refused to load them.</li>
+</ul>
+<h1 id="data-used">Data used</h1>
+<ul>
+<li>Resale Flat Prices provided by <a href="https://data.gov.sg/dataset/resale-flat-prices">Data.gov.sg</a>. This study focuses on four-room flats with transaction period from 1st January 2019 to 30th September 2020.</li>
+<li><a href="https://data.gov.sg/dataset/master-plan-2014-subzone-boundary-web?resource_id=1c6b586b-61ca-45a9-b704-df4c9057fbd6">URA Master Plan 2014’s planning subzone boundaries</a>. It is in ESRI shapefile format.</li>
+<li>MRT stations location from <a href="https://data.gov.sg/dataset/master-plan-2019-rail-station-layer">data.gov.sg</a> (geojson)</li>
+<li>Parks location from <a href="https://data.gov.sg/dataset/parks">data.gov.sg</a> (geojson)</li>
+<li>supermarkets location from <a href="https://data.gov.sg/dataset/supermarkets">data.gov.sg</a> (geojson)</li>
+</ul>
+<h1 id="install-packages">1. Install packages</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'olsrr'</span>, <span class='st'>'corrplot'</span>, <span class='st'>"ggpubr"</span>, <span class='st'>'sf'</span>, <span class='st'>"spdep"</span>, <span class='st'>'GWmodel'</span>, <span class='st'>'tmap'</span>, <span class='st'>'tidyverse'</span>, <span class='st'>'httr'</span>, <span class='st'>'jsonlite'</span>, <span class='st'>'data.table'</span>, <span class='st'>'geosphere'</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>p</span>,character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>12 R packages will be used for the following purposes:
+<ul>
+<li>sf, a relatively new R package specially designed to import, manage and process vector-based geospatial data in R.</li>
+<li>tidyverse for performing data science tasks such as importing, wrangling and visualising attribute data.</li>
+<li>spdep for computing spatial weights, global and local spatial autocorrelation statistics</li>
+<li>tmap which provides functions for plotting static or interactive choropleth maps.</li>
+<li>olsrr for building OLS and performing diagnostics tests</li>
+<li>GWmodel for calibrating geographical weighted family of models</li>
+<li>corrplot for multivariate data visualisation and analysis</li>
+<li>ggpubr for organising graphs</li>
+<li>httr for geting data from API</li>
+<li>jsonlite for pasring JSON results</li>
+<li>data.table for CJ() function which produces a data.table out of two vectors</li>
+<li>geosphere for distHaversine() function which ‘Haversine’ great circle distance</li>
+</ul></li>
+</ul>
+<h1 id="geospatial-data-wrangling">2. Geospatial Data Wrangling</h1>
+<h2 id="a.-import-and-transform-data-projection">a. import and transform data projection</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mpsz</span> <span class='op'>=</span> <span class='fu'>st_read</span><span class='op'>(</span>dsn <span class='op'>=</span> <span class='st'>"data/MP"</span>, layer <span class='op'>=</span> <span class='st'>"MP14_SUBZONE_WEB_PL"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `MP14_SUBZONE_WEB_PL&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-05-take-home-exercise-3\data\MP&#39; using driver `ESRI Shapefile&#39;
+Simple feature collection with 323 features and 15 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 2667.538 ymin: 15748.72 xmax: 56396.44 ymax: 50256.33
+Projected CRS: SVY21</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mpsz</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>mpsz</span>, <span class='fl'>3414</span><span class='op'>)</span>
+<span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>mpsz</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_bbox</span><span class='op'>(</span><span class='va'>mpsz</span><span class='op'>)</span> <span class='co'>#view extent</span>
+</code></pre>
+</div>
+<pre><code>     xmin      ymin      xmax      ymax 
+ 2667.538 15748.721 56396.440 50256.334 </code></pre>
+</div>
+<h1 id="aspatial-data-wrangling-for-resale-flat-data">3. Aspatial Data Wrangling for resale flat data</h1>
+<h2 id="a.-import-data">a. import data</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>resale_flat</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/resale-flat-prices/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv"</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 111,933
+Columns: 11
+$ month               &lt;chr&gt; &quot;2017-01&quot;, &quot;2017-01&quot;, &quot;2017-01&quot;, &quot;2017-0~
+$ town                &lt;chr&gt; &quot;ANG MO KIO&quot;, &quot;ANG MO KIO&quot;, &quot;ANG MO KIO&quot;~
+$ flat_type           &lt;chr&gt; &quot;2 ROOM&quot;, &quot;3 ROOM&quot;, &quot;3 ROOM&quot;, &quot;3 ROOM&quot;, ~
+$ block               &lt;chr&gt; &quot;406&quot;, &quot;108&quot;, &quot;602&quot;, &quot;465&quot;, &quot;601&quot;, &quot;150&quot;~
+$ street_name         &lt;chr&gt; &quot;ANG MO KIO AVE 10&quot;, &quot;ANG MO KIO AVE 4&quot;,~
+$ storey_range        &lt;chr&gt; &quot;10 TO 12&quot;, &quot;01 TO 03&quot;, &quot;01 TO 03&quot;, &quot;04 ~
+$ floor_area_sqm      &lt;dbl&gt; 44, 67, 67, 68, 67, 68, 68, 67, 68, 67, ~
+$ flat_model          &lt;chr&gt; &quot;Improved&quot;, &quot;New Generation&quot;, &quot;New Gener~
+$ lease_commence_date &lt;dbl&gt; 1979, 1978, 1980, 1980, 1980, 1981, 1979~
+$ remaining_lease     &lt;chr&gt; &quot;61 years 04 months&quot;, &quot;60 years 07 month~
+$ resale_price        &lt;dbl&gt; 232000, 250000, 262000, 265000, 265000, ~</code></pre>
+</div>
+<h2 id="b.-filter-data-by-date-and-by-room-type">b. filter data by date and by room type</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#transaction period from 1st January 2019 to 30th September 2020</span>
+<span class='co'>#add dummy dates</span>
+<span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>month</span>,<span class='st'>"01"</span>,sep <span class='op'>=</span> <span class='st'>"-"</span><span class='op'>)</span>
+<span class='co'>#make the data type date</span>
+<span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>date</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>date</span>, format<span class='op'>=</span> <span class='st'>"%Y-%m-%d"</span><span class='op'>)</span>
+<span class='co'>#filter data</span>
+<span class='va'>resale_flat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>resale_flat</span>, <span class='va'>date</span> <span class='op'>&gt;</span> <span class='st'>"2018-12-31"</span> <span class='op'>&amp;</span> <span class='va'>date</span> <span class='op'>&lt;</span> <span class='st'>"2020-10-01"</span><span class='op'>)</span>
+
+<span class='co'>#four-room flats</span>
+<span class='co'>#filter data</span>
+<span class='va'>resale_flat</span> <span class='op'>&lt;-</span> <span class='va'>resale_flat</span><span class='op'>[</span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>flat_type</span> <span class='op'>==</span> <span class='st'>"4 ROOM"</span><span class='op'>)</span>,<span class='op'>]</span>
+
+<span class='co'>#peek the dataframe</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 15,901
+Columns: 12
+$ month               &lt;chr&gt; &quot;2019-01&quot;, &quot;2019-01&quot;, &quot;2019-01&quot;, &quot;2019-0~
+$ town                &lt;chr&gt; &quot;ANG MO KIO&quot;, &quot;ANG MO KIO&quot;, &quot;ANG MO KIO&quot;~
+$ flat_type           &lt;chr&gt; &quot;4 ROOM&quot;, &quot;4 ROOM&quot;, &quot;4 ROOM&quot;, &quot;4 ROOM&quot;, ~
+$ block               &lt;chr&gt; &quot;204&quot;, &quot;175&quot;, &quot;543&quot;, &quot;118&quot;, &quot;411&quot;, &quot;546&quot;~
+$ street_name         &lt;chr&gt; &quot;ANG MO KIO AVE 3&quot;, &quot;ANG MO KIO AVE 4&quot;, ~
+$ storey_range        &lt;chr&gt; &quot;01 TO 03&quot;, &quot;07 TO 09&quot;, &quot;01 TO 03&quot;, &quot;04 ~
+$ floor_area_sqm      &lt;dbl&gt; 92, 91, 92, 99, 92, 92, 92, 92, 93, 91, ~
+$ flat_model          &lt;chr&gt; &quot;New Generation&quot;, &quot;New Generation&quot;, &quot;New~
+$ lease_commence_date &lt;dbl&gt; 1977, 1981, 1981, 1978, 1979, 1981, 1978~
+$ remaining_lease     &lt;chr&gt; &quot;57 years&quot;, &quot;61 years 06 months&quot;, &quot;61 ye~
+$ resale_price        &lt;dbl&gt; 330000, 360000, 370000, 375000, 380000, ~
+$ date                &lt;date&gt; 2019-01-01, 2019-01-01, 2019-01-01, 201~</code></pre>
+</div>
+<h2 id="c.-get-longitude-and-latitude-for-flat-address-using-onemap-api">c. Get longitude and latitude for flat address using OneMap API</h2>
+<h4 id="create-address-column">1) create address column</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>address</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>block</span>,<span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>street_name</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span> <span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    month               town            flat_type        
+ Length:15901       Length:15901       Length:15901      
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+    block           street_name        storey_range      
+ Length:15901       Length:15901       Length:15901      
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+ floor_area_sqm    flat_model        lease_commence_date
+ Min.   : 74.00   Length:15901       Min.   :1967       
+ 1st Qu.: 91.00   Class :character   1st Qu.:1987       
+ Median : 93.00   Mode  :character   Median :1998       
+ Mean   : 95.15                      Mean   :1999       
+ 3rd Qu.:102.00                      3rd Qu.:2013       
+ Max.   :138.00                      Max.   :2018       
+ remaining_lease     resale_price          date           
+ Length:15901       Min.   : 218000   Min.   :2019-01-01  
+ Class :character   1st Qu.: 353000   1st Qu.:2019-06-01  
+ Mode  :character   Median : 405000   Median :2019-11-01  
+                    Mean   : 433589   Mean   :2019-11-07  
+                    3rd Qu.: 470000   3rd Qu.:2020-06-01  
+                    Max.   :1186888   Max.   :2020-09-01  
+   address         
+ Length:15901      
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>[[</span><span class='st'>"address"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 15901</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>[[</span><span class='st'>"address"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 5057</code></pre>
+</div>
+<ul>
+<li>There are duplicated addresses</li>
+</ul>
+<h4 id="prepare-api-get-data-and-clean-data">2) prepare api, get data and clean data</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"https://developers.onemap.sg/commonapi/search?"</span>
+<span class='va'>getCOOR</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>raw_response</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></span><span class='op'>(</span><span class='va'>url</span>, 
+                             query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>searchVal <span class='op'>=</span> <span class='va'>object</span>, 
+                                          returnGeom <span class='op'>=</span> <span class='st'>"Y"</span>,
+                                          getAddrDetails <span class='op'>=</span> <span class='st'>"Y"</span><span class='op'>)</span><span class='op'>)</span>
+    
+    <span class='va'>text_response</span> <span class='op'>&lt;-</span> <span class='fu'>content</span><span class='op'>(</span><span class='va'>raw_response</span>, as <span class='op'>=</span> <span class='st'>"text"</span>, encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span>
+    <span class='va'>json_response</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>text_response</span>, flatten <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'>#apply the function over the 'address' column in the dataframe</span>
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>address</span>, <span class='va'>getCOOR</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now the results look like this: <img src="data/img/jsonresults.png" /> I would like to subtract only the ‘results’ part of the results.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='va'>`[[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'results'</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now each list in the results list is a dataframe. Each dataframe is the api result corresponding to each row in the resale_flat ‘address’ colomun. In order to know which dataframe corresponding to which row, I would like to add the list index to each dataframe as a column. (Eg, results[[25]] should be a dataframe with column ‘index’ == 25 )</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/funprog.html'>Map</a></span><span class='op'>(</span><span class='va'>cbind</span>, <span class='va'>results</span>, index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_along</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now the results look like this, you can see the ‘index’ column has been added: <img src="data/img/indexresults.JPG" /> If the api did not respond properly, it will not return anything and the respective list will end up just with the index created just now. <img src="data/img/list1.JPG" /> I would like to see how many of these lists with length 1 are there in the results</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>null_result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>e</span> <span class='kw'>in</span> <span class='va'>results</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>e</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='va'>null_result</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/append.html'>append</a></span><span class='op'>(</span><span class='va'>null_result</span>, <span class='va'>e</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>There are 26 of them: <img src="data/img/nullresults.JPG" /> I would like to remove these lists of integer from the results in order to bind the dataframes later properly</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='va'>results</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<p>Now, make the result a dataframe by using bind_rows() from dplyr package and save the resulted dataframe as a csv for later usage</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>new_result</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>df</span>,<span class='st'>"api_results.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="combine-api-results-into-orginial-resale_flat-dataframe">3) combine api results into orginial resale_flat dataframe</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>api</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"api_results.csv"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>api</span>,<span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 20 x 12
+   SEARCHVAL  BLK_NO ROAD_NAME  BUILDING ADDRESS  POSTAL      X      Y
+   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+ 1 ANG MO KI~ 204    ANG MO KI~ ANG MO ~ 204 ANG~ 560204 29180. 38822.
+ 2 KEBUN BAR~ 175    ANG MO KI~ KEBUN B~ 175 ANG~ 560175 28423. 39746.
+ 3 CHENG SAN~ 543    ANG MO KI~ CHENG S~ 543 ANG~ 560543 30550. 39589.
+ 4 KEBUN BAR~ 118    ANG MO KI~ KEBUN B~ 118 ANG~ 560118 28240. 39478.
+ 5 TECK GHEE~ 411    ANG MO KI~ TECK GH~ 411 ANG~ 560411 30443. 38383.
+ 6 CHENG SAN~ 546    ANG MO KI~ CHENG S~ 546 ANG~ 560546 30638. 39517.
+ 7 CHONG BOO~ 428    ANG MO KI~ CHONG B~ 428 ANG~ 560428 30347. 38996.
+ 8 KEBUN BAR~ 173    ANG MO KI~ KEBUN B~ 173 ANG~ 560173 28326. 39701.
+ 9 YIO CHU K~ 607    ANG MO KI~ YIO CHU~ 607 ANG~ 560607 28612. 40271.
+10 YIO CHU K~ 603    ANG MO KI~ YIO CHU~ 603 ANG~ 560603 28271. 40241.
+11 CHENG SAN~ 511    ANG MO KI~ CHENG S~ 511 ANG~ 560511 29874. 39508.
+12 205 ANG M~ 205    ANG MO KI~ NIL      205 ANG~ 560205 29142. 38775.
+13 CHONG BOO~ 433    ANG MO KI~ CHONG B~ 433 ANG~ 560433 30341. 38900.
+14 YIO CHU K~ 610    ANG MO KI~ YIO CHU~ 610 ANG~ 560610 28650. 40152.
+15 THE SALVA~ 610    ANG MO KI~ THE SAL~ 610 ANG~ 560610 28650. 40152.
+16 TECK GHEE~ 335    ANG MO KI~ TECK GH~ 335 ANG~ 560335 29933. 38362.
+17 TECK GHEE~ 312    ANG MO KI~ TECK GH~ 312 ANG~ 560312 29720. 38693.
+18 ANG MO KI~ 326    ANG MO KI~ ANG MO ~ 326 ANG~ 560326 29623. 38789.
+19 YIO CHU K~ 627    ANG MO KI~ YIO CHU~ 627 ANG~ 560627 28896. 40422.
+20 TECK GHEE~ 310C   ANG MO KI~ TECK GH~ 310C AN~ 563310 29283. 38517.
+# ... with 4 more variables: LATITUDE &lt;dbl&gt;, LONGITUDE &lt;dbl&gt;,
+#   LONGTITUDE &lt;dbl&gt;, index &lt;dbl&gt;</code></pre>
+</div>
+<p>We can see there are some rows with the same index, such as index 14. This is because there may be more than 1 buildings with the same address and OneMap API will return both buildings for that particular address. Since we are not interested in the buildings for this study and only interested in the longitude and latitude of the address, I will delete duplicated rows using distinct() in the dplyr package and only leave one building for one address.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>new_api</span> <span class='op'>&lt;-</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>api</span>, <span class='va'>index</span>, .keep_all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>new_api</span>,<span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 20 x 12
+   SEARCHVAL  BLK_NO ROAD_NAME  BUILDING ADDRESS  POSTAL      X      Y
+   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+ 1 ANG MO KI~ 204    ANG MO KI~ ANG MO ~ 204 ANG~ 560204 29180. 38822.
+ 2 KEBUN BAR~ 175    ANG MO KI~ KEBUN B~ 175 ANG~ 560175 28423. 39746.
+ 3 CHENG SAN~ 543    ANG MO KI~ CHENG S~ 543 ANG~ 560543 30550. 39589.
+ 4 KEBUN BAR~ 118    ANG MO KI~ KEBUN B~ 118 ANG~ 560118 28240. 39478.
+ 5 TECK GHEE~ 411    ANG MO KI~ TECK GH~ 411 ANG~ 560411 30443. 38383.
+ 6 CHENG SAN~ 546    ANG MO KI~ CHENG S~ 546 ANG~ 560546 30638. 39517.
+ 7 CHONG BOO~ 428    ANG MO KI~ CHONG B~ 428 ANG~ 560428 30347. 38996.
+ 8 KEBUN BAR~ 173    ANG MO KI~ KEBUN B~ 173 ANG~ 560173 28326. 39701.
+ 9 YIO CHU K~ 607    ANG MO KI~ YIO CHU~ 607 ANG~ 560607 28612. 40271.
+10 YIO CHU K~ 603    ANG MO KI~ YIO CHU~ 603 ANG~ 560603 28271. 40241.
+11 CHENG SAN~ 511    ANG MO KI~ CHENG S~ 511 ANG~ 560511 29874. 39508.
+12 205 ANG M~ 205    ANG MO KI~ NIL      205 ANG~ 560205 29142. 38775.
+13 CHONG BOO~ 433    ANG MO KI~ CHONG B~ 433 ANG~ 560433 30341. 38900.
+14 YIO CHU K~ 610    ANG MO KI~ YIO CHU~ 610 ANG~ 560610 28650. 40152.
+15 TECK GHEE~ 335    ANG MO KI~ TECK GH~ 335 ANG~ 560335 29933. 38362.
+16 TECK GHEE~ 312    ANG MO KI~ TECK GH~ 312 ANG~ 560312 29720. 38693.
+17 ANG MO KI~ 326    ANG MO KI~ ANG MO ~ 326 ANG~ 560326 29623. 38789.
+18 YIO CHU K~ 627    ANG MO KI~ YIO CHU~ 627 ANG~ 560627 28896. 40422.
+19 TECK GHEE~ 310C   ANG MO KI~ TECK GH~ 310C AN~ 563310 29283. 38517.
+20 AMK CENTR~ 700A   ANG MO KI~ AMK CEN~ 700A AN~ 561700 29420. 39110.
+# ... with 4 more variables: LATITUDE &lt;dbl&gt;, LONGITUDE &lt;dbl&gt;,
+#   LONGTITUDE &lt;dbl&gt;, index &lt;dbl&gt;</code></pre>
+</div>
+<p>I would like to create an id column for resale_flat dataframe to indicate its index so that we can bind the resale_flat and new_api dataframes with id==index.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>resale_flat</span><span class='op'>$</span><span class='va'>id</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq.int</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>resale_flat</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 14
+  month   town       flat_type block street_name storey_range floor_area_sqm
+  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;                 &lt;dbl&gt;
+1 2019-01 ANG MO KIO 4 ROOM    204   ANG MO KIO~ 01 TO 03                 92
+2 2019-01 ANG MO KIO 4 ROOM    175   ANG MO KIO~ 07 TO 09                 91
+3 2019-01 ANG MO KIO 4 ROOM    543   ANG MO KIO~ 01 TO 03                 92
+4 2019-01 ANG MO KIO 4 ROOM    118   ANG MO KIO~ 04 TO 06                 99
+5 2019-01 ANG MO KIO 4 ROOM    411   ANG MO KIO~ 04 TO 06                 92
+6 2019-01 ANG MO KIO 4 ROOM    546   ANG MO KIO~ 10 TO 12                 92
+# ... with 7 more variables: flat_model &lt;chr&gt;,
+#   lease_commence_date &lt;dbl&gt;, remaining_lease &lt;chr&gt;,
+#   resale_price &lt;dbl&gt;, date &lt;date&gt;, address &lt;chr&gt;, id &lt;int&gt;</code></pre>
+</div>
+<p>Match and join the two dataframes with id==index</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_coor</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>resale_flat</span>, <span class='va'>new_api</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span> <span class='op'>=</span> <span class='st'>"index"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_coor</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 25
+  month   town       flat_type block street_name storey_range floor_area_sqm
+  &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt;                 &lt;dbl&gt;
+1 2019-01 ANG MO KIO 4 ROOM    204   ANG MO KIO~ 01 TO 03                 92
+2 2019-01 ANG MO KIO 4 ROOM    175   ANG MO KIO~ 07 TO 09                 91
+3 2019-01 ANG MO KIO 4 ROOM    543   ANG MO KIO~ 01 TO 03                 92
+4 2019-01 ANG MO KIO 4 ROOM    118   ANG MO KIO~ 04 TO 06                 99
+5 2019-01 ANG MO KIO 4 ROOM    411   ANG MO KIO~ 04 TO 06                 92
+6 2019-01 ANG MO KIO 4 ROOM    546   ANG MO KIO~ 10 TO 12                 92
+# ... with 18 more variables: flat_model &lt;chr&gt;,
+#   lease_commence_date &lt;dbl&gt;, remaining_lease &lt;chr&gt;,
+#   resale_price &lt;dbl&gt;, date &lt;date&gt;, address &lt;chr&gt;, id &lt;dbl&gt;,
+#   SEARCHVAL &lt;chr&gt;, BLK_NO &lt;chr&gt;, ROAD_NAME &lt;chr&gt;, BUILDING &lt;chr&gt;,
+#   ADDRESS &lt;chr&gt;, POSTAL &lt;chr&gt;, X &lt;dbl&gt;, Y &lt;dbl&gt;, LATITUDE &lt;dbl&gt;,
+#   LONGITUDE &lt;dbl&gt;, LONGTITUDE &lt;dbl&gt;</code></pre>
+</div>
+<p>See through the dataframe, it is joined correctly.</p>
+<h4 id="further-data-cleaning">4) further data cleaning</h4>
+<p>Let’s select only the meaningful columns and simplify the dataframe.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_coor</span> <span class='op'>&lt;-</span> <span class='va'>flat_coor</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>, <span class='st'>"month"</span>,<span class='st'>"storey_range"</span>,<span class='st'>"floor_area_sqm"</span>,<span class='st'>"flat_model"</span>,<span class='st'>"lease_commence_date"</span>,<span class='st'>"remaining_lease"</span>,<span class='st'>"resale_price"</span>,<span class='st'>"address"</span>,<span class='st'>"LATITUDE"</span>,<span class='st'>"LONGITUDE"</span><span class='op'>)</span><span class='op'>]</span> 
+</code></pre>
+</div>
+</div>
+<p>There should be 26 addresses without any coordinates as api failed to return, drop them.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>which_nas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>flat_coor</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 26</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1]   917  1536  1537  2270  3091  3938  4742  4745  4746  5560  5561
+[12]  6341  6342  6347  8011  8012  8788  8789  8790  9609 12354 13308
+[23] 14282 15314 15315 15316</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='va'>flat_coor</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="aspatial-data-wrangling-for-locational-factors">4. Aspatial Data Wrangling for locational factors</h1>
+<h2 id="a.-proximity-to-mrt">a. Proximity to MRT</h2>
+<h4 id="a-import-data">a) import data</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MRT_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/locations/MRT/master-plan-2019-rail-station-layer-geojson.geojson"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `master-plan-2019-rail-station-layer-geojson&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-05-take-home-exercise-3\data\locations\MRT\master-plan-2019-rail-station-layer-geojson.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 257 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XYZ
+Bounding box:  xmin: 103.6363 ymin: 1.251433 xmax: 104.0051 ymax: 1.449548
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<h4 id="b-get-centroid-coornidates-of-each-multipolygon">b) get centroid coornidates of each multipolygon</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#get centroids</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span> <span class='op'>&lt;-</span> <span class='fu'>st_centroid</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>geometry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>st_geometry</span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'>#transform centroids</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span>, <span class='fl'>4326</span><span class='op'>)</span>
+<span class='co'>#separate centroids into longitude and latitude and put into original dataframe</span>
+<span class='va'>MRT_sf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='fu'>st_geometry</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lon"</span>, <span class='st'>"lat"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>MRT_sf2</span><span class='op'>$</span><span class='va'>lon</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>MRT_sf2</span><span class='op'>$</span><span class='va'>lat</span>
+</code></pre>
+</div>
+</div>
+<h4 id="c-get-the-distance-between-the-nearest-mrt-coordinate-for-each-flat-address">c) get the distance between the nearest MRT coordinate for each flat address</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create a dataframe for all flat and mrt locations pairs</span>
+<span class='va'>flat_mrt</span> <span class='op'>&lt;-</span> <span class='fu'>CJ</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>$</span><span class='va'>id</span>, <span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Flat"</span>, <span class='st'>"MRT"</span><span class='op'>)</span>
+
+<span class='co'># create datatables for dataframes</span>
+<span class='va'>flat_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>)</span>
+<span class='va'>MRT_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>)</span>
+
+<span class='co'># add coordinates of flats</span>
+<span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>flat_lat</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LATITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>flat_lon</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LONGITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># add coordinates of MRTs</span>
+<span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>MRT_lat</span> <span class='op'>&lt;-</span> <span class='va'>MRT_DT</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>MRT</span>, <span class='va'>MRT_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>MRT_lon</span> <span class='op'>&lt;-</span> <span class='va'>MRT_DT</span><span class='op'>$</span><span class='va'>lon</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>MRT</span>, <span class='va'>MRT_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># calculate distances</span>
+<span class='va'>flat_mrt</span><span class='op'>[</span>, <span class='fu'>`:=`</span><span class='op'>(</span><span class='va'>dist</span>, <span class='fu'>distHaversine</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>flat_lon</span>, <span class='va'>flat_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>MRT_lon</span>, <span class='va'>MRT_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># get the distance between the nearest MRT coordinate for each flat address</span>
+<span class='va'>flat_mrt</span> <span class='op'>&lt;-</span> <span class='va'>flat_mrt</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>MRT <span class='op'>=</span> <span class='va'>MRT</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>]</span>, dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>,
+    by <span class='op'>=</span> <span class='va'>Flat</span><span class='op'>]</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Flat     MRT     dist
+1:    1 kml_238 221.1832
+2:    2 kml_214 404.1595
+3:    3 kml_236 806.4837
+4:    4 kml_214 196.4719
+5:    5 kml_236 825.1725
+6:    6 kml_235 793.2510</code></pre>
+</div>
+<h2 id="b.-proximity-to-park">b. Proximity to park</h2>
+<h4 id="a-import-data-1">a) import data</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>park_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/locations/parks/parks-geojson.geojson"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `parks-geojson&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-05-take-home-exercise-3\data\locations\parks\parks-geojson.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 350 features and 2 fields
+Geometry type: POINT
+Dimension:     XYZ
+Bounding box:  xmin: 103.6929 ymin: 1.214058 xmax: 104.0017 ymax: 1.461503
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<h4 id="b-transform-coordinates-to-lat-long">b) transform coordinates to lat long</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#transform geometry coordinates</span>
+<span class='va'>park_sf</span><span class='op'>$</span><span class='va'>geometry</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>park_sf</span><span class='op'>$</span><span class='va'>geometry</span>, <span class='fl'>4326</span><span class='op'>)</span>
+<span class='co'>#separate geometry into longitude and latitude and put into original dataframe</span>
+<span class='va'>park_sf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='fu'>st_geometry</span><span class='op'>(</span><span class='va'>park_sf</span><span class='op'>$</span><span class='va'>geometry</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lon"</span>, <span class='st'>"lat"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>park_sf</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>park_sf2</span><span class='op'>$</span><span class='va'>lon</span>
+<span class='va'>park_sf</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>park_sf2</span><span class='op'>$</span><span class='va'>lat</span>
+</code></pre>
+</div>
+</div>
+<h4 id="c-get-the-distance-between-the-nearest-park-coordinate-for-each-flat-address">c) get the distance between the nearest Park coordinate for each flat address</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create a dataframe for all flat and park locations pairs</span>
+<span class='va'>flat_park</span> <span class='op'>&lt;-</span> <span class='fu'>CJ</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>$</span><span class='va'>id</span>, <span class='va'>park_sf</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Flat"</span>, <span class='st'>"park"</span><span class='op'>)</span>
+
+<span class='co'># create datatables for dataframes</span>
+<span class='va'>flat_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>)</span>
+<span class='va'>park_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>park_sf</span><span class='op'>)</span>
+
+<span class='co'># add coordinates of flats</span>
+<span class='va'>flat_park</span><span class='op'>$</span><span class='va'>flat_lat</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LATITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_park</span><span class='op'>$</span><span class='va'>flat_lon</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LONGITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># add coordinates of parks</span>
+<span class='va'>flat_park</span><span class='op'>$</span><span class='va'>park_lat</span> <span class='op'>&lt;-</span> <span class='va'>park_DT</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>$</span><span class='va'>park</span>, <span class='va'>park_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_park</span><span class='op'>$</span><span class='va'>park_lon</span> <span class='op'>&lt;-</span> <span class='va'>park_DT</span><span class='op'>$</span><span class='va'>lon</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>$</span><span class='va'>park</span>, <span class='va'>park_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># calculate distances</span>
+<span class='va'>flat_park</span><span class='op'>[</span>, <span class='fu'>`:=`</span><span class='op'>(</span><span class='va'>dist</span>, <span class='fu'>distHaversine</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>flat_lon</span>, <span class='va'>flat_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>park_lon</span>, <span class='va'>park_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># get the distance between the nearest park coordinate for each flat address</span>
+<span class='va'>flat_park</span> <span class='op'>&lt;-</span> <span class='va'>flat_park</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>park <span class='op'>=</span> <span class='va'>park</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>]</span>, dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>,
+    by <span class='op'>=</span> <span class='va'>Flat</span><span class='op'>]</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Flat    park     dist
+1:    1 kml_240 749.9838
+2:    2 kml_325 431.2196
+3:    3 kml_233 781.5487
+4:    4 kml_153 178.3932
+5:    5 kml_205 913.7259
+6:    6 kml_233 824.3549</code></pre>
+</div>
+<h2 id="c.-proximity-to-supermarket">c. Proximity to supermarket</h2>
+<h4 id="a-import-data-2">a) import data</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>SM_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/locations/supermarkets/supermarkets-geojson.geojson"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `supermarkets-geojson&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-05-take-home-exercise-3\data\locations\supermarkets\supermarkets-geojson.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 526 features and 2 fields
+Geometry type: POINT
+Dimension:     XYZ
+Bounding box:  xmin: 103.6258 ymin: 1.24715 xmax: 104.0036 ymax: 1.461526
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<h4 id="b-transform-coordinates-to-lat-long-1">b) transform coordinates to lat long</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#transform geometry coordinates</span>
+<span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>geometry</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>geometry</span>, <span class='fl'>4326</span><span class='op'>)</span>
+<span class='co'>#separate geometry into longitude and latitude and put into original dataframe</span>
+<span class='va'>SM_sf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='fu'>st_geometry</span><span class='op'>(</span><span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>geometry</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lon"</span>, <span class='st'>"lat"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='va'>SM_sf2</span><span class='op'>$</span><span class='va'>lon</span>
+<span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='va'>SM_sf2</span><span class='op'>$</span><span class='va'>lat</span>
+</code></pre>
+</div>
+</div>
+<h4 id="c-get-the-distance-between-the-nearest-supermarket-coordinate-for-each-flat-address">c) get the distance between the nearest supermarket coordinate for each flat address</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create a dataframe for all flat and SM locations pairs</span>
+<span class='va'>flat_SM</span> <span class='op'>&lt;-</span> <span class='fu'>CJ</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>$</span><span class='va'>id</span>, <span class='va'>SM_sf</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Flat"</span>, <span class='st'>"SM"</span><span class='op'>)</span>
+
+<span class='co'># create datatables for dataframes</span>
+<span class='va'>flat_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>)</span>
+<span class='va'>SM_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>SM_sf</span><span class='op'>)</span>
+
+<span class='co'># add coordinates of flats</span>
+<span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>flat_lat</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LATITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>flat_lon</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LONGITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># add coordinates of SMs</span>
+<span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>SM_lat</span> <span class='op'>&lt;-</span> <span class='va'>SM_DT</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>SM</span>, <span class='va'>SM_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>SM_lon</span> <span class='op'>&lt;-</span> <span class='va'>SM_DT</span><span class='op'>$</span><span class='va'>lon</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>SM</span>, <span class='va'>SM_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># calculate distances</span>
+<span class='va'>flat_SM</span><span class='op'>[</span>, <span class='fu'>`:=`</span><span class='op'>(</span><span class='va'>dist</span>, <span class='fu'>distHaversine</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>flat_lon</span>, <span class='va'>flat_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>SM_lon</span>, <span class='va'>SM_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># get the distance between the nearest SM coordinate for each flat address</span>
+<span class='va'>flat_SM</span> <span class='op'>&lt;-</span> <span class='va'>flat_SM</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>SM <span class='op'>=</span> <span class='va'>SM</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>]</span>, dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>,
+    by <span class='op'>=</span> <span class='va'>Flat</span><span class='op'>]</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Flat      SM     dist
+1:    1 kml_192 271.0214
+2:    2 kml_509 310.7737
+3:    3  kml_40 319.4650
+4:    4 kml_509 458.8342
+5:    5   kml_7 338.9454
+6:    6 kml_229 314.6732</code></pre>
+</div>
+<h2 id="d.-proximity-to-central-area-of-singapore">d. Proximity to Central Area of Singapore</h2>
+<p>According to <a href="https://en.wikipedia.org/wiki/Central_Area,_Singapore">Wikipeida</a>, the coordinates of Central Area of Singapore is 1°17′30″N 103°51′00″E, which is equal to 1.291667, 103.85 in decimal format according to <a href="https://geohack.toolforge.org/geohack.php?pagename=Central_Area,_Singapore&amp;params=1_17_30_N_103_51_00_E_type:city%2860520%29_region:SG">GeoHack</a>.</p>
+<h4 id="a-create-a-dataframe">a) create a dataframe</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Central Area'</span><span class='op'>)</span>
+<span class='va'>lon</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>103.85</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>lat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.291667</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>CA_sf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>Name</span>, <span class='va'>lon</span>, <span class='va'>lat</span><span class='op'>)</span>
+<span class='va'>CA_sf</span>
+</code></pre>
+</div>
+<pre><code>          Name    lon      lat
+1 Central Area 103.85 1.291667</code></pre>
+</div>
+<h4 id="b-get-the-distance-between-central-area-and-each-flat-address">b) get the distance between Central Area and each flat address</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create a dataframe for all flat and CA location pairs</span>
+<span class='va'>flat_CA</span> <span class='op'>&lt;-</span> <span class='fu'>CJ</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>$</span><span class='va'>id</span>, <span class='va'>CA_sf</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Flat"</span>, <span class='st'>"CA"</span><span class='op'>)</span>
+
+<span class='co'># create datatables for dataframes</span>
+<span class='va'>flat_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>)</span>
+<span class='va'>CA_DT</span> <span class='op'>&lt;-</span> <span class='fu'>setDT</span><span class='op'>(</span><span class='va'>CA_sf</span><span class='op'>)</span>
+
+<span class='co'># add coordinates of flats</span>
+<span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>flat_lat</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LATITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>flat_lon</span> <span class='op'>&lt;-</span> <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>LONGITUDE</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>Flat</span>, <span class='va'>flat_DT</span><span class='op'>$</span><span class='va'>id</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># add coordinates of CAs</span>
+<span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>CA_lat</span> <span class='op'>&lt;-</span> <span class='va'>CA_DT</span><span class='op'>$</span><span class='va'>lat</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>CA</span>, <span class='va'>CA_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>CA_lon</span> <span class='op'>&lt;-</span> <span class='va'>CA_DT</span><span class='op'>$</span><span class='va'>lon</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/match.html'>match</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>CA</span>, <span class='va'>CA_DT</span><span class='op'>$</span><span class='va'>Name</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># calculate distances</span>
+<span class='va'>flat_CA</span><span class='op'>[</span>, <span class='fu'>`:=`</span><span class='op'>(</span><span class='va'>dist</span>, <span class='fu'>distHaversine</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>flat_lon</span>, <span class='va'>flat_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>CA_lon</span>, <span class='va'>CA_lat</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+
+<span class='co'># get the distance between the nearest CA coordinate for each flat address</span>
+<span class='va'>flat_CA</span> <span class='op'>&lt;-</span> <span class='va'>flat_CA</span><span class='op'>[</span>, <span class='fu'>.</span><span class='op'>(</span>CA <span class='op'>=</span> <span class='va'>CA</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.min.html'>which.min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>]</span>, dist <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>,
+    by <span class='op'>=</span> <span class='va'>Flat</span><span class='op'>]</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Flat           CA     dist
+1:    1 Central Area 8454.061
+2:    2 Central Area 9466.131
+3:    3 Central Area 9224.930
+4:    4 Central Area 9229.536
+5:    5 Central Area 8006.289
+6:    6 Central Area 9159.842</code></pre>
+</div>
+<h1 id="combining-all-aspatial-data-adding-location-factors-into-flat_df">5. Combining all aspatial Data, adding location factors into flat_df</h1>
+<h4 id="a-change-unit-from-meter-to-km">a) change unit from meter to km</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>$</span><span class='va'>dist</span><span class='op'>/</span><span class='fl'>1000</span><span class='op'>)</span>
+<span class='va'>flat_park</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>flat_park</span><span class='op'>$</span><span class='va'>dist</span><span class='op'>/</span><span class='fl'>1000</span><span class='op'>)</span>
+<span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>$</span><span class='va'>dist</span><span class='op'>/</span><span class='fl'>1000</span><span class='op'>)</span>
+<span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>dist</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>$</span><span class='va'>dist</span><span class='op'>/</span><span class='fl'>1000</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="b-rename-columns">b) rename columns</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_mrt</span><span class='op'>)</span><span class='op'>==</span><span class='st'>'dist'</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'PROX_MRT'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_park</span><span class='op'>)</span><span class='op'>==</span><span class='st'>'dist'</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'PROX_PARK'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_SM</span><span class='op'>)</span><span class='op'>==</span><span class='st'>'dist'</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'PROX_SM'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>flat_CA</span><span class='op'>)</span><span class='op'>==</span><span class='st'>'dist'</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>'PROX_CA'</span>
+</code></pre>
+</div>
+</div>
+<h4 id="c-combine-dataframes">c) combine dataframes</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>flat_df</span>, <span class='va'>flat_mrt</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'id'</span> <span class='op'>=</span> <span class='st'>'Flat'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>flat_df</span>, <span class='va'>flat_park</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'id'</span> <span class='op'>=</span> <span class='st'>'Flat'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>flat_df</span>, <span class='va'>flat_SM</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'id'</span> <span class='op'>=</span> <span class='st'>'Flat'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>flat_df</span>, <span class='va'>flat_CA</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'id'</span> <span class='op'>=</span> <span class='st'>'Flat'</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>flat_df</span> <span class='op'>&lt;-</span> <span class='va'>flat_df</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>, <span class='st'>"month"</span>,<span class='st'>"storey_range"</span>,<span class='st'>"floor_area_sqm"</span>,<span class='st'>"flat_model"</span>,<span class='st'>"lease_commence_date"</span>,<span class='st'>"remaining_lease"</span>,<span class='st'>"resale_price"</span>,<span class='st'>"address"</span>,<span class='st'>"LATITUDE"</span>,<span class='st'>"LONGITUDE"</span>,<span class='st'>'PROX_MRT'</span>,<span class='st'>'PROX_PARK'</span>,<span class='st'>'PROX_SM'</span>,<span class='st'>"PROX_CA"</span><span class='op'>)</span><span class='op'>]</span> 
+</code></pre>
+</div>
+</div>
+<h4 id="d-further-cleaning">d) further cleaning</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># make storey_range to a number, take the lower one</span>
+<span class='va'>flat_df</span><span class='op'>$</span><span class='va'>storey_range</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>" .*$"</span>, <span class='st'>""</span>, <span class='va'>flat_df</span><span class='op'>$</span><span class='va'>storey_range</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'># make remaining_lease to a number, take the year</span>
+<span class='va'>flat_df</span><span class='op'>$</span><span class='va'>remaining_lease</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>" .*$"</span>, <span class='st'>""</span>, <span class='va'>flat_df</span><span class='op'>$</span><span class='va'>remaining_lease</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>flat_df</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Rows: 15,875
+Columns: 15
+$ id                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1~
+$ month               &lt;chr&gt; &quot;2019-01&quot;, &quot;2019-01&quot;, &quot;2019-01&quot;, &quot;2019-0~
+$ storey_range        &lt;dbl&gt; 1, 7, 1, 4, 4, 10, 7, 4, 10, 7, 7, 7, 10~
+$ floor_area_sqm      &lt;dbl&gt; 92, 91, 92, 99, 92, 92, 92, 92, 93, 91, ~
+$ flat_model          &lt;chr&gt; &quot;New Generation&quot;, &quot;New Generation&quot;, &quot;New~
+$ lease_commence_date &lt;dbl&gt; 1977, 1981, 1981, 1978, 1979, 1981, 1978~
+$ remaining_lease     &lt;dbl&gt; 57, 61, 61, 58, 59, 61, 58, 62, 60, 60, ~
+$ resale_price        &lt;dbl&gt; 330000, 360000, 370000, 375000, 380000, ~
+$ address             &lt;chr&gt; &quot;204 ANG MO KIO AVE 3&quot;, &quot;175 ANG MO KIO ~
+$ LATITUDE            &lt;dbl&gt; 1.367368, 1.375723, 1.374301, 1.373296, ~
+$ LONGITUDE           &lt;dbl&gt; 103.8439, 103.8371, 103.8562, 103.8355, ~
+$ PROX_MRT            &lt;dbl&gt; 0.2211832, 0.4041595, 0.8064837, 0.19647~
+$ PROX_PARK           &lt;dbl&gt; 0.7499838, 0.4312196, 0.7815487, 0.17839~
+$ PROX_SM             &lt;dbl&gt; 0.2710214, 0.3107737, 0.3194650, 0.45883~
+$ PROX_CA             &lt;dbl&gt; 8.454061, 9.466131, 9.224930, 9.229536, ~</code></pre>
+</div>
+<h4 id="e-convert-dataframe-into-a-sf-object">e) convert dataframe into a sf object</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_as_sf</span><span class='op'>(</span><span class='va'>flat_df</span>,
+                    coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LONGITUDE"</span>, <span class='st'>"LATITUDE"</span><span class='op'>)</span>,
+                    crs<span class='op'>=</span><span class='fl'>4326</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs<span class='op'>=</span><span class='fl'>3414</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>flat_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Simple feature collection with 6 features and 13 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 28240.06 ymin: 38382.85 xmax: 30637.92 ymax: 39745.94
+Projected CRS: SVY21 / Singapore TM
+  id   month storey_range floor_area_sqm     flat_model
+1  1 2019-01            1             92 New Generation
+2  2 2019-01            7             91 New Generation
+3  3 2019-01            1             92 New Generation
+4  4 2019-01            4             99 New Generation
+5  5 2019-01            4             92 New Generation
+6  6 2019-01           10             92 New Generation
+  lease_commence_date remaining_lease resale_price
+1                1977              57       330000
+2                1981              61       360000
+3                1981              61       370000
+4                1978              58       375000
+5                1979              59       380000
+6                1981              61       380000
+                address  PROX_MRT PROX_PARK   PROX_SM  PROX_CA
+1  204 ANG MO KIO AVE 3 0.2211832 0.7499838 0.2710214 8.454061
+2  175 ANG MO KIO AVE 4 0.4041595 0.4312196 0.3107737 9.466131
+3 543 ANG MO KIO AVE 10 0.8064837 0.7815487 0.3194650 9.224930
+4  118 ANG MO KIO AVE 4 0.1964719 0.1783932 0.4588342 9.229536
+5 411 ANG MO KIO AVE 10 0.8251725 0.9137259 0.3389454 8.006289
+6 546 ANG MO KIO AVE 10 0.7932510 0.8243549 0.3146732 9.159842
+                   geometry
+1 POINT (29179.92 38822.08)
+2 POINT (28423.42 39745.94)
+3 POINT (30550.38 39588.77)
+4  POINT (28240.06 39477.6)
+5 POINT (30443.27 38382.85)
+6  POINT (30637.92 39516.9)</code></pre>
+</div>
+<h1 id="exploratory-data-analysis-eda">6. Exploratory Data Analysis (EDA)</h1>
+<h2 id="a.-eda-using-statistical-graphics">a. EDA using statistical graphics</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`resale_price`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-34-1.png" width="624" /></p>
+</div>
+<ul>
+<li>The figure above reveals a right skewed distribution. This means that more condominium units were transacted at relative lower prices.</li>
+</ul>
+<h4 id="normalize-skewed-dsitribution-by-using-log-transformation">normalize skewed dsitribution by using log transformation</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_sf</span> <span class='op'>&lt;-</span> <span class='va'>flat_sf</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>`LOG_resale_price` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>resale_price</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`LOG_resale_price`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-36-1.png" width="624" /></p>
+</div>
+<ul>
+<li>Notice that the distribution is relatively less skewed after the transformation.</li>
+</ul>
+<h2 id="b.-multiple-histogram-plots-distribution-of-variables">b. Multiple Histogram Plots distribution of variables</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>STOREY</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`storey_range`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>AREA_SQM</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`floor_area_sqm`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>REMAINING_LEASE</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`remaining_lease`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>PROX_MRT</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`PROX_MRT`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>PROX_PARK</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`PROX_PARK`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>PROX_SM</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`PROX_SM`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='va'>PROX_CA</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat_sf</span>, <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span> <span class='va'>`PROX_CA`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>bins<span class='op'>=</span><span class='fl'>20</span>, color<span class='op'>=</span><span class='st'>"black"</span>, fill<span class='op'>=</span><span class='st'>"light blue"</span><span class='op'>)</span>
+
+<span class='fu'>ggarrange</span><span class='op'>(</span><span class='va'>STOREY</span>,<span class='va'>AREA_SQM</span>,<span class='va'>REMAINING_LEASE</span>,<span class='va'>PROX_MRT</span>,<span class='va'>PROX_PARK</span>,<span class='va'>PROX_SM</span>, <span class='va'>PROX_CA</span>, ncol <span class='op'>=</span> <span class='fl'>3</span>, nrow <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-37-1.png" width="624" /></p>
+</div>
+<h2 id="c.-drawing-statistical-point-map-reveal-the-geospatial-distribution-4-room-flat-prices-in-singapore">c. Drawing Statistical Point Map: reveal the geospatial distribution 4-room flat prices in Singapore</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># tmap_mode("view")</span>
+
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>mpsz</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>flat_sf</span><span class='op'>)</span> <span class='op'>+</span>  
+  <span class='fu'>tm_dots</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"resale_price"</span>,
+          alpha <span class='op'>=</span> <span class='fl'>0.6</span>,
+          style<span class='op'>=</span><span class='st'>"quantile"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-38-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#  tm_view(set.zoom.limits = c(11,14)) #set.zoom.limits argument of tm_view() sets the minimum and maximum zoom level to 11 and 14 respectively.</span>
+
+<span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="build-hedonic-pricing-models-for-4-room-flat-resale-units">7. Build hedonic pricing models for 4-room flat resale units</h1>
+<h1 id="a.-simple-linear-regression-method">7a. Simple Linear Regression Method</h1>
+<ul>
+<li>using resale_price as the dependent variable and floor_area_sqm as the independent variable</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat.slr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula<span class='op'>=</span><span class='va'>resale_price</span> <span class='op'>~</span> <span class='va'>floor_area_sqm</span>, data <span class='op'>=</span> <span class='va'>flat_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>lm() returns an object of class “lm” or for multiple responses of class c(“mlm”, “lm”).</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>flat.slr</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = resale_price ~ floor_area_sqm, data = flat_sf)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-220731  -79719  -28719   36281  751160 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    528807.6    12801.5   41.31  &lt; 2e-16 ***
+floor_area_sqm  -1000.9      134.2   -7.46 9.09e-14 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 120000 on 15873 degrees of freedom
+Multiple R-squared:  0.003494,  Adjusted R-squared:  0.003431 
+F-statistic: 55.65 on 1 and 15873 DF,  p-value: 9.087e-14</code></pre>
+</div>
+<ul>
+<li>The output report reveals that the resale_price can be explained by using the formula: <em>y = 528807 - 1000.9(x)</em></li>
+<li>The R-squared of 0.003494 reveals that the simple regression model built is able to explain about 0.34% of the resale_price, which is pretty low. The negative coefficient of floor_area_sqm can also tell that this method is bad at explaining the resale_price as it is counter-intuitive to say the bigger the floor_area_sqm, the lower the resale_price.</li>
+<li>Since p-value is much smaller than 0.0001, we will reject the null hypothesis that mean is a good estimator of resale_price. This will allow us to infer that simple linear regression model above is a good estimator of resale_price.</li>
+<li>The Coefficients: section of the report reveals that the p-values of both the estimates of the Intercept and floor_area_sqm are smaller than 0.001. In view of this, the null hypothesis of the B0 and B1 are equal to 0 will be rejected. As a results, we will be able to infer that the B0 and B1 are good parameter estimates.</li>
+</ul>
+<h4 id="to-visualise-the-best-fit-curve-on-a-scatterplot">To visualise the best fit curve on a scatterplot</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data<span class='op'>=</span><span class='va'>flat.slr</span>,  
+       <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>`floor_area_sqm`</span>, y<span class='op'>=</span><span class='va'>`resale_price`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='va'>lm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-41-1.png" width="624" /></p>
+</div>
+<h1 id="b.-multiple-linear-regression-method">7b. Multiple Linear Regression Method</h1>
+<h2 id="a.-visualising-the-relationships-of-the-independent-variableschecking-multicollinearity-of-the-model">a. Visualising the relationships of the independent variables/Checking multicollinearity of the model</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_df2</span> <span class='op'>&lt;-</span> <span class='va'>flat_df</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"id"</span>,<span class='st'>"resale_price"</span>,<span class='st'>"storey_range"</span>,<span class='st'>"floor_area_sqm"</span>,<span class='st'>"remaining_lease"</span>,<span class='st'>'PROX_MRT'</span>,<span class='st'>'PROX_PARK'</span>,<span class='st'>'PROX_SM'</span>,<span class='st'>"PROX_CA"</span><span class='op'>)</span><span class='op'>]</span> 
+
+
+<span class='fu'>corrplot</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>flat_df2</span><span class='op'>[</span>, <span class='fl'>3</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>]</span><span class='op'>)</span>, diag <span class='op'>=</span> <span class='cn'>FALSE</span>, order <span class='op'>=</span> <span class='st'>"AOE"</span>,
+         tl.pos <span class='op'>=</span> <span class='st'>"td"</span>, tl.cex <span class='op'>=</span> <span class='fl'>0.5</span>, method <span class='op'>=</span> <span class='st'>"number"</span>, type <span class='op'>=</span> <span class='st'>"upper"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-42-1.png" width="624" /></p>
+</div>
+<ul>
+<li>Matrix reorder is very important for mining the hiden structure and patter in the matrix. There are four methods in corrplot (parameter order), named “AOE”, “FPC”, “hclust”, “alphabet”. In the code chunk above, AOE order is used. It orders the variables by using the angular order of the eigenvectors method suggested by Michael Friendly.</li>
+<li>From the scatterplot matrix, there is no independent variable highly related to each other. Thus we will include all independent variables in the subsequent model building.</li>
+</ul>
+<h2 id="b.-building-a-hedonic-pricing-model-using-multiple-linear-regression-method">b. Building a hedonic pricing model using multiple linear regression method</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat.mlr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>resale_price</span> <span class='op'>~</span> <span class='va'>storey_range</span> <span class='op'>+</span> <span class='va'>floor_area_sqm</span>  <span class='op'>+</span> <span class='va'>remaining_lease</span> <span class='op'>+</span> <span class='va'>PROX_MRT</span> <span class='op'>+</span> <span class='va'>PROX_PARK</span> <span class='op'>+</span> <span class='va'>PROX_SM</span> <span class='op'>+</span> <span class='va'>PROX_CA</span>, data<span class='op'>=</span><span class='va'>flat_sf</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>flat.mlr</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = resale_price ~ storey_range + floor_area_sqm + remaining_lease + 
+    PROX_MRT + PROX_PARK + PROX_SM + PROX_CA, data = flat_sf)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-193210  -42890    -454   38686  477132 
+
+Coefficients:
+                 Estimate Std. Error  t value Pr(&gt;|t|)    
+(Intercept)      83858.30    8476.15    9.893  &lt; 2e-16 ***
+storey_range      5035.07      95.35   52.806  &lt; 2e-16 ***
+floor_area_sqm    2769.40      75.33   36.765  &lt; 2e-16 ***
+remaining_lease   4037.44      45.21   89.313  &lt; 2e-16 ***
+PROX_MRT        -25681.75    1612.85  -15.923  &lt; 2e-16 ***
+PROX_PARK        -8063.03    1230.61   -6.552 5.85e-11 ***
+PROX_SM         -21932.67    3399.59   -6.452 1.14e-10 ***
+PROX_CA         -19583.40     144.37 -135.644  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 64670 on 15867 degrees of freedom
+Multiple R-squared:  0.7107,    Adjusted R-squared:  0.7106 
+F-statistic:  5568 on 7 and 15867 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<ul>
+<li>With reference to the report above, it is clear that all the independent variables are statistically significant. Thus we will keep them all.</li>
+</ul>
+<h2 id="c.-checking-for-multicolinearity">c. Checking for multicolinearity</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ols_vif_tol</span><span class='op'>(</span><span class='va'>flat.mlr</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>        Variables Tolerance      VIF
+1    storey_range 0.8397067 1.190892
+2  floor_area_sqm 0.9212578 1.085472
+3 remaining_lease 0.7822497 1.278364
+4        PROX_MRT 0.9443416 1.058939
+5       PROX_PARK 0.8597780 1.163091
+6         PROX_SM 0.9123393 1.096083
+7         PROX_CA 0.7551691 1.324207</code></pre>
+</div>
+<ul>
+<li>Since the VIF of the independent variables are less than 10. We can safely conclude that there are no sign of multicollinearity among the independent variables.</li>
+</ul>
+<h2 id="d.-test-for-non-linearity">d. Test for Non-Linearity</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ols_plot_resid_fit</span><span class='op'>(</span><span class='va'>flat.mlr</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-45-1.png" width="624" /></p>
+</div>
+<ul>
+<li>The figure above reveals that most of the data points are scattered around the 0 line, hence we can safely conclude that the relationships between the dependent variable and independent variables are linear.</li>
+</ul>
+<h2 id="e.-test-for-normality-assumption">e. Test for Normality Assumption</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ols_plot_resid_hist</span><span class='op'>(</span><span class='va'>flat.mlr</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-46-1.png" width="624" /></p>
+</div>
+<ul>
+<li>The figure reveals that the residual of the multiple linear regression model (i.e. flat.mlr) resembles normal distribution.</li>
+</ul>
+<h2 id="f.-testing-for-spatial-autocorrelation">f. Testing for Spatial Autocorrelation</h2>
+<ul>
+<li>The hedonic model we try to build are using geographically referenced attributes, hence it is also important for us to visual the residual of the hedonic pricing model.</li>
+</ul>
+<h4 id="export-the-residual-of-the-hedonic-pricing-model-and-save-it-as-a-data-frame">export the residual of the hedonic pricing model and save it as a data frame</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mlr.output</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>flat.mlr</span><span class='op'>$</span><span class='va'>residuals</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="join-the-newly-created-data-frame-with-flat_sf-object">join the newly created data frame with flat_sf object</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_res_sf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>flat_sf</span>,
+                     <span class='va'>flat.mlr</span><span class='op'>$</span><span class='va'>residuals</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'>rename</span><span class='op'>(</span>`MLR_RES` <span class='op'>=</span> <span class='va'>`flat.mlr.residuals`</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="convert-flat_res_sf-simple-feature-object-into-a-spatialpointsdataframe-because-spdep-package-can-only-process-sp-conformed-spatial-data-objects-in-order-to-perform-spatial-autocorrelation-test">convert flat_res_sf simple feature object into a SpatialPointsDataFrame because spdep package can only process sp conformed spatial data objects in order to perform spatial autocorrelation test</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>flat_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>flat_res_sf</span><span class='op'>)</span>
+<span class='va'>flat_sp</span>
+</code></pre>
+</div>
+<pre><code>class       : SpatialPointsDataFrame 
+features    : 15875 
+extent      : 11597.31, 42623.63, 28217.39, 48741.06  (xmin, xmax, ymin, ymax)
+crs         : +proj=tmerc +lat_0=1.36666666666667 +lon_0=103.833333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +units=m +no_defs 
+variables   : 15
+names       :    id,   month, storey_range, floor_area_sqm,    flat_model, lease_commence_date, remaining_lease, resale_price,          address,           PROX_MRT,          PROX_PARK,              PROX_SM,          PROX_CA, LOG_resale_price,           MLR_RES 
+min values  :     1, 2019-01,            1,             74, Adjoined flat,                1967,              45,       218000,   1 CHAI CHEE RD, 0.0215073287434059, 0.0442933146243756, 1.22116280614121e-07, 0.68708584078081, 12.2922503417712, -193209.771948269 
+max values  : 15901, 2020-09,           49,            138,       Type S1,                2018,              97,      1186888, 9B BOON TIONG RD,   1.82475955232366,   2.41355391792669,     1.58177351657252, 19.2972009897937, 13.9868453136219,  477132.304321547 </code></pre>
+</div>
+<h4 id="display-the-distribution-of-the-residuals-on-an-interactive-map.">display the distribution of the residuals on an interactive map.</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#tmap_mode("view")</span>
+
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>mpsz</span><span class='op'>)</span><span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.4</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>flat_res_sf</span><span class='op'>)</span> <span class='op'>+</span>  
+  <span class='fu'>tm_dots</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"MLR_RES"</span>,
+          alpha <span class='op'>=</span> <span class='fl'>0.6</span>,
+          style<span class='op'>=</span><span class='st'>"quantile"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<img src="take-home-exercise-3_files/figure-html5/unnamed-chunk-50-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#  tm_view(set.zoom.limits = c(11,14))</span>
+
+<span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>The figure above reveal that there is a sign of spatial autocorrelation as there seems to be colour clusters.</li>
+</ul>
+<h4 id="morans-i-test-to-prove-there-is-a-sign-of-spatial-autocorrelation">Moran’s I test: to prove there is a sign of spatial autocorrelation</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># compute the distance-based weight matrix</span>
+<span class='va'>nb</span> <span class='op'>&lt;-</span> <span class='fu'>dnearneigh</span><span class='op'>(</span><span class='fu'>coordinates</span><span class='op'>(</span><span class='va'>flat_sp</span><span class='op'>)</span>, <span class='fl'>0</span>, <span class='fl'>1500</span>, longlat <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>nb</span><span class='op'>)</span>
+
+<span class='co'># convert the output neighbours lists (i.e. nb) into a spatial weights</span>
+<span class='va'>nb_lw</span> <span class='op'>&lt;-</span> <span class='fu'>nb2listw</span><span class='op'>(</span><span class='va'>nb</span>, style <span class='op'>=</span> <span class='st'>'W'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>nb_lw</span><span class='op'>)</span>
+
+<span class='co'># perform Moran’s I test for residual spatial autocorrelation</span><span class='fu'>lm.morantest</span><span class='op'>(</span><span class='va'>flat.mlr</span>, <span class='va'>nb_lw</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><img src="data/img/MoranI.JPG" /></p>
+<ul>
+<li>The Global Moran’s I test for residual spatial autocorrelation shows that it’s p-value is much less than the alpha value of 0.05. Hence, we will reject the null hypothesis that the residuals are randomly distributed.</li>
+<li>Since the Observed Global Moran I = 0.4633446 which is greater than 0, we can infer than the residuals resemble cluster distribution.</li>
+</ul>
+<h1 id="building-hedonic-pricing-models-using-gwmodel">8. Building Hedonic Pricing Models using GWmodel</h1>
+<h2 id="a.-building-fixed-bandwidth-gwr-model">a. Building Fixed Bandwidth GWR Model</h2>
+<h4 id="computing-fixed-bandwith">Computing fixed bandwith</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bw.fixed</span> <span class='op'>&lt;-</span> <span class='fu'>bw.gwr</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>resale_price</span> <span class='op'>~</span> <span class='va'>storey_range</span> <span class='op'>+</span> <span class='va'>floor_area_sqm</span>  <span class='op'>+</span> <span class='va'>remaining_lease</span> <span class='op'>+</span> <span class='va'>PROX_MRT</span> <span class='op'>+</span> <span class='va'>PROX_PARK</span> <span class='op'>+</span> <span class='va'>PROX_SM</span> <span class='op'>+</span> <span class='va'>PROX_CA</span>, data<span class='op'>=</span><span class='va'>flat_sp</span>, approach<span class='op'>=</span><span class='st'>"CV"</span>, kernel<span class='op'>=</span><span class='st'>"gaussian"</span>, adaptive<span class='op'>=</span><span class='cn'>FALSE</span>, longlat<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>There are two possible approaches can be used to determine the stopping rule, they are: least CV cross-validation approach and least AIC corrected approach. We define the stopping rule using approach argument.</li>
+<li>The result shows that the recommended bandwidth is 971.3398 metres.</li>
+</ul>
+<h4 id="gwmodel-method---fixed-bandwith">GWModel method - fixed bandwith</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gwr.fixed</span> <span class='op'>&lt;-</span> <span class='fu'>gwr.basic</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>SELLING_PRICE</span> <span class='op'>~</span> <span class='va'>AREA_SQM</span> <span class='op'>+</span> <span class='va'>AGE</span>  <span class='op'>+</span> <span class='va'>PROX_CBD</span> <span class='op'>+</span> <span class='va'>PROX_CHILDCARE</span> <span class='op'>+</span> <span class='va'>PROX_ELDERLYCARE</span>  <span class='op'>+</span> <span class='va'>PROX_URA_GROWTH_AREA</span> <span class='op'>+</span> <span class='va'>PROX_MRT</span>  <span class='op'>+</span> <span class='va'>PROX_PARK</span>  <span class='op'>+</span> <span class='va'>PROX_PRIMARY_SCH</span> <span class='op'>+</span> <span class='va'>PROX_SHOPPING_MALL</span>  <span class='op'>+</span> <span class='va'>PROX_BUS_STOP</span>  <span class='op'>+</span> <span class='va'>NO_Of_UNITS</span> <span class='op'>+</span> <span class='va'>FAMILY_FRIENDLY</span> <span class='op'>+</span> <span class='va'>FREEHOLD</span>, data<span class='op'>=</span><span class='va'>condo_resale.sp</span>, bw<span class='op'>=</span><span class='va'>bw.fixed</span>, kernel <span class='op'>=</span> <span class='st'>'gaussian'</span>, longlat <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='va'>gwr.fixed</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>The report shows that the adjusted r-square of the gwr is 0.8430 which is significantly better than the globel multiple linear regression model of 0.6472.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

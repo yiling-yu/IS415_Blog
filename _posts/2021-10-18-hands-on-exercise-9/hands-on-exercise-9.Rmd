@@ -225,7 +225,7 @@ ols_plot_resid_fit(condo.mlr1)
 
 * The figure above reveals that most of the data poitns are scattered around the 0 line, hence we can safely conclude that the relationships between the dependent variable and independent variables are linear.
 
-## c. Test for Normality Assumption
+## e. Test for Normality Assumption
 ```{r}
 ols_plot_resid_hist(condo.mlr1)
 ```
@@ -238,7 +238,7 @@ ols_test_normality(condo.mlr1)
 
 * The summary table above reveals that the p-values of the four tests are way smaller than the alpha value of 0.05. Hence we will reject the null hypothesis that the residual is NOT resemble normal distribution.
 
-## d. Testing for Spatial Autocorrelation
+## f. Testing for Spatial Autocorrelation
 
 * The hedonic model we try to build are using geographically referenced attributes, hence it is also important for us to visual the residual of the hedonic pricing model.
 
