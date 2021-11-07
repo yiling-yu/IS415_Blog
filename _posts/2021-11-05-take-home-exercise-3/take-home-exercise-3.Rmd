@@ -529,7 +529,7 @@ summary(flat.slr)
 ```
 
 * The output report reveals that the resale_price can be explained by using the formula: *y = 528807 - 1000.9(x)*
-* The R-squared of 0.003494 reveals that the simple regression model built is able to explain about 0.34% of the resale_price, which is pretty low. The negative coefficient of floor_area_sqm can also tell that this method is bad at explaining the resale_price as it is counter-intuitive to say the bigger the floor_area_sqm, the lower the resale_price.
+* The Adjusted R-squared of 0.003431 reveals that the simple regression model built is able to explain about 0.34% of the resale_price, which is pretty low. The negative coefficient of floor_area_sqm can also tell that this method is bad at explaining the resale_price as it is counter-intuitive to say the bigger the floor_area_sqm, the lower the resale_price. All these will lead us to use other models to explain the resale_price later.
 * Since p-value is much smaller than 0.0001, we will reject the null hypothesis that mean is a good estimator of resale_price. This will allow us to infer that simple linear regression model above is a good estimator of resale_price.
 * The Coefficients: section of the report reveals that the p-values of both the estimates of the Intercept and floor_area_sqm are smaller than 0.001. In view of this, the null hypothesis of the B0 and B1 are equal to 0 will be rejected. As a results, we will be able to infer that the B0 and B1 are good parameter estimates.
 
@@ -560,8 +560,10 @@ flat.mlr <- lm(formula = resale_price ~ storey_range + floor_area_sqm  + remaini
 
 summary(flat.mlr)
 ```
-
-* With reference to the report above, it is clear that all the independent variables are statistically significant. Thus we will keep them all.
+* The output report reveals that the resale_price can be explained by using the formula: y = 83858.30 + 5035.07(storey_range) + 2769.40(floor_area_sqm) + 4037.44(remaining_lease) - 25681.75(PROX_MRT) - 8063.03(PROX_PARK) - 21932.67(PROX_SM) - 19583.40(PROX_CA)
+* The Adjusted R-squared of 0.7106 reveals that the multi-linear regression model built is able to explain about 71% of the resale_price, which is much higher than simple linear regression model.
+* Since p-value is much smaller than 0.0001, it can be inferred that multi-linear regression model above is a good estimator of resale_price.
+* The Coefficients: section of the report reveals that the p-values of both the estimates of the Intercept and independent variables are smaller than 0.001. Thus all the independent variables are statistically significant and we will keep them all. All these independent variables are good parameter estimates.
 
 ## c. Checking for multicolinearity
 ```{r}
@@ -642,6 +644,7 @@ lm.morantest(flat.mlr, nb_lw)
 
 * The Global Moran’s I test for residual spatial autocorrelation shows that it’s p-value is much less than the alpha value of 0.05. Hence, we will reject the null hypothesis that the residuals are randomly distributed.
 * Since the Observed Global Moran I = 0.4633446 which is greater than 0, we can infer than the residuals resemble cluster distribution.
+* All these will lead us into considering Geographical Weighted Regression model to explain the resale_price better.
 
 # 8. Building Hedonic Pricing Models using GWmodel
 ## a. Building Fixed Bandwidth GWR Model
@@ -650,164 +653,161 @@ lm.morantest(flat.mlr, nb_lw)
 bw.fixed <- bw.gwr(formula = resale_price ~ storey_range + floor_area_sqm  + remaining_lease + PROX_MRT + PROX_PARK + PROX_SM + PROX_CA, data=flat_sp, approach="CV", kernel="gaussian", adaptive=FALSE, longlat=FALSE)
 ```
 
+![](data/img/fb1.jpg)
+![](data/img/fb2.jpg)
+
 * There are two possible approaches can be used to determine the stopping rule, they are: least CV cross-validation approach and least AIC corrected approach. We define the stopping rule using approach argument.
-* The result shows that the recommended bandwidth is 971.3398 metres. 
+* The result shows that the recommended bandwidth is 286.0551 meters with least CV score 9.543952e+12. 
 
 #### GWModel method - fixed bandwith
 ```{r eval=FALSE}
-gwr.fixed <- gwr.basic(formula = SELLING_PRICE ~ AREA_SQM + AGE  + PROX_CBD + PROX_CHILDCARE + PROX_ELDERLYCARE  + PROX_URA_GROWTH_AREA + PROX_MRT  + PROX_PARK  + PROX_PRIMARY_SCH + PROX_SHOPPING_MALL  + PROX_BUS_STOP  + NO_Of_UNITS + FAMILY_FRIENDLY + FREEHOLD, data=condo_resale.sp, bw=bw.fixed, kernel = 'gaussian', longlat = FALSE)
+gwr.fixed <- gwr.basic(formula = resale_price ~ storey_range + floor_area_sqm  + remaining_lease + PROX_MRT + PROX_PARK + PROX_SM + PROX_CA, data=flat_sp, bw=bw.fixed, kernel = 'gaussian', longlat = FALSE)
 
 gwr.fixed
 ```
+![](data/img/gwrf1.jpg)
 
-* The report shows that the adjusted r-square of the gwr is 0.8430 which is significantly better than the globel multiple linear regression model of 0.6472.
+![](data/img/gwrf2.jpg)
 
-```{r}
+![](data/img/gwrf3.jpg)
 
+* The report shows that the adjusted r-square of the gwr is 0.9637 which is significantly better than the global multiple linear regression model of 0.7106.
+
+## b. Building Adaptive Bandwidth GWR Model
+#### Computing the adaptive bandwidth
+```{r eval=FALSE}
+bw.adaptive <- bw.gwr(formula = resale_price ~ storey_range + floor_area_sqm  + remaining_lease + PROX_MRT + PROX_PARK + PROX_SM + PROX_CA, data=flat_sp, approach="CV", kernel="gaussian", adaptive=TRUE, longlat=FALSE)
 ```
 
-```{r}
+![](data/img/ab.jpg)
 
+* The result shows that the 38 is the recommended data points to be used with least CV score.
+
+#### Constructing the adaptive bandwidth gwr model
+```{r eval=FALSE}
+gwr.adaptive <- gwr.basic(formula = resale_price ~ storey_range + floor_area_sqm  + remaining_lease + PROX_MRT + PROX_PARK + PROX_SM + PROX_CA, data=flat_sp, bw=bw.adaptive, kernel = 'gaussian', adaptive=TRUE, longlat = FALSE)
+
+gwr.adaptive
 ```
 
-```{r}
+![](data/img/gwra1.JPG)
 
+![](data/img/gwra2.JPG)
+
+![](data/img/gwra3.JPG)
+
+* The report shows that the adjusted r-square of the gwr is 0.9611 which is significantly better than the global multiple linear regression model of 0.7106.
+
+* Since the adjusted r-square of the gwr for fixed bandwidth is higher adaptive bandwidth, we will use the gwr for fixed bandwidth for further analysis.
+
+# 9. Visualising GWR Output
+
+* In addition to regression residuals, the output feature class table includes fields for observed and predicted y values, condition number (cond), Local R2, residuals, and explanatory variable coefficients and standard errors:
+  + Condition Number: this diagnostic evaluates local collinearity. In the presence of strong local collinearity, results become unstable. Results associated with condition numbers larger than 30, may be unreliable.
+  + Local R2: these values range between 0.0 and 1.0 and indicate how well the local regression model fits observed y values. Very low values indicate the local model is performing poorly. Mapping the Local R2 values to see where GWR predicts well and where it predicts poorly may provide clues about important variables that may be missing from the regression model.
+  + Predicted: these are the estimated (or fitted) y values 3. computed by GWR.
+  + Residuals: to obtain the residual values, the fitted y values are subtracted from the observed y values. Standardized residuals have a mean of zero and a standard deviation of 1. A cold-to-hot rendered map of standardized residuals can be produce by using these values.
+  + Coefficient Standard Error: these values measure the reliability of each coefficient estimate. Confidence in those estimates are higher when standard errors are small in relation to the actual coefficient values. Large standard errors may indicate problems with local collinearity.
+* They are all stored in a SpatialPointsDataFrame or SpatialPolygonsDataFrame object integrated with fit.points, GWR coefficient estimates, y value, predicted values, coefficient standard errors and t-values in its “data” slot in an object called SDF of the output list.
+
+## a. Converting SDF into sf data.frame
+
+```{r eval=FALSE}
+flat_sf.fixed <- st_as_sf(gwr.fixed$SDF) %>%
+  st_transform(crs=3414)
+
+flat_sf.fixed.svy21 <- st_transform(flat_sf.fixed, 3414)
+flat_sf.fixed.svy21  
 ```
 
-```{r}
+![](data/img/ffs1.jpg)
+![](data/img/ffs2.jpg)
+![](data/img/ffs3.jpg)
 
+```{r eval=FALSE}
+gwr.fixed.output <- as.data.frame(gwr.fixed$SDF)
+flat_sf.fixed <- cbind(flat_res_sf, as.matrix(gwr.fixed.output))
+
+glimpse(flat_sf.fixed)
 ```
 
-```{r}
+![](data/img/ff1.jpg)
+![](data/img/ff2.jpg)
 
+```{r eval=FALSE}
+summary(gwr.fixed$SDF$yhat)
 ```
 
-```{r}
+![](data/img/gfsy.jpg)
 
+## b. Visualising local R2
+```{r eval=FALSE}
+tmap_mode("view")
+tm_shape(mpsz)+
+  tm_polygons(alpha = 0.1) +
+tm_shape(flat_sf.fixed) +  
+  tm_dots(col = "Local_R2",
+          border.col = "gray60",
+          border.lwd = 1) +
+  tm_view(set.zoom.limits = c(11,14))
+
+tmap_mode("plot")
 ```
 
-```{r}
+![](data/img/view.jpg)
 
+#### By URA Plannign Region
+```{r}
+unique(mpsz$REGION_N)
 ```
 
-```{r}
+```{r eval=FALSE}
+CR <- tm_shape(mpsz[mpsz$REGION_N=="CENTRAL REGION", ])+
+        tm_polygons()+
+      tm_shape(flat_sf.fixed) + 
+        tm_bubbles(col = "Local_R2",
+                   size = 0.15,
+                   border.col = "gray60",
+                   border.lwd = 1)
 
+WR <- tm_shape(mpsz[mpsz$REGION_N=="WEST REGION", ])+
+        tm_polygons()+
+      tm_shape(flat_sf.fixed) + 
+        tm_bubbles(col = "Local_R2",
+                   size = 0.15,
+                   border.col = "gray60",
+                   border.lwd = 1)
+
+ER <- tm_shape(mpsz[mpsz$REGION_N=="EAST REGION", ])+
+        tm_polygons()+
+      tm_shape(flat_sf.fixed) + 
+        tm_bubbles(col = "Local_R2",
+                   size = 0.15,
+                   border.col = "gray60",
+                   border.lwd = 1)
+
+NER <- tm_shape(mpsz[mpsz$REGION_N=="NORTH-EAST REGION", ])+
+        tm_polygons()+
+       tm_shape(flat_sf.fixed) + 
+        tm_bubbles(col = "Local_R2",
+                   size = 0.15,
+                   border.col = "gray60",
+                   border.lwd = 1)
+
+NR <- tm_shape(mpsz[mpsz$REGION_N=="NORTH REGION", ])+
+        tm_polygons()+
+      tm_shape(flat_sf.fixed) + 
+        tm_bubbles(col = "Local_R2",
+                   size = 0.15,
+                   border.col = "gray60",
+                   border.lwd = 1)
+
+tmap_arrange(CR, WR, ER, NER, NR, ncol=2, nrow=3)
 ```
 
-```{r}
+![](data/img/tmplot.jpg)
 
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-
-
-
-
-
-
+* From all these maps we can see how well the local regression model fits observed y values. Most of the values are nearer to 1 indicates the local model is performing very well. In all regions the GWR predicts well. If to really tell the differences, the GWR in CENTRAL REGION, WEST REGION and NORTH REGION performs better than the GWR in EAST REGION and NORTH-EAST REGION as there seem to be very little flat locations with value nearer to 0. For EAST REGION and NORTH-EAST REGION the flat locations with value nearer to 0 seems resembles clusters, that means there may be important variables that may be missing from the regression model.
 
 
 
