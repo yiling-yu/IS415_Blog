@@ -1,0 +1,3010 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Project_SPPA</title>
+
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-11-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-11-13"/>
+  <meta name="article:author" content="Yu Yiling"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Project_SPPA"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Project_SPPA"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Project_SPPA"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Yu Yiling"]},{"type":"character","attributes":{},"value":["https://www.linkedin.com/in/yiling-yu/"]}]}]},{"type":"character","attributes":{},"value":["11-13-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_depth","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/capture2.JPG","data/capture3.JPG","data/capture4.JPG","data/capture8.JPG","data/CC/community-clubs-geojson.geojson","data/CC/community-clubs-kml.kml","data/CC/metadata-community-clubs.txt","data/gym/gyms-sg-geojson.geojson","data/gym/gyms-sg-kml.kml","data/gym/metadata-gymssg.txt","data/kfc_prepared.csv","data/mc_prepared.csv","data/MRT_prepared.csv","data/no_use_raw_data/KFC.csv","data/no_use_raw_data/MC.csv","data/no_use_raw_data/MRT/master-plan-2019-rail-station-layer-geojson.geojson","data/no_use_raw_data/MRT/master-plan-2019-rail-station-layer-kml.kml","data/no_use_raw_data/MRT/metadata-master-plan-2019-rail-station-layer.txt","data/sg/CostalOutline.dbf","data/sg/CostalOutline.prj","data/sg/CostalOutline.sbn","data/sg/CostalOutline.sbx","data/sg/CostalOutline.shp","data/sg/CostalOutline.shx","projectspa_files/anchor-4.2.2/anchor.min.js","projectspa_files/bowser-1.9.3/bowser.min.js","projectspa_files/distill-2.2.21/template.v2.js","projectspa_files/figure-html5/unnamed-chunk-23-1.png","projectspa_files/figure-html5/unnamed-chunk-23-2.png","projectspa_files/figure-html5/unnamed-chunk-23-3.png","projectspa_files/figure-html5/unnamed-chunk-23-4.png","projectspa_files/figure-html5/unnamed-chunk-23-5.png","projectspa_files/figure-html5/unnamed-chunk-29-1.png","projectspa_files/figure-html5/unnamed-chunk-31-1.png","projectspa_files/figure-html5/unnamed-chunk-31-2.png","projectspa_files/figure-html5/unnamed-chunk-31-3.png","projectspa_files/figure-html5/unnamed-chunk-31-4.png","projectspa_files/figure-html5/unnamed-chunk-31-5.png","projectspa_files/figure-html5/unnamed-chunk-35-1.png","projectspa_files/figure-html5/unnamed-chunk-35-10.png","projectspa_files/figure-html5/unnamed-chunk-35-2.png","projectspa_files/figure-html5/unnamed-chunk-35-3.png","projectspa_files/figure-html5/unnamed-chunk-35-4.png","projectspa_files/figure-html5/unnamed-chunk-35-5.png","projectspa_files/figure-html5/unnamed-chunk-35-6.png","projectspa_files/figure-html5/unnamed-chunk-35-7.png","projectspa_files/figure-html5/unnamed-chunk-35-8.png","projectspa_files/figure-html5/unnamed-chunk-35-9.png","projectspa_files/figure-html5/unnamed-chunk-38-1.png","projectspa_files/figure-html5/unnamed-chunk-38-10.png","projectspa_files/figure-html5/unnamed-chunk-38-2.png","projectspa_files/figure-html5/unnamed-chunk-38-3.png","projectspa_files/figure-html5/unnamed-chunk-38-4.png","projectspa_files/figure-html5/unnamed-chunk-38-5.png","projectspa_files/figure-html5/unnamed-chunk-38-6.png","projectspa_files/figure-html5/unnamed-chunk-38-7.png","projectspa_files/figure-html5/unnamed-chunk-38-8.png","projectspa_files/figure-html5/unnamed-chunk-38-9.png","projectspa_files/figure-html5/unnamed-chunk-39-1.png","projectspa_files/figure-html5/unnamed-chunk-39-2.png","projectspa_files/figure-html5/unnamed-chunk-39-3.png","projectspa_files/figure-html5/unnamed-chunk-39-4.png","projectspa_files/figure-html5/unnamed-chunk-39-5.png","projectspa_files/figure-html5/unnamed-chunk-40-1.png","projectspa_files/figure-html5/unnamed-chunk-41-1.png","projectspa_files/figure-html5/unnamed-chunk-42-1.png","projectspa_files/figure-html5/unnamed-chunk-42-2.png","projectspa_files/figure-html5/unnamed-chunk-44-1.png","projectspa_files/figure-html5/unnamed-chunk-44-2.png","projectspa_files/figure-html5/unnamed-chunk-45-1.png","projectspa_files/figure-html5/unnamed-chunk-45-2.png","projectspa_files/figure-html5/unnamed-chunk-46-1.png","projectspa_files/figure-html5/unnamed-chunk-46-2.png","projectspa_files/figure-html5/unnamed-chunk-47-1.png","projectspa_files/figure-html5/unnamed-chunk-47-2.png","projectspa_files/header-attrs-2.10/header-attrs.js","projectspa_files/jquery-1.11.3/jquery.min.js","projectspa_files/popper-2.6.0/popper.min.js","projectspa_files/tippy-6.2.7/tippy-bundle.umd.min.js","projectspa_files/tippy-6.2.7/tippy-light-border.css","projectspa_files/tippy-6.2.7/tippy.css","projectspa_files/tippy-6.2.7/tippy.umd.min.js","projectspa_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="projectspa_files/header-attrs-2.10/header-attrs.js"></script>
+  <script src="projectspa_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="projectspa_files/popper-2.6.0/popper.min.js"></script>
+  <link href="projectspa_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="projectspa_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="projectspa_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="projectspa_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="projectspa_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="projectspa_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="projectspa_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Project_SPPA","authors":[{"author":"Yu Yiling","authorURL":"https://www.linkedin.com/in/yiling-yu/","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-11-13T00:00:00.000+08:00","citationText":"Yiling, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Project_SPPA</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+<div class="d-byline">
+  Yu Yiling <a href="https://www.linkedin.com/in/yiling-yu/" class="uri">https://www.linkedin.com/in/yiling-yu/</a> 
+  
+<br/>11-13-2021
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#goal">Goal</a></li>
+<li><a href="#install-packages">1. Install packages</a></li>
+<li><a href="#prepare-data-not-important">2. Prepare data (not important)</a>
+<ul>
+<li><a href="#mc">MC</a></li>
+<li><a href="#kfc">KFC</a></li>
+<li><a href="#mrt">MRT</a></li>
+</ul></li>
+<li><a href="#import-and-transform-data">3. Import and transform data</a>
+<ul>
+<li><a href="#have-a-glance-at-the-point-maps">Have a glance at the point maps</a></li>
+</ul></li>
+<li><a href="#geospatial-data-wrangling">4. Geospatial data wrangling</a>
+<ul>
+<li><a href="#a.-converting-sf-data-frames-to-spatial-class">a. Converting sf data frames to Spatial class</a></li>
+<li><a href="#b.-converting-the-spatial-class-into-generic-sp-object">b. Converting the Spatial class into generic sp object</a></li>
+<li><a href="#c.-converting-the-generic-sp-object-into-spatstats-ppp-object">c. Converting the generic sp object into spatstat’s ppp object</a></li>
+<li><a href="#d.-handling-duplicate-points">d. Handling duplicate points</a></li>
+<li><a href="#e.-creating-owin-object">e. Creating owin object</a></li>
+<li><a href="#f.-combining-point-events-object-and-owin-object">f. Combining point events object and owin object</a></li>
+</ul></li>
+<li><a href="#first-order-spatial-point-patterns-analysis-deriving-kernel-density-estimation-kde-layer-for-visualising-and-exploring-the-intensity-of-point-processes">5. First-order Spatial Point Patterns Analysis: deriving kernel density estimation (KDE) layer for visualising and exploring the intensity of point processes</a>
+<ul>
+<li><a href="#a.-computing-kernel-density-estimation-using-automatic-bandwidth-selection-method">a. Computing kernel density estimation using automatic bandwidth selection method</a></li>
+<li><a href="#b.-computing-kernel-density-estimation-using-fixedadaptive-bandwidth-method">b. Computing kernel density estimation using fixed/adaptive bandwidth method</a></li>
+<li><a href="#c.-convert-kde-output-into-raster-and-display-the-kernel-density-maps-on-openstreetmap-of-singapore">c. Convert KDE output into raster and display the kernel density maps on openstreetmap of Singapore</a></li>
+</ul></li>
+<li><a href="#second-order-spatial-point-patterns-analysis-g-function-and-f-function">6. Second-order Spatial Point Patterns Analysis: G-Function and F-Function</a>
+<ul>
+<li><a href="#a.-analysing-spatial-point-process-using-g-function">a. Analysing Spatial Point Process Using G-Function</a></li>
+<li><a href="#b.-analysing-spatial-point-process-using-f-function">b. Analysing Spatial Point Process Using F-Function</a></li>
+</ul></li>
+<li><a href="#second-order-spatial-point-patterns-analysis-multi-tpye-point-patterns-analysis-cross-l-function">7. Second-order Spatial Point Patterns Analysis: Multi-tpye Point Patterns Analysis: Cross L-Function</a>
+<ul>
+<li><a href="#prepare-merged-ppp-objects-by-using-superimpose">Prepare merged ppp objects by using superimpose()</a></li>
+<li><a href="#note">Note:</a></li>
+<li><a href="#i.-mc_vs_kfc">i. mc_vs_kfc</a></li>
+<li><a href="#ii.-mc_vs_mrt">ii. mc_vs_mrt</a></li>
+<li><a href="#iii.-mc_vs_gym">iii. mc_vs_gym</a></li>
+<li><a href="#iv.-mc_vs_cc">iv. mc_vs_cc</a></li>
+<li><a href="#summary-of-cross-l-function">Summary of Cross L-Function</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="goal">Goal</h1>
+<ul>
+<li><p>Conduct Spatial Point Patterns Analysis to Uncover whether McDonald’s outlets in Singapore are distributed randomly and if not, what are the factors that affect the outlets’ location</p></li>
+<li><p>factors:</p>
+<ul>
+<li>KFCs</li>
+<li>Community Clubs</li>
+<li>Gyms</li>
+<li>MRT</li>
+</ul></li>
+<li><p>Kernel Density Estimation</p>
+<ul>
+<li>Visualise and explore the intensity of points</li>
+</ul></li>
+<li><p>G-Function and F-Function</p>
+<ul>
+<li>Reveal whether points resemble clustered pattern, regular pattern or are distributed randomly</li>
+</ul></li>
+<li><p>Cross L-Function (Cross K-fuction)</p>
+<ul>
+<li>Uncover whether target point locations are dependent on other points’ locations</li>
+</ul></li>
+</ul>
+<h1 id="install-packages">1. Install packages</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>packages</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'maptools'</span>, <span class='st'>'olsrr'</span>, <span class='st'>'corrplot'</span>, <span class='st'>"ggpubr"</span>, <span class='st'>'sf'</span>, <span class='st'>"spdep"</span>, <span class='st'>'GWmodel'</span>, <span class='st'>'tmap'</span>, <span class='st'>'tidyverse'</span>, <span class='st'>'httr'</span>, <span class='st'>'jsonlite'</span>, <span class='st'>'data.table'</span>, <span class='st'>'geosphere'</span>, <span class='st'>'raster'</span>, <span class='st'>'spatstat'</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>p</span> <span class='kw'>in</span> <span class='va'>packages</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>p</span>, character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>p</span>,character.only <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h1 id="prepare-data-not-important">2. Prepare data (not important)</h1>
+<h2 id="mc">MC</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/MC.csv"</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>mc</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"https://developers.onemap.sg/commonapi/search?"</span>
+<span class='va'>getCOOR</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>raw_response</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></span><span class='op'>(</span><span class='va'>url</span>, 
+                             query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>searchVal <span class='op'>=</span> <span class='va'>object</span>, 
+                                          returnGeom <span class='op'>=</span> <span class='st'>"Y"</span>,
+                                          getAddrDetails <span class='op'>=</span> <span class='st'>"Y"</span><span class='op'>)</span><span class='op'>)</span>
+    
+    <span class='va'>text_response</span> <span class='op'>&lt;-</span> <span class='fu'>content</span><span class='op'>(</span><span class='va'>raw_response</span>, as <span class='op'>=</span> <span class='st'>"text"</span>, encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span>
+    <span class='va'>json_response</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>text_response</span>, flatten <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>mc</span><span class='op'>$</span><span class='va'>Postcode</span>, <span class='va'>getCOOR</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='va'>`[[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'results'</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='va'>results</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span>
+
+<span class='va'>mc_df</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>new_results</span><span class='op'>)</span>
+
+<span class='va'>mc_df</span> <span class='op'>&lt;-</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>mc_df</span>, <span class='va'>POSTAL</span>, .keep_all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mc_df</span>,<span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_prepared</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>mc</span>, <span class='va'>mc_df</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Postcode"</span> <span class='op'>=</span> <span class='st'>"POSTAL"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>mc_prepared</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_prepared</span> <span class='op'>&lt;-</span> <span class='va'>mc_prepared</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Name"</span>, <span class='st'>"Postcode"</span>,<span class='st'>"LATITUDE"</span>,<span class='st'>"LONGITUDE"</span><span class='op'>)</span><span class='op'>]</span> 
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>which_nas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>mc_prepared</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span>
+
+<span class='va'>mc_prepared</span> <span class='op'>&lt;-</span> <span class='va'>mc_prepared</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>mc_prepared</span>,<span class='st'>"mc_prepared.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="kfc">KFC</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc</span> <span class='op'>=</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/KFC.csv"</span><span class='op'>)</span>
+<span class='fu'>glimpse</span><span class='op'>(</span><span class='va'>kfc</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>url</span> <span class='op'>&lt;-</span> <span class='st'>"https://developers.onemap.sg/commonapi/search?"</span>
+<span class='va'>getCOOR</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>object</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>raw_response</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></span><span class='op'>(</span><span class='va'>url</span>, 
+                             query <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>searchVal <span class='op'>=</span> <span class='va'>object</span>, 
+                                          returnGeom <span class='op'>=</span> <span class='st'>"Y"</span>,
+                                          getAddrDetails <span class='op'>=</span> <span class='st'>"Y"</span><span class='op'>)</span><span class='op'>)</span>
+    
+    <span class='va'>text_response</span> <span class='op'>&lt;-</span> <span class='fu'>content</span><span class='op'>(</span><span class='va'>raw_response</span>, as <span class='op'>=</span> <span class='st'>"text"</span>, encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span><span class='op'>)</span>
+    <span class='va'>json_response</span> <span class='op'>&lt;-</span> <span class='fu'>jsonlite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='va'>text_response</span>, flatten <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>kfc</span><span class='op'>$</span><span class='va'>Postcode</span>, <span class='va'>getCOOR</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>results</span>, <span class='va'>`[[`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'results'</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>new_results</span> <span class='op'>&lt;-</span><span class='va'>results</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span><span class='op'>&gt;</span><span class='fl'>1</span><span class='op'>]</span>
+
+<span class='va'>kfc_df</span> <span class='op'>&lt;-</span> <span class='fu'>bind_rows</span><span class='op'>(</span><span class='va'>new_results</span><span class='op'>)</span>
+
+<span class='va'>kfc_df</span> <span class='op'>&lt;-</span> <span class='fu'>distinct</span><span class='op'>(</span><span class='va'>kfc_df</span>, <span class='va'>POSTAL</span>, .keep_all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>kfc_df</span>,<span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc_prepared</span> <span class='op'>&lt;-</span> <span class='fu'>left_join</span><span class='op'>(</span><span class='va'>kfc</span>, <span class='va'>kfc_df</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Postcode"</span> <span class='op'>=</span> <span class='st'>"POSTAL"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>kfc_prepared</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc_prepared</span> <span class='op'>&lt;-</span> <span class='va'>kfc_prepared</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Name"</span>, <span class='st'>"Postcode"</span>,<span class='st'>"LATITUDE"</span>,<span class='st'>"LONGITUDE"</span><span class='op'>)</span><span class='op'>]</span> 
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>which_nas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>kfc_prepared</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>X</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>which_nas</span><span class='op'>)</span>
+
+<span class='va'>kfc_prepared</span> <span class='op'>&lt;-</span> <span class='va'>kfc_prepared</span> <span class='op'>%&gt;%</span> <span class='fu'>drop_na</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>kfc_prepared</span>,<span class='st'>"kfc_prepared.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="mrt">MRT</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MRT_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/MRT/master-plan-2019-rail-station-layer-geojson.geojson"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#get centroids</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span> <span class='op'>&lt;-</span> <span class='fu'>st_centroid</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>geometry</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>st_geometry</span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'>#transform centroids</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span>, <span class='fl'>4326</span><span class='op'>)</span>
+<span class='co'>#separate centroids into longitude and latitude and put into original dataframe</span>
+<span class='va'>MRT_sf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>rbind</span>, <span class='fu'>st_geometry</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>centroids</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lon"</span>, <span class='st'>"lat"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>LONGITUDE</span> <span class='op'>&lt;-</span> <span class='va'>MRT_sf2</span><span class='op'>$</span><span class='va'>lon</span>
+<span class='va'>MRT_sf</span><span class='op'>$</span><span class='va'>LATITUDE</span> <span class='op'>&lt;-</span> <span class='va'>MRT_sf2</span><span class='op'>$</span><span class='va'>lat</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>MRT_sf</span> <span class='op'>&lt;-</span> <span class='va'>MRT_sf</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Name"</span>, <span class='st'>"LATITUDE"</span>,<span class='st'>"LONGITUDE"</span><span class='op'>)</span><span class='op'>]</span> 
+<span class='fu'>st_geometry</span><span class='op'>(</span><span class='va'>MRT_sf</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.csv</a></span><span class='op'>(</span><span class='va'>MRT_sf</span>,<span class='st'>"MRT_prepared.csv"</span>, row.names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="import-and-transform-data">3. Import and transform data</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sg_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span>dsn <span class='op'>=</span> <span class='st'>"data/sg"</span>, layer<span class='op'>=</span><span class='st'>"CostalOutline"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `CostalOutline&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-13-projectspa\data\sg&#39; using driver `ESRI Shapefile&#39;
+Simple feature collection with 60 features and 4 fields
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: 2663.926 ymin: 16357.98 xmax: 56047.79 ymax: 50244.03
+Projected CRS: SVY21</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/kfc_prepared.csv"</span><span class='op'>)</span>
+<span class='va'>mrt</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/MRT_prepared.csv"</span><span class='op'>)</span>
+<span class='va'>mc</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='st'>"data/mc_prepared.csv"</span><span class='op'>)</span>
+
+<span class='va'>gym_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/gym/gyms-sg-geojson.geojson"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs <span class='op'>=</span> <span class='fl'>3414</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `gyms-sg-geojson&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-13-projectspa\data\gym\gyms-sg-geojson.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 159 features and 2 fields
+Geometry type: POINT
+Dimension:     XYZ
+Bounding box:  xmin: 103.6938 ymin: 1.262063 xmax: 103.9518 ymax: 1.435078
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cc_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_read</span><span class='op'>(</span><span class='st'>"data/CC/community-clubs-geojson.geojson"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs <span class='op'>=</span> <span class='fl'>3414</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Reading layer `community-clubs-geojson&#39; from data source `C:\yiling-yu\IS415_Blog\_posts\2021-11-13-projectspa\data\CC\community-clubs-geojson.geojson&#39; using driver `GeoJSON&#39;
+Simple feature collection with 120 features and 2 fields
+Geometry type: POINT
+Dimension:     XYZ
+Bounding box:  xmin: 103.6923 ymin: 1.274863 xmax: 103.9592 ymax: 1.451682
+z_range:       zmin: 0 zmax: 0
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sg_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_set_crs</span><span class='op'>(</span><span class='va'>sg_sf</span>, <span class='fl'>3414</span><span class='op'>)</span>
+
+<span class='va'>kfc_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_as_sf</span><span class='op'>(</span><span class='va'>kfc</span>,
+                   coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LONGITUDE"</span>, <span class='st'>"LATITUDE"</span><span class='op'>)</span>,
+                   crs<span class='op'>=</span><span class='fl'>4326</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs <span class='op'>=</span> <span class='fl'>3414</span><span class='op'>)</span>
+
+<span class='va'>mrt_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_as_sf</span><span class='op'>(</span><span class='va'>mrt</span>, 
+                       coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LONGITUDE"</span>, <span class='st'>"LATITUDE"</span><span class='op'>)</span>,
+                       crs<span class='op'>=</span><span class='fl'>4326</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs <span class='op'>=</span> <span class='fl'>3414</span><span class='op'>)</span>
+
+<span class='va'>mc_sf</span> <span class='op'>&lt;-</span> <span class='fu'>st_as_sf</span><span class='op'>(</span><span class='va'>mc</span>, 
+                       coords <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"LONGITUDE"</span>, <span class='st'>"LATITUDE"</span><span class='op'>)</span>,
+                       crs<span class='op'>=</span><span class='fl'>4326</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>st_transform</span><span class='op'>(</span>crs <span class='op'>=</span> <span class='fl'>3414</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>kfc_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>mrt_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>mc_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>gym_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>cc_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>st_crs</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Coordinate Reference System:
+  User input: EPSG:3414 
+  wkt:
+PROJCRS[&quot;SVY21 / Singapore TM&quot;,
+    BASEGEOGCRS[&quot;SVY21&quot;,
+        DATUM[&quot;SVY21&quot;,
+            ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+                LENGTHUNIT[&quot;metre&quot;,1]]],
+        PRIMEM[&quot;Greenwich&quot;,0,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+        ID[&quot;EPSG&quot;,4757]],
+    CONVERSION[&quot;Singapore Transverse Mercator&quot;,
+        METHOD[&quot;Transverse Mercator&quot;,
+            ID[&quot;EPSG&quot;,9807]],
+        PARAMETER[&quot;Latitude of natural origin&quot;,1.36666666666667,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8801]],
+        PARAMETER[&quot;Longitude of natural origin&quot;,103.833333333333,
+            ANGLEUNIT[&quot;degree&quot;,0.0174532925199433],
+            ID[&quot;EPSG&quot;,8802]],
+        PARAMETER[&quot;Scale factor at natural origin&quot;,1,
+            SCALEUNIT[&quot;unity&quot;,1],
+            ID[&quot;EPSG&quot;,8805]],
+        PARAMETER[&quot;False easting&quot;,28001.642,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8806]],
+        PARAMETER[&quot;False northing&quot;,38744.572,
+            LENGTHUNIT[&quot;metre&quot;,1],
+            ID[&quot;EPSG&quot;,8807]]],
+    CS[Cartesian,2],
+        AXIS[&quot;northing (N)&quot;,north,
+            ORDER[1],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+        AXIS[&quot;easting (E)&quot;,east,
+            ORDER[2],
+            LENGTHUNIT[&quot;metre&quot;,1]],
+    USAGE[
+        SCOPE[&quot;Cadastre, engineering survey, topographic mapping.&quot;],
+        AREA[&quot;Singapore - onshore and offshore.&quot;],
+        BBOX[1.13,103.59,1.47,104.07]],
+    ID[&quot;EPSG&quot;,3414]]</code></pre>
+</div>
+<h2 id="have-a-glance-at-the-point-maps">Have a glance at the point maps</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kfc_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_dots</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.4</span>,
+          col<span class='op'>=</span><span class='st'>"blue"</span>,
+          size<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-23-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>mrt_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_dots</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.4</span>,
+          col<span class='op'>=</span><span class='st'>"red"</span>,
+          size<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-23-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>mc_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_dots</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.4</span>,
+          col<span class='op'>=</span><span class='st'>"red"</span>,
+          size<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-23-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>gym_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_dots</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.4</span>,
+          col<span class='op'>=</span><span class='st'>"red"</span>,
+          size<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-23-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_polygons</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>cc_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_dots</span><span class='op'>(</span>alpha<span class='op'>=</span><span class='fl'>0.4</span>,
+          col<span class='op'>=</span><span class='st'>"red"</span>,
+          size<span class='op'>=</span><span class='fl'>0.05</span><span class='op'>)</span> <span class='op'>+</span>
+
+
+<span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-23-5.png" width="624" /></p>
+</div>
+<h1 id="geospatial-data-wrangling">4. Geospatial data wrangling</h1>
+<h2 id="a.-converting-sf-data-frames-to-spatial-class">a. Converting sf data frames to Spatial class</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>kfc_sf</span><span class='op'>)</span>
+<span class='va'>mrt</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>mrt_sf</span><span class='op'>)</span>
+<span class='va'>mc</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>mc_sf</span><span class='op'>)</span>
+<span class='va'>gym</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>gym_sf</span><span class='op'>)</span>
+<span class='va'>cc</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='va'>cc_sf</span><span class='op'>)</span>
+<span class='va'>sg</span> <span class='op'>&lt;-</span> <span class='fu'>as_Spatial</span><span class='op'>(</span><span class='fu'>st_zm</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="b.-converting-the-spatial-class-into-generic-sp-object">b. Converting the Spatial class into generic sp object</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>kfc</span>, <span class='st'>"SpatialPoints"</span><span class='op'>)</span>
+<span class='va'>mrt_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>mrt</span>, <span class='st'>"SpatialPoints"</span><span class='op'>)</span>
+<span class='va'>mc_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>mc</span>, <span class='st'>"SpatialPoints"</span><span class='op'>)</span>
+<span class='va'>gym_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>gym</span>, <span class='st'>"SpatialPoints"</span><span class='op'>)</span>
+<span class='va'>cc_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>cc</span>, <span class='st'>"SpatialPoints"</span><span class='op'>)</span>
+<span class='va'>sg_sp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>sg</span>, <span class='st'>"SpatialPolygons"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="c.-converting-the-generic-sp-object-into-spatstats-ppp-object">c. Converting the generic sp object into spatstat’s ppp object</h2>
+<ul>
+<li>spatstat requires the analytical data in ppp object form</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc_ppp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>kfc_sp</span>, <span class='st'>"ppp"</span><span class='op'>)</span>
+<span class='va'>mrt_ppp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>mrt_sp</span>, <span class='st'>"ppp"</span><span class='op'>)</span>
+<span class='va'>mc_ppp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>mc_sp</span>, <span class='st'>"ppp"</span><span class='op'>)</span>
+<span class='va'>gym_ppp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>gym_sp</span>, <span class='st'>"ppp"</span><span class='op'>)</span>
+<span class='va'>cc_ppp</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>cc_sp</span>, <span class='st'>"ppp"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>kfc_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Planar point pattern:  83 points
+Average intensity 1.174402e-07 points per square unit
+
+*Pattern contains duplicated points*
+
+Coordinates are given to 3 decimal places
+i.e. rounded to the nearest multiple of 0.001 units
+
+Window: rectangle = [10745.68, 45446.91] x [27393.65, 47760.16] units
+                    (34700 x 20370 units)
+Window area = 706743000 square units</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mrt_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Planar point pattern:  257 points
+Average intensity 2.883393e-07 points per square unit
+
+Coordinates are given to 3 decimal places
+i.e. rounded to the nearest multiple of 0.001 units
+
+Window: rectangle = [6124.14, 46940.7] x [26019.04, 47856.04] units
+                    (40820 x 21840 units)
+Window area = 891311000 square units</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mc_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Planar point pattern:  134 points
+Average intensity 1.97078e-07 points per square unit
+
+*Pattern contains duplicated points*
+
+Coordinates are given to 3 decimal places
+i.e. rounded to the nearest multiple of 0.001 units
+
+Window: rectangle = [10745.68, 42613.65] x [26424.19, 47760.16] units
+                    (31870 x 21340 units)
+Window area = 679934000 square units</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gym_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Planar point pattern:  159 points
+Average intensity 2.893984e-07 points per square unit
+
+*Pattern contains duplicated points*
+
+Coordinates are given to 3 decimal places
+i.e. rounded to the nearest multiple of 0.001 units
+
+Window: rectangle = [12469.6, 41188.04] x [27178.08, 46309.19] units
+                    (28720 x 19130 units)
+Window area = 549416000 square units</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>cc_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Planar point pattern:  120 points
+Average intensity 2.066488e-07 points per square unit
+
+*Pattern contains duplicated points*
+
+Coordinates are given to 3 decimal places
+i.e. rounded to the nearest multiple of 0.001 units
+
+Window: rectangle = [12308.4, 42008.87] x [28593.37, 48145.09] units
+                    (29700 x 19550 units)
+Window area = 580695000 square units</code></pre>
+</div>
+<h2 id="d.-handling-duplicate-points">d. Handling duplicate points</h2>
+<ul>
+<li>To handle duplicate: jittering, which will add a small perturbation to the duplicate points so that they do not occupy the exact same space.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfc_ppp_jit</span> <span class='op'>&lt;-</span> <span class='fu'>rjitter</span><span class='op'>(</span><span class='va'>kfc_ppp</span>, 
+                             retry<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                             nsim<span class='op'>=</span><span class='fl'>1</span>, 
+                             drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span><span class='op'>(</span><span class='va'>kfc_ppp_jit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mrt_ppp_jit</span> <span class='op'>&lt;-</span> <span class='fu'>rjitter</span><span class='op'>(</span><span class='va'>mrt_ppp</span>, 
+                             retry<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                             nsim<span class='op'>=</span><span class='fl'>1</span>, 
+                             drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span><span class='op'>(</span><span class='va'>mrt_ppp_jit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_ppp_jit</span> <span class='op'>&lt;-</span> <span class='fu'>rjitter</span><span class='op'>(</span><span class='va'>mc_ppp</span>, 
+                             retry<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                             nsim<span class='op'>=</span><span class='fl'>1</span>, 
+                             drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span><span class='op'>(</span><span class='va'>mc_ppp_jit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gym_ppp_jit</span> <span class='op'>&lt;-</span> <span class='fu'>rjitter</span><span class='op'>(</span><span class='va'>gym_ppp</span>, 
+                             retry<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                             nsim<span class='op'>=</span><span class='fl'>1</span>, 
+                             drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span><span class='op'>(</span><span class='va'>gym_ppp_jit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cc_ppp_jit</span> <span class='op'>&lt;-</span> <span class='fu'>rjitter</span><span class='op'>(</span><span class='va'>cc_ppp</span>, 
+                             retry<span class='op'>=</span><span class='cn'>TRUE</span>, 
+                             nsim<span class='op'>=</span><span class='fl'>1</span>, 
+                             drop<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/duplicated.html'>duplicated</a></span><span class='op'>(</span><span class='va'>cc_ppp_jit</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<h2 id="e.-creating-owin-object">e. Creating owin object</h2>
+<ul>
+<li>When analysing spatial point patterns, it is a good practice to confine the analysis with a geographical area like Singapore boundary. In spatstat, an object called owin is specially designed to represent this polygonal region.</li>
+</ul>
+<h4 id="covert-sg-spatialpolygon-object-into-owin-object-of-spatstat">covert sg spatialpolygon object into owin object of spatstat</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sg_owin</span> <span class='op'>&lt;-</span> <span class='fu'>as</span><span class='op'>(</span><span class='va'>sg_sp</span>, <span class='st'>"owin"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>sg_owin</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-29-1.png" width="624" /></p>
+</div>
+<h2 id="f.-combining-point-events-object-and-owin-object">f. Combining point events object and owin object</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kfcSG_ppp</span> <span class='op'>=</span> <span class='va'>kfc_ppp_jit</span><span class='op'>[</span><span class='va'>sg_owin</span><span class='op'>]</span>
+<span class='va'>mrtSG_ppp</span> <span class='op'>=</span> <span class='va'>mrt_ppp_jit</span><span class='op'>[</span><span class='va'>sg_owin</span><span class='op'>]</span>
+<span class='va'>mcSG_ppp</span> <span class='op'>=</span> <span class='va'>mc_ppp_jit</span><span class='op'>[</span><span class='va'>sg_owin</span><span class='op'>]</span>
+<span class='va'>gymSG_ppp</span> <span class='op'>=</span> <span class='va'>gym_ppp_jit</span><span class='op'>[</span><span class='va'>sg_owin</span><span class='op'>]</span>
+<span class='va'>ccSG_ppp</span> <span class='op'>=</span> <span class='va'>cc_ppp_jit</span><span class='op'>[</span><span class='va'>sg_owin</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kfcSG_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-31-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mrtSG_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-31-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mcSG_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-31-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>gymSG_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-31-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>ccSG_ppp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-31-5.png" width="624" /></p>
+</div>
+<h1 id="first-order-spatial-point-patterns-analysis-deriving-kernel-density-estimation-kde-layer-for-visualising-and-exploring-the-intensity-of-point-processes">5. First-order Spatial Point Patterns Analysis: deriving kernel density estimation (KDE) layer for visualising and exploring the intensity of point processes</h1>
+<h2 id="a.-computing-kernel-density-estimation-using-automatic-bandwidth-selection-method">a. Computing kernel density estimation using automatic bandwidth selection method</h2>
+<h4 id="using-sigma-bw.diggle">Using sigma = bw.diggle</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Rescale KDE values: covert the unit of measurement from meter to kilometer.</span>
+<span class='va'>kfcSG_ppp.km</span> <span class='op'>&lt;-</span> <span class='fu'>rescale</span><span class='op'>(</span><span class='va'>kfcSG_ppp</span>, <span class='fl'>1000</span>, <span class='st'>"km"</span><span class='op'>)</span>
+<span class='co'>#plot</span>
+<span class='va'>kde_kfcSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.diggle</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='co'># Rescale KDE values: covert the unit of measurement from meter to kilometer.</span>
+<span class='va'>mrtSG_ppp.km</span> <span class='op'>&lt;-</span> <span class='fu'>rescale</span><span class='op'>(</span><span class='va'>mrtSG_ppp</span>, <span class='fl'>1000</span>, <span class='st'>"km"</span><span class='op'>)</span>
+<span class='co'>#plot</span>
+<span class='va'>kde_mrtSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.diggle</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='co'># Rescale KDE values: covert the unit of measurement from meter to kilometer.</span>
+<span class='va'>mcSG_ppp.km</span> <span class='op'>&lt;-</span> <span class='fu'>rescale</span><span class='op'>(</span><span class='va'>mcSG_ppp</span>, <span class='fl'>1000</span>, <span class='st'>"km"</span><span class='op'>)</span>
+<span class='co'>#plot</span>
+<span class='va'>kde_mcSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.diggle</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='co'># Rescale KDE values: covert the unit of measurement from meter to kilometer.</span>
+<span class='va'>gymSG_ppp.km</span> <span class='op'>&lt;-</span> <span class='fu'>rescale</span><span class='op'>(</span><span class='va'>gymSG_ppp</span>, <span class='fl'>1000</span>, <span class='st'>"km"</span><span class='op'>)</span>
+<span class='co'>#plot</span>
+<span class='va'>kde_gymSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.diggle</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+
+<span class='co'># Rescale KDE values: covert the unit of measurement from meter to kilometer.</span>
+<span class='va'>ccSG_ppp.km</span> <span class='op'>&lt;-</span> <span class='fu'>rescale</span><span class='op'>(</span><span class='va'>ccSG_ppp</span>, <span class='fl'>1000</span>, <span class='st'>"km"</span><span class='op'>)</span>
+<span class='co'>#plot</span>
+<span class='va'>kde_ccSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.diggle</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="using-sigma-bw.ppl">Using sigma = bw.ppl</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kde_kfcSG_ppl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.ppl</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_mrtSG_ppl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.ppl</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_mcSG_ppl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.ppl</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_gymSG_ppl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.ppl</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+
+<span class='va'>kde_ccSG_ppl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='va'>bw.ppl</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="lets-try-to-look-at-the-bandwidths-returned-by-these-two-methods-first">Let’s try to look at the bandwidths returned by these two methods first</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#let's see some examples</span>
+<span class='fu'>bw.diggle</span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sigma 
+1.699276 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.ppl</span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sigma 
+1.401055 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.diggle</span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    sigma 
+0.7377345 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.ppl</span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sigma 
+1.314076 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.diggle</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  sigma 
+1.16877 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.ppl</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sigma 
+1.171488 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.diggle</span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    sigma 
+0.2569637 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.ppl</span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    sigma 
+0.8229603 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.diggle</span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sigma 
+1.351132 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>bw.ppl</span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  sigma 
+1.22966 </code></pre>
+</div>
+<ul>
+<li>We can see for all Diggle algorithm gives narrower bandwiths.</li>
+</ul>
+<h4 id="plot-and-compare-bw.diggle-and-bw.ppl">plot and compare bw.diggle and bw.ppl</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_kfcSG_bw</span>, main <span class='op'>=</span> <span class='st'>"kfcSG diggle"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_kfcSG_ppl</span>, main <span class='op'>=</span> <span class='st'>"kfcSG ppl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mrtSG_bw</span>, main <span class='op'>=</span> <span class='st'>"mrtSG diggle"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mrtSG_ppl</span>, main <span class='op'>=</span> <span class='st'>"mrtSG ppl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mcSG_bw</span>, main <span class='op'>=</span> <span class='st'>"mcSG diggle"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-5.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mcSG_ppl</span>, main <span class='op'>=</span> <span class='st'>"mcSG ppl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-6.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_gymSG_bw</span>, main <span class='op'>=</span> <span class='st'>"gymSG diggle"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-7.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_gymSG_ppl</span>, main <span class='op'>=</span> <span class='st'>"gymSG ppl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-8.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_ccSG_bw</span>, main <span class='op'>=</span> <span class='st'>"ccSG diggle"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-35-9.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_ccSG_ppl</span>, main <span class='op'>=</span> <span class='st'>"ccSG ppl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-35-10.png" width="624" /></p>
+</div>
+<ul>
+<li>For graphs consist predominantly of tight clusters, bw.ppl produce the more appropriate values; for graphs that consist lots of spreading points, bw.diggle is good at detecting at/emphasizing on clusters among those points – Baddeley’s (2016) observation.</li>
+</ul>
+<h2 id="b.-computing-kernel-density-estimation-using-fixedadaptive-bandwidth-method">b. Computing kernel density estimation using fixed/adaptive bandwidth method</h2>
+<h4 id="using-fixed-bandwidth">using fixed bandwidth</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#compute a KDE layer by defining a bandwidth of 1000 meter. Notice the sigma value used is 1. This is because the unit of measurement of mcSG_ppp.km object is in kilometer, hence the 1000m is 1km.</span>
+
+<span class='va'>kde_kfcSG_bw_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='fl'>1</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_mrtSG_bw_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='fl'>1</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_mcSG_bw_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='fl'>1</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span> 
+
+<span class='va'>kde_gymSG_bw_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='fl'>1</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+
+<span class='va'>kde_ccSG_bw_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span>,
+                              sigma<span class='op'>=</span><span class='fl'>1</span>,
+                              edge<span class='op'>=</span><span class='cn'>TRUE</span>,
+                            kernel<span class='op'>=</span><span class='st'>"gaussian"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="using-adaptive-bandwidth">using adaptive bandwidth</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>kde_kfcSG_adaptive</span> <span class='op'>&lt;-</span> <span class='fu'>adaptive.density</span><span class='op'>(</span><span class='va'>kfcSG_ppp.km</span>, method<span class='op'>=</span><span class='st'>"kernel"</span><span class='op'>)</span>
+
+<span class='va'>kde_mrtSG_adaptive</span> <span class='op'>&lt;-</span> <span class='fu'>adaptive.density</span><span class='op'>(</span><span class='va'>mrtSG_ppp.km</span>, method<span class='op'>=</span><span class='st'>"kernel"</span><span class='op'>)</span>
+
+<span class='va'>kde_mcSG_adaptive</span> <span class='op'>&lt;-</span> <span class='fu'>adaptive.density</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>, method<span class='op'>=</span><span class='st'>"kernel"</span><span class='op'>)</span>
+
+<span class='va'>kde_gymSG_adaptive</span> <span class='op'>&lt;-</span> <span class='fu'>adaptive.density</span><span class='op'>(</span><span class='va'>gymSG_ppp.km</span>, method<span class='op'>=</span><span class='st'>"kernel"</span><span class='op'>)</span>
+
+<span class='va'>kde_ccSG_adaptive</span> <span class='op'>&lt;-</span> <span class='fu'>adaptive.density</span><span class='op'>(</span><span class='va'>ccSG_ppp.km</span>, method<span class='op'>=</span><span class='st'>"kernel"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h4 id="plot-and-compare-fixed-and-adaptive-bandwidth">plot and compare fixed and adaptive bandwidth</h4>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_kfcSG_bw_1</span>, main <span class='op'>=</span> <span class='st'>"kfcSG fixed"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_kfcSG_adaptive</span>, main <span class='op'>=</span> <span class='st'>"kfcSG adaptive"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mrtSG_bw_1</span>, main <span class='op'>=</span> <span class='st'>"mrtSG fixed"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mrtSG_adaptive</span>, main <span class='op'>=</span> <span class='st'>"mrtSG adaptive"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mcSG_bw_1</span>, main <span class='op'>=</span> <span class='st'>"mcSG fixed"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-5.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_mcSG_adaptive</span>, main <span class='op'>=</span> <span class='st'>"mcSG adaptive"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-6.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_gymSG_bw_1</span>, main <span class='op'>=</span> <span class='st'>"gymSG fixed"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-7.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_gymSG_adaptive</span>, main <span class='op'>=</span> <span class='st'>"gymSG adaptive"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-8.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_ccSG_bw_1</span>, main <span class='op'>=</span> <span class='st'>"ccSG fixed"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-38-9.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kde_ccSG_adaptive</span>, main <span class='op'>=</span> <span class='st'>"ccSG adaptive"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-38-10.png" width="624" /></p>
+</div>
+<h2 id="c.-convert-kde-output-into-raster-and-display-the-kernel-density-maps-on-openstreetmap-of-singapore">c. Convert KDE output into raster and display the kernel density maps on openstreetmap of Singapore</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># convert KDE output into grid</span>
+<span class='va'>gridded_kde_kfcSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'>as.SpatialGridDataFrame.im</span><span class='op'>(</span><span class='va'>kde_kfcSG_bw</span><span class='op'>)</span>
+<span class='va'>gridded_kde_mrtSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'>as.SpatialGridDataFrame.im</span><span class='op'>(</span><span class='va'>kde_mrtSG_bw</span><span class='op'>)</span>
+<span class='va'>gridded_kde_mcSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'>as.SpatialGridDataFrame.im</span><span class='op'>(</span><span class='va'>kde_mcSG_bw</span><span class='op'>)</span>
+<span class='va'>gridded_kde_gymSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'>as.SpatialGridDataFrame.im</span><span class='op'>(</span><span class='va'>kde_gymSG_bw</span><span class='op'>)</span>
+<span class='va'>gridded_kde_ccSG_bw</span> <span class='op'>&lt;-</span> <span class='fu'>as.SpatialGridDataFrame.im</span><span class='op'>(</span><span class='va'>kde_ccSG_bw</span><span class='op'>)</span>
+
+<span class='co'># convert gridded output into raster</span>
+<span class='va'>kde_kfcSG_bw_raster</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='va'>gridded_kde_kfcSG_bw</span><span class='op'>)</span>
+<span class='va'>kde_mrtSG_bw_raster</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='va'>gridded_kde_mrtSG_bw</span><span class='op'>)</span>
+<span class='va'>kde_mcSG_bw_raster</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='va'>gridded_kde_mcSG_bw</span><span class='op'>)</span>
+<span class='va'>kde_gymSG_bw_raster</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='va'>gridded_kde_gymSG_bw</span><span class='op'>)</span>
+<span class='va'>kde_ccSG_bw_raster</span> <span class='op'>&lt;-</span> <span class='fu'>raster</span><span class='op'>(</span><span class='va'>gridded_kde_ccSG_bw</span><span class='op'>)</span>
+
+<span class='co'># assign projection system to raster</span>
+<span class='fu'>projection</span><span class='op'>(</span><span class='va'>kde_kfcSG_bw_raster</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>CRS</span><span class='op'>(</span><span class='st'>"+init=EPSG:3414 +datum=WGS84 +units=km"</span><span class='op'>)</span>
+<span class='fu'>projection</span><span class='op'>(</span><span class='va'>kde_mrtSG_bw_raster</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>CRS</span><span class='op'>(</span><span class='st'>"+init=EPSG:3414 +datum=WGS84 +units=km"</span><span class='op'>)</span>
+<span class='fu'>projection</span><span class='op'>(</span><span class='va'>kde_mcSG_bw_raster</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>CRS</span><span class='op'>(</span><span class='st'>"+init=EPSG:3414 +datum=WGS84 +units=km"</span><span class='op'>)</span>
+<span class='fu'>projection</span><span class='op'>(</span><span class='va'>kde_gymSG_bw_raster</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>CRS</span><span class='op'>(</span><span class='st'>"+init=EPSG:3414 +datum=WGS84 +units=km"</span><span class='op'>)</span>
+<span class='fu'>projection</span><span class='op'>(</span><span class='va'>kde_ccSG_bw_raster</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'>CRS</span><span class='op'>(</span><span class='st'>"+init=EPSG:3414 +datum=WGS84 +units=km"</span><span class='op'>)</span>
+
+<span class='co'># visualise the raster kernel density maps on openstreetmap of Singapore</span>
+<span class='co'>#tmap_mode("view")</span>
+<span class='fu'>tmap_options</span><span class='op'>(</span>check.and.fix <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='va'>kfcSG_osmap</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>'black'</span>,
+             lwd <span class='op'>=</span> <span class='fl'>1</span>,
+             alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kde_kfcSG_bw_raster</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>tm_raster</span><span class='op'>(</span><span class='st'>"v"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>, title <span class='op'>=</span> <span class='st'>"kfcSG"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_basemap</span><span class='op'>(</span><span class='st'>'OpenStreetMap'</span><span class='op'>)</span>
+
+<span class='va'>mrtSG_osmap</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>'black'</span>,
+             lwd <span class='op'>=</span> <span class='fl'>1</span>,
+             alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kde_mrtSG_bw_raster</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_raster</span><span class='op'>(</span><span class='st'>"v"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>, title <span class='op'>=</span> <span class='st'>"mrtSG"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_basemap</span><span class='op'>(</span><span class='st'>'OpenStreetMap'</span><span class='op'>)</span>
+
+<span class='va'>mcSG_osmap</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>'black'</span>,
+             lwd <span class='op'>=</span> <span class='fl'>1</span>,
+             alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kde_mcSG_bw_raster</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_raster</span><span class='op'>(</span><span class='st'>"v"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>, title <span class='op'>=</span> <span class='st'>"mcSG"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_basemap</span><span class='op'>(</span><span class='st'>'OpenStreetMap'</span><span class='op'>)</span>
+
+<span class='va'>gymSG_osmap</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>'black'</span>,
+             lwd <span class='op'>=</span> <span class='fl'>1</span>,
+             alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kde_gymSG_bw_raster</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_raster</span><span class='op'>(</span><span class='st'>"v"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>, title <span class='op'>=</span> <span class='st'>"gymSG"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_basemap</span><span class='op'>(</span><span class='st'>'OpenStreetMap'</span><span class='op'>)</span>
+
+<span class='va'>ccSG_osmap</span> <span class='op'>&lt;-</span> <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>sg_sf</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_borders</span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>'black'</span>,
+             lwd <span class='op'>=</span> <span class='fl'>1</span>,
+             alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_shape</span><span class='op'>(</span><span class='va'>kde_ccSG_bw_raster</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_raster</span><span class='op'>(</span><span class='st'>"v"</span>, alpha <span class='op'>=</span> <span class='fl'>0.7</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_layout</span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>, frame <span class='op'>=</span> <span class='cn'>FALSE</span>, title <span class='op'>=</span> <span class='st'>"ccSG"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>tm_basemap</span><span class='op'>(</span><span class='st'>'OpenStreetMap'</span><span class='op'>)</span>
+
+<span class='va'>kfcSG_osmap</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-39-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mrtSG_osmap</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-39-2.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mcSG_osmap</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-39-3.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gymSG_osmap</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-39-4.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ccSG_osmap</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-39-5.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>tmap_mode</span><span class='op'>(</span><span class='st'>'plot'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>From the above kernel density maps and their respective bandwidths:
+<ul>
+<li>For kfcSG, within a bandwidth of 1.284819km, most of the places in Singapore have 0. A few locations near have 0.3-0.5.</li>
+<li>For mrtSG, within a bandwidth of 0.654843km, most of the places in Singapore have 0-1. A few locations have 2-4.</li>
+<li>For mcSG, within a bandwidth of 0.9864091km, most of the places in Singapore have 0-0.5. A few locations have 0.5-1.</li>
+<li>For gymSG, within a bandwidth of 0.2238071km, most of the places in Singapore have 0-5. But Central Area can have up to 25.</li>
+<li>For ccSG, within a bandwidth of 1.326264km, most of the places in Singapore have &lt;0.2. Some locations can have up to 0.4-0.6.</li>
+</ul></li>
+<li>Advantages of kernel density maps over point maps:
+<ul>
+<li>Many times point maps may have points overlaped and it is very visual unfriendly to to judge their density. However, for kernel density maps, the density are displayed beautifully and clearly.</li>
+<li>Kernel density maps can reveal the density for every single location on the map, which is difficult to judge for point maps.</li>
+<li>It is very subjective for people to judge the density via point map, however, using kernel density map, density is standardized and well-calculated, it is objective and can be used for further analysis.</li>
+</ul></li>
+</ul>
+<h1 id="second-order-spatial-point-patterns-analysis-g-function-and-f-function">6. Second-order Spatial Point Patterns Analysis: G-Function and F-Function</h1>
+<ul>
+<li>use G-Function and F-Function to analyse the distribution of MC, focusing on the extent of randomness/clustering.</li>
+<li>For each function used, I will also perform a Complete Spatial Randomness(CSR) testing on it. The hypothesis are the same for both functions:</li>
+</ul>
+<p>The hypothesis are as follows: + H0 = The distribution of that type of Airbnb are randomly distributed in Singapore. + H1= The distribution of that type of Airbnb are not randomly distributed in Singapore. + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).</p>
+<h2 id="a.-analysing-spatial-point-process-using-g-function">a. Analysing Spatial Point Process Using G-Function</h2>
+<ul>
+<li>The G function measures the distribution of the distances from an arbitrary event to its nearest event.</li>
+</ul>
+<p><img src="data/capture2.JPG" /> <img src="data/capture3.JPG" /></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>G_mc</span> <span class='op'>=</span> <span class='fu'>Gest</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>, correction <span class='op'>=</span> <span class='st'>"border"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>G_mc</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-40-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#MONTE CARLO TEST WITH G-FUCNTION</span>
+<span class='va'>G_mc.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>, <span class='va'>Gest</span>, nsim <span class='op'>=</span> <span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>G_mc.csr</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-41-1.png" width="624" /></p>
+</div>
+<ul>
+<li>From 0km to 0.35km, the observed(black) line goes along with (in) the envelope. This means that there is not enough evidence to reject the null hypothesis and suggesting Mcdonalds resemble randomness. However, from about 0.35km onward, we noticed that the observed(black) line goes above the envelop, indicating there is enough evidence to reject the null hypothesis and say that Mcdonalds resemble clustered pattern.</li>
+</ul>
+<h2 id="b.-analysing-spatial-point-process-using-f-function">b. Analysing Spatial Point Process Using F-Function</h2>
+<ul>
+<li>The F function select a sample of point locations anywhere in the study region at random and determine minimum distance from each point to any event in the study area.</li>
+</ul>
+<p><img src="data/capture4.JPG" /> <img src="data/capture8.JPG" /></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>F_mc</span> <span class='op'>=</span> <span class='fu'>Fest</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>F_mc</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-42-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#MONTE CARLO TEST WITH F-FUCNTION</span>
+<span class='va'>F_mc.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mcSG_ppp.km</span>, <span class='va'>Fest</span>, nsim <span class='op'>=</span> <span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>F_mc.csr</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-42-2.png" width="624" /></p>
+</div>
+<ul>
+<li>From the graph above we can see the observed(black) line is within the envelop, indicating there is insufficient evidence to reject the null hypothesis and say that MC resemble clustered pattern at 99% confidence interval.</li>
+</ul>
+<h1 id="second-order-spatial-point-patterns-analysis-multi-tpye-point-patterns-analysis-cross-l-function">7. Second-order Spatial Point Patterns Analysis: Multi-tpye Point Patterns Analysis: Cross L-Function</h1>
+<ul>
+<li>In order to investigate if the distribution of Mcdonalds are affected by location factors, I am going to use Cross L-Function to see if they are spatial independent with each other.</li>
+<li>The 4 location factors I am going to investigate with Mcdonalds are: kfc, mrt, gym, and cc.</li>
+</ul>
+<h2 id="prepare-merged-ppp-objects-by-using-superimpose">Prepare merged ppp objects by using superimpose()</h2>
+<ul>
+<li>In order to do Cross L-Function, I need to have merged ppp objects of the two factors I want to compare independence</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_kfc</span><span class='op'>&lt;-</span> <span class='fu'>superimpose</span><span class='op'>(</span><span class='st'>'mc'</span><span class='op'>=</span><span class='va'>mcSG_ppp.km</span>, <span class='st'>'kfc'</span><span class='op'>=</span><span class='va'>kfcSG_ppp.km</span><span class='op'>)</span>
+<span class='va'>mc_vs_mrt</span><span class='op'>&lt;-</span> <span class='fu'>superimpose</span><span class='op'>(</span><span class='st'>'mc'</span><span class='op'>=</span><span class='va'>mcSG_ppp.km</span>, <span class='st'>'mrt'</span><span class='op'>=</span><span class='va'>mrtSG_ppp.km</span><span class='op'>)</span>
+<span class='va'>mc_vs_gym</span><span class='op'>&lt;-</span> <span class='fu'>superimpose</span><span class='op'>(</span><span class='st'>'mc'</span><span class='op'>=</span><span class='va'>mcSG_ppp.km</span>, <span class='st'>'gym'</span><span class='op'>=</span><span class='va'>gymSG_ppp.km</span><span class='op'>)</span>
+<span class='va'>mc_vs_cc</span><span class='op'>&lt;-</span> <span class='fu'>superimpose</span><span class='op'>(</span><span class='st'>'mc'</span><span class='op'>=</span><span class='va'>mcSG_ppp.km</span>, <span class='st'>'cc'</span><span class='op'>=</span><span class='va'>ccSG_ppp.km</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="note">Note:</h2>
+<p>For each comparison between MC and one of the factors, I’m going to plot the Lcross and perform a Complete Spatial Randomness(CSR) testing on the Cross L-Function.</p>
+<p>The hypothesis are as follows: + H0 = The distribution of 2019 Airbnb listings and the factor are spatially independent. + H1 = The distribution of 2019 Airbnb listings and the factor are NOT spatially independent. + The null hypothesis will be rejected if p-value is smaller than alpha value of 0.01 (i.e. at 99% confident interval).</p>
+<p>Cross L-Function and Cross K-Function are the actually the same but just Cross L-Function is the standardized version of Cross K-Function. Their CSR testing hypothesis, analysis and conclusions are all the same. I would just like to draw here the L-Functions for better visualization purpose.</p>
+<h2 id="i.-mc_vs_kfc">i. mc_vs_kfc</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_kfc_Lcross</span> <span class='op'>&lt;-</span> <span class='fu'>Lcross</span><span class='op'>(</span><span class='va'>mc_vs_kfc</span>, 
+                           i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"kfc"</span>,
+                           correction<span class='op'>=</span><span class='st'>'border'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_kfc_Lcross</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, 
+     xlab <span class='op'>=</span> <span class='st'>"distance(km)"</span>, 
+     xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-44-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_kfc_Lcross.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mc_vs_kfc</span>, <span class='va'>Lcross</span>, i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"kfc"</span>, correction<span class='op'>=</span><span class='st'>'border'</span>, nsim<span class='op'>=</span><span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_kfc_Lcross.csr</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, xlab<span class='op'>=</span><span class='st'>"distance(km)"</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-44-2.png" width="624" /></p>
+</div>
+<ul>
+<li>From the graph above we can see from 0 to about 4km the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of mc and kfc locations are not independent spatially with each other at 99.9% confidence interval. However, from 4km onwards the observed(black) line is within the envelop. Therefore, we failed to reject the null hypothesis and distribution of mc and kfc are independent spatially with each other at 99.9% confidence interval.</li>
+</ul>
+<h2 id="ii.-mc_vs_mrt">ii. mc_vs_mrt</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_mrt_Lcross</span> <span class='op'>&lt;-</span> <span class='fu'>Lcross</span><span class='op'>(</span><span class='va'>mc_vs_mrt</span>, 
+                           i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"mrt"</span>,
+                           correction<span class='op'>=</span><span class='st'>'border'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_mrt_Lcross</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, 
+     xlab <span class='op'>=</span> <span class='st'>"distance(km)"</span>, 
+     xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-45-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_mrt_Lcross.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mc_vs_mrt</span>, <span class='va'>Lcross</span>, i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"mrt"</span>, correction<span class='op'>=</span><span class='st'>'border'</span>, nsim<span class='op'>=</span><span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_mrt_Lcross.csr</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, xlab<span class='op'>=</span><span class='st'>"distance(km)"</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-45-2.png" width="624" /></p>
+</div>
+<ul>
+<li>From the graph above we can see from 0-4.5km and after 6.5km the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of mc and mrt locations are not independent spatially with each other at 99.9% confidence interval. However, from 4.5-6.5km the observed(black) line is within the envelop. Within this distance range, we failed to reject the null hypothesis and the distribution of mc and mrt are independent spatially with each other at 99.9% confidence interval.</li>
+</ul>
+<h2 id="iii.-mc_vs_gym">iii. mc_vs_gym</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_gym_Lcross</span> <span class='op'>&lt;-</span> <span class='fu'>Lcross</span><span class='op'>(</span><span class='va'>mc_vs_gym</span>, 
+                           i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"gym"</span>,
+                           correction<span class='op'>=</span><span class='st'>'border'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_gym_Lcross</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, 
+     xlab <span class='op'>=</span> <span class='st'>"distance(km)"</span>, 
+     xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-46-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_gym_Lcross.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mc_vs_gym</span>, <span class='va'>Lcross</span>, i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"gym"</span>, correction<span class='op'>=</span><span class='st'>'border'</span>, nsim<span class='op'>=</span><span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_gym_Lcross.csr</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, xlab<span class='op'>=</span><span class='st'>"distance(km)"</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-46-2.png" width="624" /></p>
+</div>
+<ul>
+<li>From the graph above we can see from 0-4km and after 6.5km the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of mc and gym locations are not independent spatially with each other at 99.9% confidence interval. However, from 4-6.5km the observed(black) line is within the envelop. Within this distance range, we failed to reject the null hypothesis and the distribution of mc and gym are independent spatially with each other at 99.9% confidence interval.</li>
+</ul>
+<h2 id="iv.-mc_vs_cc">iv. mc_vs_cc</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_cc_Lcross</span> <span class='op'>&lt;-</span> <span class='fu'>Lcross</span><span class='op'>(</span><span class='va'>mc_vs_cc</span>, 
+                           i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"cc"</span>,
+                           correction<span class='op'>=</span><span class='st'>'border'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_cc_Lcross</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, 
+     xlab <span class='op'>=</span> <span class='st'>"distance(km)"</span>, 
+     xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="projectspa_files/figure-html5/unnamed-chunk-47-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mc_vs_cc_Lcross.csr</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>mc_vs_cc</span>, <span class='va'>Lcross</span>, i<span class='op'>=</span><span class='st'>"mc"</span>, j<span class='op'>=</span><span class='st'>"cc"</span>, correction<span class='op'>=</span><span class='st'>'border'</span>, nsim<span class='op'>=</span><span class='fl'>99</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>mc_vs_cc_Lcross.csr</span>, <span class='va'>.</span> <span class='op'>-</span><span class='va'>r</span> <span class='op'>~</span> <span class='va'>r</span>, xlab<span class='op'>=</span><span class='st'>"distance(km)"</span>, xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="projectspa_files/figure-html5/unnamed-chunk-47-2.png" width="624" /></p>
+</div>
+<ul>
+<li>From the graph above we can see the observed(black) line is above the envelop. Therefore, there is enough statistical evidence to reject the null hypothesis and say that the distribution of mc and cc locations are not independent spatially with each other at 99.9% confidence interval.</li>
+</ul>
+<h2 id="summary-of-cross-l-function">Summary of Cross L-Function</h2>
+<p>From the above Cross L-Function analysis, we can see mc are not independent with all 4 location factors from 0-4km. These are be the factors that may bring mc customers and profit so these mc are located there.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
