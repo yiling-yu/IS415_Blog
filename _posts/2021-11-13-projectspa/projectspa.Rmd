@@ -551,6 +551,27 @@ plot(kde_ccSG_bw_1, main = "ccSG fixed")
 plot(kde_ccSG_adaptive, main = "ccSG adaptive")
 ```
 
+```{r include=FALSE, eval=FALSE}
+gridded_kde_kfcSG_bw <- as.SpatialGridDataFrame.im(kde_mcSG_ppl)
+kde_kfcSG_bw_raster <- raster(gridded_kde_kfcSG_bw)
+projection(kde_kfcSG_bw_raster) <- CRS("+init=EPSG:3414 +datum=WGS84 +units=km")
+
+tmap_mode("view")
+tmap_options(check.and.fix = TRUE)
+
+kfcSG_osmap <- tm_shape(sg_sf) +
+  tm_borders(col = 'black',
+             lwd = 1,
+             alpha = 0.5) +
+  tm_shape(kde_kfcSG_bw_raster) + 
+  tm_raster("v", alpha = 0.7) +
+  tm_layout(legend.outside = TRUE, frame = FALSE, title = "kfcSG") +
+  tm_basemap('OpenStreetMap')
+
+kfcSG_osmap
+```
+
+
 ## c. Convert KDE output into raster and display the kernel density maps on openstreetmap of Singapore
 ```{r, warning=FALSE}
 # convert KDE output into grid
