@@ -13,6 +13,6 @@ navbar:
         href: "/posts/2021-09-25-take-home-exercise-2/index.html"
       - text: "Take-home Exercise 3"
         href: "/posts/2021-11-05-take-home-exercise-3/index.html"
-    - text: "In-class/Hands-on Exercise"
-      href: index.html
+    - text: "About"
+      href: "/posts/welcome/index.html"
 output: distill::distill_article

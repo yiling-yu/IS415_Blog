@@ -1,8 +1,5 @@
 ---
-title: "Welcome to IS415 Web Blog"
-description: |
-  Welcome to our new blog, IS415 Web Blog. We hope you enjoy 
-  reading what we have to say!
+title: "Welcome to Yiling's IS415 Web Blog"
 author:
   - name: Yu Yiling 
     url: https://www.linkedin.com/in/yiling-yu/
@@ -14,7 +11,11 @@ output:
     self_contained: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+Hi there! I'm Yiling. 
+
+This blog is created for IS415 Geospatial Analytics & Application (SMU-X), a module in Singapore Management University (SMU) with the guidance of Professor Kam Tin Seong.
+
+It stores the in-class exercises and take-home assignments I did for this module, all about doing Geospatial Analysis using R.
+
+Besides this blog, my team did a geospatial analytics project on Point Pattern Analysis. Please feel free to have a look at it [here](https://spatial-pointers.netlify.app/)~ :D
 
