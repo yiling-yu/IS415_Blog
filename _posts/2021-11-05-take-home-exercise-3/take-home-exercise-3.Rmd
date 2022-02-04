@@ -18,6 +18,13 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# AfterMath
+Don't look at this assignment, not very good. should refer to these to do GWR.
+* https://geniceee-is415-blog.netlify.app/posts/2021-11-05-take-home-exercise-3/
+* https://is415-msty.netlify.app/posts/2021-10-25-take-home-exercise-3/#importing-geospatial-data
+* https://aisyahajit2018-is415.netlify.app/posts/2021-11-07-take-home-exercise-3/?panelset13=code-chunk14#create-get_prox-function-to-calculate-proximity
+* https://wlwong2018-is415-blog.netlify.app/posts/2021-11-06-take-home-exercise-3/#function-to-calculate-proximity-of-variables
+
 # Note!
 * For some code chunks, it takes a lot of time to load the outputs, in order for everything to run/knit/push smoothly, I have made some of them eval=FALSE and insert images of their outputs in this webpage. I’m also very sorry that I have disabled all the maps with “view” mode because my Netlify refused to load them.
 
